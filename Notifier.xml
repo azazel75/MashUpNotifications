@@ -3,10 +3,10 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>Thanks for updating to v1.3.4, please make sure u also get repo</message1>
-<message2>v1.5. starplay is down due to bandwidth restrictions, sominal </message2>
-<message3>tv is redoing their site, doc heaven is down temporarliy. enjoy</message3>
+<new>mess2</new>
+<message1>Attention real debrid users you can get a 30 day</message1>
+<message2>subscription for 1 euro by typing SUMMER_SALES </message2>
+<message3>under promotions code. enjoy ;)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.4[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
