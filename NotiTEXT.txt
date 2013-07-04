@@ -1,4 +1,1586 @@
-test
+<?xml version="1.0" encoding="utf-8"?>
+<array>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtv3</string>
+<key>shortDescription</key>
+<string>Kênh thể thao, giải trí và thông tin kinh tế</string>
+<key>symbol</key>
+<string>VTV3</string>
+<key>url1</key>
+<string>rtmp://117.103.225.16:1935/live/vtv31 pageUrl=http://www1.vtc.com.vn/#/VTV3/3 live=1</string>
+<key>url.IsAppleStream</key>
+<true />
+<key>url</key>
+<string>http://112.197.2.11:1935/live/vtv3.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtv4</string>
+<key>shortDescription</key>
+<string>Chương trình đặc biệt cho người Việt Nam tại nước ngoài</string>
+<key>symbol</key>
+<string>VTV4</string>
+<key>url1</key>
+<string>rtmp://117.103.225.4:1935/live/vtv4 pageUrl=http://www1.vtc.com.vn/#/VTV4/2 live=1</string>
+<key>url.IsAppleStream</key>
+<true />
+<key>url</key>
+<string>http://112.197.2.11:1935/live/vtv4.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>hanoi1</string>
+<key>shortDescription</key>
+<string>Kênh truyền hình Hà Nội 1</string>
+<key>symbol</key>
+<string>HaNoiTV 1</string>
+<key>url1</key>
+<string>rtmp://117.103.225.3:1935/live/hanoi11 live=1 pageUrl=http://www1.vtc.com.vn/list/10/ha_noi.aspx#/HTV/5</string>
+<key>url.IsAppleStream</key>
+<true />
+<key>url</key>
+<string>http://112.197.2.11:1935/live/hn1.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc1</string>
+<key>shortDescription</key>
+<string>Kênh truyền hình giải trí tổng hợp</string>
+<key>symbol</key>
+<string>VTC1</string>
+<key>url</key>
+<string>rtmp://117.103.225.16:1935/live/vtc11 pageUrl=http://www1.vtc.com.vn/#/VTC1/10 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc2</string>
+<key>shortDescription</key>
+<string>Kênh truyền hình chuyên biệt về lĩnh vực Công nghệ thông tin và Truyền thông</string>
+<key>symbol</key>
+<string>VTC2</string>
+<key>url</key>
+<string>rtmp://117.103.232.2:1935/live/vtc21 pageUrl=http://www1.vtc.com.vn/#/VTC2/11 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc3</string>
+<key>shortDescription</key>
+<string>Kênh thể thao tổng hợp</string>
+<key>symbol</key>
+<string>VTC3</string>
+<key>url</key>
+<string>rtmp://117.103.225.4:1935/live/vtc31 pageUrl=http://www1.vtc.com.vn/#/VTC3/30 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>vtc8</string>
+<key>shortDescription</key>
+<string>Kênh thị trường - kinh tế - tài chính</string>
+<key>symbol</key>
+<string>VTC8</string>
+<key>url</key>
+<string>rtmp://117.103.225.4:1935/live/vtc81 pageUrl=http://www1.vtc.com.vn/#/VTC8/31 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc9</string>
+<key>shortDescription</key>
+<string>Kênh Let's Việt</string>
+<key>symbol</key>
+<string>VTC9</string>
+<key>url</key>
+<string>rtmp://119.18.184.226/live/vtc9_h live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc10</string>
+<key>shortDescription</key>
+<string>Kênh truyền hình chuyên biệt về Văn hóa Việt</string>
+<key>symbol</key>
+<string>VTC10</string>
+<key>url</key>
+<string>rtmp://117.103.225.16:1935/live/vtc101 pageUrl=http://www1.vtc.com.vn/#/VTC10/22 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc11</string>
+<key>shortDescription</key>
+<string>Kênh thiếu nhi</string>
+<key>symbol</key>
+<string>VTC11</string>
+<key>url</key>
+<string>rtmp://119.18.184.226/live/vtc11_h live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc14</string>
+<key>shortDescription</key>
+<string>Kênh VTC14</string>
+<key>symbol</key>
+<string>VTC14</string>
+<key>url</key>
+<string>rtmp://119.18.184.226/live/vtc14_h live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtc16</string>
+<key>shortDescription</key>
+<string>Kênh VTC16</string>
+<key>symbol</key>
+<string>VTC16</string>
+<key>url</key>
+<string>rtmp://117.103.225.3:1935/live/vtc161 pageUrl=http://www1.vtc.com.vn/#/VTC16/32 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>htv7</string>
+<key>shortDescription</key>
+<string>Kênh giải trí, thể thao, trò chơi truyền hình, quảng cáo, dịch vụ</string>
+<key>symbol</key>
+<string>HTV7</string>
+<key>url1</key>
+<string>rtmp://117.103.225.20/live/htv7 pageUrl=http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=htv7&amp;streamer=rtmp://117.103.225.20/live&amp;provider=rtmp&amp;autostart=true live=1</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/htv7.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>htv9</string>
+<key>shortDescription</key>
+<string>Kênh chính trị - xã hội, văn hóa.</string>
+<key>symbol</key>
+<string>HTV9</string>
+<key>url1</key>
+<string>rtmp://117.103.225.20/live/htv91 pageUrl=http://farm.vtc.vn/media/vtcnews/resources/swf/flv/flvplayer.swf?file=htv91&amp;streamer=rtmp://117.103.225.20/live&amp;provider=rtmp&amp;autostart=true live=1</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/htv9.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vinhphuc</string>
+<key>shortDescription</key>
+<string>Đài truyền hình vĩnh phúc</string>
+<key>symbol</key>
+<string>VP</string>
+<key>url</key>
+<string>rtmp://210.245.87.165/live/thvp live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vinhlong1</string>
+<key>shortDescription</key>
+<string>Kênh khoa học đời sống</string>
+<key>symbol</key>
+<string>Vĩnh Long 1</string>
+<key>url1</key>
+<string>rtmp://123.30.108.77/live/THVL1/THVL1 live=1</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/thvl1.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vinhlong2</string>
+<key>shortDescription</key>
+<string>Kênh thể thao - giải trí</string>
+<key>symbol</key>
+<string>Vĩnh Long 2</string>
+<key>url</key>
+<string>rtmp://123.30.108.77/live/THVL2/THVL2 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv1</string>
+<key>shortDescription</key>
+<string>Kênh Hài</string>
+<key>symbol</key>
+<string>SCTV1</string>
+<key>url1</key>
+<string>rtmp://112.197.2.16:1935/live/sctv1.stream swfUrl=http://www.tv24.vn/jwplayer/player.swf pageUrl=http://tv24.vn/TV24/10/7/sctv1.html</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv1.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>yan</string>
+<key>shortDescription</key>
+<string>Yan TV</string>
+<key>symbol</key>
+<string>SCTV2</string>
+<key>url1</key>
+<string>rtmp://112.197.2.16:1935/live/sctv2.stream swfUrl=http://www.tv24.vn/jwplayer/player.swf pageUrl=http://tv24.vn/TV24/10/2/sctv-2.html</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv2.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv3</string>
+<key>shortDescription</key>
+<string>Sao TV-Thiếu nhi</string>
+<key>symbol</key>
+<string>SCTV3</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv3.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>yeah</string>
+<key>shortDescription</key>
+<string>Yeah1 TV</string>
+<key>symbol</key>
+<string>SCTV4</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv4.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv5</string>
+<key>shortDescription</key>
+<string>Shopping TV</string>
+<key>symbol</key>
+<string>SCTV5</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv5.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv6</string>
+<key>shortDescription</key>
+<string>Kênh Sóng nhạc</string>
+<key>symbol</key>
+<string>SCTV6</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv6.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv7</string>
+<key>shortDescription</key>
+<string>Sân khấu, Văn nghệ</string>
+<key>symbol</key>
+<string>SCTV7</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv7.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv8</string>
+<key>shortDescription</key>
+<string>Thông tin kinh tế online</string>
+<key>symbol</key>
+<string>SCTV8</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv8.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv9</string>
+<key>shortDescription</key>
+<string>Kênh Phim Châu Á</string>
+<key>symbol</key>
+<string>SCTV9</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv9.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv10</string>
+<key>shortDescription</key>
+<string>Home Shopping Net</string>
+<key>symbol</key>
+<string>SCTV10</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv10.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv11</string>
+<key>shortDescription</key>
+<string>Hát trên truyền hình</string>
+<key>symbol</key>
+<string>SCTV11</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv11.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv12</string>
+<key>shortDescription</key>
+<string>Du lịch - Khám phá</string>
+<key>symbol</key>
+<string>SCTV12</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv12.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv13</string>
+<key>shortDescription</key>
+<string>Phụ nữ &amp; Gia đình</string>
+<key>symbol</key>
+<string>SCTV13</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv13.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv14</string>
+<key>shortDescription</key>
+<string>Kênh Phim tiếng Việt</string>
+<key>symbol</key>
+<string>SCTV14</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv14.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv15</string>
+<key>shortDescription</key>
+<string>Kênh thể thao</string>
+<key>symbol</key>
+<string>SCTV15</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv15.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv16</string>
+<key>shortDescription</key>
+<string>Phim nuớc ngoài</string>
+<key>symbol</key>
+<string>SCTV16</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv16.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv17</string>
+<key>shortDescription</key>
+<string>Kênh phim Tổng hợp</string>
+<key>symbol</key>
+<string>SCTV17</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv0.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>sctv18</string>
+<key>shortDescription</key>
+<string>Kênh thể thao</string>
+<key>symbol</key>
+<string>SCTV18</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/sctv18.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>iTV-SD</string>
+<key>shortDescription</key>
+<string>ITV-truyền hình theo yêu cầu</string>
+<key>symbol</key>
+<string>ITV-SD</string>
+<key>url</key>
+<string>rtmp://210.245.82.6/live/itvw_hh live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>tth</string>
+<key>shortDescription</key>
+<string>Kênh truyền hình Thừa Thiên Huế</string>
+<key>symbol</key>
+<string>TTH</string>
+<key>url</key>
+<string>rtmp://118.69.176.149/live/trt live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>dongnai1</string>
+<key>shortDescription</key>
+<string>Truyền hình Đồng Nai 1</string>
+<key>symbol</key>
+<string>Đồng Nai 1</string>
+<key>url1</key>
+<string>rtmp://123.30.107.3:1935/live/dn1/livestream live=1</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/dn1.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>dongnai2</string>
+<key>shortDescription</key>
+<string>Truyền hình Đồng Nai 2</string>
+<key>symbol</key>
+<string>Đồng Nai 2</string>
+<key>url</key>
+<string>rtmp://123.30.107.3:1935/live/dn2/livestream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>brt</string>
+<key>shortDescription</key>
+<string>Truyền hình Bà Rịa Vũng Tàu</string>
+<key>symbol</key>
+<string>Bà Rịa Vũng Tàu</string>
+<key>url</key>
+<string>rtmp://113.163.216.24/live/livestream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>ttxvn</string>
+<key>shortDescription</key>
+<string>Kênh thông tấn xã Việt Nam</string>
+<key>symbol</key>
+<string>TTXVN</string>
+<key>url</key>
+<string>rtmp://live.vnanet.vn:1935/Live/DRC live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vovtv</string>
+<key>shortDescription</key>
+<string>Hệ phát thanh có hình VOVTV</string>
+<key>symbol</key>
+<string>VOVTV</string>
+<key>url</key>
+<string>rtmp://123.30.50.46:8080/live/vovvideo live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>phunu</string>
+<key>shortDescription</key>
+<string>HTVC Phụ nữ</string>
+<key>symbol</key>
+<string>HTVC-Phụ Nữ</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/phunu live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>giadinh</string>
+<key>shortDescription</key>
+<string>HTVC Gia đình</string>
+<key>symbol</key>
+<string>HTVC-Gia Đình</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/giadinh live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>htvtviet</string>
+<key>shortDescription</key>
+<string>HTVC Thuần Việt</string>
+<key>symbol</key>
+<string>Thuần Việt</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/thuanviet live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>canhachtv</string>
+<key>shortDescription</key>
+<string>HTVC Ca nhạc</string>
+<key>symbol</key>
+<string>HTVC-MUSIC</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/canhac live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>quangnam</string>
+<key>shortDescription</key>
+<string>Truyền hình Quảng Nam</string>
+<key>symbol</key>
+<string>QRT</string>
+<key>url1</key>
+<string>mmst://113.161.6.157/qrt</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/qrt.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>thbt</string>
+<key>shortDescription</key>
+<string>Truyền hình Bình Thuận</string>
+<key>symbol</key>
+<string>BTV</string>
+<key>url</key>
+<string>mmst://123.30.108.114/BTVTruyenhinh</string>
+<key>url1.IsAppleStream</key>
+<true />
+<key>url1</key>
+<string>http://112.197.2.11:1935/live/bthtv.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>thdt</string>
+<key>shortDescription</key>
+<string>Truyền hình Đồng Tháp</string>
+<key>symbol</key>
+<string>THDT</string>
+<key>url1</key>
+<string>mmst://123.30.130.209/thdt</string>
+<key>url.IsAppleStream</key>
+<true />
+<key>url</key>
+<string>http://112.197.2.11:1935/live/thdt.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>thhg</string>
+<key>shortDescription</key>
+<string>Truyền hình Hậu Giang</string>
+<key>symbol</key>
+<string>HGV</string>
+<key>url</key>
+<string>wmrtsp://115.78.160.29/thhg</string>
+<key>url1.IsAppleStream</key>
+<true />
+<key>url1</key>
+<string>http://112.197.2.11:1935/live/thhg.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>tiengiang</string>
+<key>shortDescription</key>
+<string>Truyền hình Tiền Giang</string>
+<key>symbol</key>
+<string>Tiền Giang</string>
+<key>url</key>
+<string>mmst://118.69.201.97/rtv</string>
+<key>url1.IsAppleStream</key>
+<true />
+<key>url1</key>
+<string>http://112.197.2.11:1935/live/thtg.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>soctrang</string>
+<key>shortDescription</key>
+<string>Truyền hình Sóc Trăng</string>
+<key>symbol</key>
+<string>STV</string>
+<key>url1</key>
+<string>mmst://115.78.3.164/TV_online</string>
+<key>url.IsAppleStream</key>
+<true />
+<key>url</key>
+<string>http://112.197.2.11:1935/live/thst.stream/playlist.m3u8</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>htvphim</string>
+<key>shortDescription</key>
+<string>HTVC Phim</string>
+<key>symbol</key>
+<string>HTVC-MOVIE</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/phim live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>infotv</string>
+<key>shortDescription</key>
+<string>Kênh thông tin tài chính kinh tế và chứng khoán</string>
+<key>symbol</key>
+<string>INFOTV</string>
+<key>url</key>
+<string>wmrtsp://222.255.31.252/InfoTVChannel</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>shortDescription</key>
+<string>Karaoke</string>
+<key>symbol</key>
+<string>Karaoke</string>
+<key>url</key>
+<string>mmst://live.vietchristian.com/tv</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtvcantho1</string>
+<key>shortDescription</key>
+<string>VTV Cần thơ 1</string>
+<key>symbol</key>
+<string>VTVCanTho1</string>
+<key>url</key>
+<string>rtmp://113.161.204.167:1935/live/livestream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtvcantho2</string>
+<key>shortDescription</key>
+<string>VTV Cần thơ 2</string>
+<key>symbol</key>
+<string>VTVCanTho2</string>
+<key>url</key>
+<string>rtmp://113.161.204.168:1935/live/livestream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>imax</string>
+<key>shortDescription</key>
+<string>Kênh Phim IMax</string>
+<key>symbol</key>
+<string>IMAX</string>
+<key>url</key>
+<string>wmrtsp://imax.vn/3f4e5csdk249e85sd31s2s4f5sacc4b5</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>tuoitre</string>
+<key>shortDescription</key>
+<string>Kênh Phim Tuổi trẻ</string>
+<key>symbol</key>
+<string>TUỔI TRẺ</string>
+<key>url</key>
+<string>wmrtsp://media.tuoitre.com.vn/BroadCast</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtvdanang</string>
+<key>shortDescription</key>
+<string>vtvdanang</string>
+<key>symbol</key>
+<string>VTV DANANG</string>
+<key>url</key>
+<string>wmrtsp://vtvdanang.vn/dvtv</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>longan</string>
+<key>shortDescription</key>
+<string>Truyền hình Long An</string>
+<key>symbol</key>
+<string>LA34TV</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/la34.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>daklak</string>
+<key>shortDescription</key>
+<string>Truyền hình Đắk Lắk</string>
+<key>symbol</key>
+<string>DRT</string>
+<key>url</key>
+<string>wmrtsp://118.69.161.10/Push</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>bbcworldnews</string>
+<key>shortDescription</key>
+<string>BBC World News</string>
+<key>symbol</key>
+<string>BBC</string>
+<key>url</key>
+<string>rtmp://media7.lsops.net/live/bbcworld1_en_high.sdp swfUrl=http://cdn.livestation.com/flash/player/5.6/player.swf</string>
+<key>url0</key>
+<string>rtmp://c.cdn.msnbclive.eu/edge/bbcworld_vh live=1 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://blog.livenewschat.tv/world-newsroom</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>cnn</string>
+<key>shortDescription</key>
+<string>CNN International Live</string>
+<key>symbol</key>
+<string>CNNIT</string>
+<key>url</key>
+<string>rtmp://b.cdn.msnbclive.eu/edge/cnni_live live=1 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://blog.livenewschat.tv/international-room-chat</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>cnn</string>
+<key>shortDescription</key>
+<string>CNN USA News Live</string>
+<key>symbol</key>
+<string>CNNUS</string>
+<key>url</key>
+<string>rtmp://b.cdn.msnbclive.eu/edge/cnn_uza live=1 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://blog.livenewschat.tv/situation-chatroom</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>Jazeera</string>
+<key>shortDescription</key>
+<string>Al Jazeera International</string>
+<key>symbol</key>
+<string>Jazeera</string>
+<key>url</key>
+<string>rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/aljazeera_eng_high live=1 swfUrl=http://www.elahmad.com/tv/swf/al_jazeera_english.swf?autostart=true pageUrl=http://www.elahmad.com/tv/swf/al_jazeera_english.swf?autostart=true</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>france24</string>
+<key>shortDescription</key>
+<string>France 24 English</string>
+<key>symbol</key>
+<string>FR24</string>
+<key>url</key>
+<string>rtmp://stream2.france24.yacast.net:80/france24_live/en/f24_liveen live=1 swfUrl=http://www.france24.com/en/sites/all/modules/maison/aef_player/flash/player.swf</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>cnbc</string>
+<key>shortDescription</key>
+<string>CNBC LIVE Stream Business</string>
+<key>symbol</key>
+<string>CNBC</string>
+<key>url</key>
+<string>rtmp://c.cdn.msnbclive.eu/edge/cnbc_live live=1 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://blog.livenewschat.tv/stock-traders-chat</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>msnbc</string>
+<key>shortDescription</key>
+<string>MSNBC LIVE Stream</string>
+<key>symbol</key>
+<string>MSNBC</string>
+<key>url</key>
+<string>rtmp://c.cdn.msnbclive.eu/edge/msnbc_live live=1 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://blog.livenewschat.tv/rockinroosters</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>hln</string>
+<key>shortDescription</key>
+<string>HLN LIVE Stream</string>
+<key>symbol</key>
+<string>HLN</string>
+<key>ur</key>
+<string>rtmp://c.cdn.msnbclive.eu/edge/hln_live live=1 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://blog.livenewschat.tv/the-nancy-grace-room</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>nasatv</string>
+<key>shortDescription</key>
+<string>NASA TV</string>
+<key>symbol</key>
+<string>NASA</string>
+<key>url</key>
+<string>rtmp://cp76072.live.edgefcs.net/live/MED-HQ-Flash@42814 live=1 swfUrl=http://cdn.livestation.com/flash/player/5.6/player.swf</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>euronews</string>
+<key>shortDescription</key>
+<string>European news and current affairs channel broadcasting simultaneously in nine languages.</string>
+<key>symbol</key>
+<string>EuroNews</string>
+<key>url</key>
+<string>rtmp://media7.lsops.net/live/euronews_en_medium.sdp swfUrl=http://cdn.livestation.com/flash/player/5.6/player.swf</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>nhkworld</string>
+<key>shortDescription</key>
+<string>NHK World</string>
+<key>symbol</key>
+<string>NHK</string>
+<key>url</key>
+<string>rtmp://media7.lsops.net/nhk/nhkworldhd.sdp swfUrl=http://cdn.livestation.com/flash/player/5.6/player.swf</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>cbnnews</string>
+<key>shortDescription</key>
+<string>CBN News</string>
+<key>symbol</key>
+<string>CBN</string>
+<key>url</key>
+<string>mmsh://cbn-news.wm.llnwd.net/cbn_news</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>dwtv</string>
+<key>shortDescription</key>
+<string>DWTV</string>
+<key>symbol</key>
+<string>DWTV</string>
+<key>url</key>
+<string>rtmp://media2.lsops.net/dwtv2//13010dwtveu364 swfUrl=http://cdn.livestation.com/flash/player/5.6/player.swf</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>skynews</string>
+<key>shortDescription</key>
+<string>Sky News</string>
+<key>symbol</key>
+<string>Sky</string>
+<key>url</key>
+<string>mmsh://live1.wm.skynews.servecast.net/skynews_wmlz_live300k</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>axn</string>
+<key>shortDescription</key>
+<string>AXN</string>
+<key>symbol</key>
+<string>AXN</string>
+<key>url</key>
+<string>rtmp://119.110.68.190/live/mvgoalx01 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>RT</string>
+<key>shortDescription</key>
+<string>Russia Today Live Stream</string>
+<key>symbol</key>
+<string>RT2</string>
+<key>url</key>
+<string>rtmp://rt.fms.visionip.tv/live/RT_2</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>RT</string>
+<key>shortDescription</key>
+<string>Russia Today Live Stream</string>
+<key>symbol</key>
+<string>RT3</string>
+<key>url</key>
+<string>rtmp://fms5.visionip.tv/live/RT_3</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>bloomberg</string>
+<key>shortDescription</key>
+<string>Bloomberg UK</string>
+<key>symbol</key>
+<string>Bloomberg</string>
+<key>url</key>
+<string>rtmp://cp87869.live.edgefcs.net/live/uk_300@21008 live=1 swfUrl=http://streamick.com/playr/streamick-player.swf</string>
+<key>speed</key>
+<integer>2</integer>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>bloomberg</string>
+<key>shortDescription</key>
+<string>Bloomberg US</string>
+<key>symbol</key>
+<string>Bloomberg</string>
+<key>url</key>
+<string>rtmp://cp87869.live.edgefcs.net/live/us_300@21006 live=1 swfUrl=http://streamick.com/playr/streamick-player.swf</string>
+<key>speed</key>
+<integer>2</integer>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>cbs</string>
+<key>shortDescription</key>
+<string>CBS</string>
+<key>symbol</key>
+<string>CBS</string>
+<key>url</key>
+<string>rtmp://176.31.231.57/multicast/cbs live=1 swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://www.tvnutters.com/tv/players/flashusa.php?cbs</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>abc</string>
+<key>shortDescription</key>
+<string>ABC East</string>
+<key>symbol</key>
+<string>ABC</string>
+<key>url</key>
+<string>rtmp://38.101.127.102/edge/bgidog28qir37hb swfUrl=http://cdn.static.seeon.tv/jwplayer/player.swf pageUrl=http://static.seeon.tv/embedplayer1.php?width=700&amp;height=400&amp;channel=18669&amp;autoplay=true</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>nbc</string>
+<key>shortDescription</key>
+<string>NBC</string>
+<key>symbol</key>
+<string>NBC</string>
+<key>url</key>
+<string>rtmp://176.31.231.57/multicast/nbc live=1 swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://www.tvnutters.com/tv/players/flashusa.php?nbc</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>mtv</string>
+<key>shortDescription</key>
+<string>MTV US</string>
+<key>symbol</key>
+<string>MTV</string>
+<key>url</key>
+<string>rtmp://176.31.231.57/live/mtv live=1 swfUrl=http://88.80.17.89/user/mediaplayer/player.swf?autostart=true&amp;controlbar.position=over&amp;streamer=rtmp://176.31.231.57/live/&amp;file=mtv.flv pageUrl=http://88.80.17.89/user/mediaplayer/player.swf?autostart=true&amp;controlbar.position=over&amp;streamer=rtmp://176.31.231.57/live/&amp;file=mtv.flv</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>cartoon</string>
+<key>shortDescription</key>
+<string>Cartoon Network</string>
+<key>symbol</key>
+<string>CN</string>
+<key>url</key>
+<string>rtmp://199.9.255.82/app/jtv_wmVFuIUJOBxkrE7T live=1 swfUrl=http://www-cdn.justin.tv/widgets/live_embed_player.re7d8ff.0b0201c93de321b093b7001548a4fcb8e1.swf?channel=eldustm​an73 pageUrl=http://www.tvnutters.com/tv/players/justin.php?cartoonnetwork</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>foxnews</string>
+<key>shortDescription</key>
+<string>FOX</string>
+<key>symbol</key>
+<string>FOX</string>
+<key>url</key>
+<string>rtmp://176.31.231.57/live/foxnetworks live=1 swfUrl=http://88.80.17.89/user/mediaplayer/player.swf?autostart=true&amp;controlbar.position=over&amp;streamer=rtmp://176.31.231.57/live/&amp;file=foxnetworks.flv pageUrl=http://88.80.17.89/user/mediaplayer/player.swf?autostart=true&amp;controlbar.position=over&amp;streamer=rtmp://176.31.231.57/live/&amp;file=foxnetworks.flv</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>espn</string>
+<key>shortDescription</key>
+<string>ESPN</string>
+<key>symbol</key>
+<string>ESPN</string>
+<key>url</key>
+<string>rtmp://176.31.231.57/multicast/expal live=1 swfUrl=http://www.tvnutters.com/tv/player.swf</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>United Nations TV</string>
+<key>symbol</key>
+<string>UNTV</string>
+<key>url</key>
+<string>rtmp://media4.lsops.net/untv//CHANNEL-7@13082 swfUrl=http://cdn.livestation.com/flash/player/5.6/player.swf</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>dwtv</string>
+<key>shortDescription</key>
+<string>DWTV Low</string>
+<key>symbol</key>
+<string>DWTV</string>
+<key>url</key>
+<string>mmsh://c13010-ls.w.core.cdn.streamfarm.net/dwworldlive-live/13010dwtveu350</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>nhkworld</string>
+<key>shortDescription</key>
+<string>NHK World low</string>
+<key>symbol</key>
+<string>NHK</string>
+<key>url</key>
+<string>mmst://nhk-world.gekimedia.net/nhkw-highm</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>hbo</string>
+<key>shortDescription</key>
+<string>HBO</string>
+<key>symbol</key>
+<string>HBO</string>
+<key>url</key>
+<string>rtmp://119.110.68.190/live/mvhbox01 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>starmovies</string>
+<key>shortDescription</key>
+<string>Star Movies</string>
+<key>symbol</key>
+<string>StarMovies</string>
+<key>url</key>
+<string>rtmp://119.110.68.190/live/mvstarx01 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>Tuyen quang</string>
+<key>shortDescription</key>
+<string>TTV-Tuyen quang</string>
+<key>symbol</key>
+<string>TTV</string>
+<key>url</key>
+<string>rtmp://210.245.89.40:1935/live/livestream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>Thai nguyen</string>
+<key>shortDescription</key>
+<string>TV-Thai nguyen</string>
+<key>symbol</key>
+<string>TNTV</string>
+<key>url</key>
+<string>rtmp://123.30.84.242/live/tntv live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>An giang</string>
+<key>shortDescription</key>
+<string>ATV-An giang</string>
+<key>symbol</key>
+<string>ATV</string>
+<key>url</key>
+<string>rtmp://113.163.81.85:80/live/atv1 live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>Sai gon</string>
+<key>shortDescription</key>
+<string>STV-Sai gon</string>
+<key>symbol</key>
+<string>SaigonTV</string>
+<key>url</key>
+<string>wmrtsp://64.186.133.23/dong_sg</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>Can tho</string>
+<key>shortDescription</key>
+<string>Đài truyền hình thành phố Cần Thơ</string>
+<key>symbol</key>
+<string>THTPCT</string>
+<key>url</key>
+<string>rtmp://tv.canthotv.vn/live/thct.tv live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>Binh duong</string>
+<key>shortDescription</key>
+<string>Đài truyền hình Binh Dương 1</string>
+<key>symbol</key>
+<string>BTV1</string>
+<key>url</key>
+<string>rtmp://202.43.109.147/live/btv1.stream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>Binh duong</string>
+<key>shortDescription</key>
+<string>Đài truyền hình Binh Dương 2</string>
+<key>symbol</key>
+<string>BTV2</string>
+<key>url</key>
+<string>rtmp://202.43.109.147/rtplive/btv2.stream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>hanoi2</string>
+<key>shortDescription</key>
+<string>Đài truyền hình Hà Nội 2</string>
+<key>symbol</key>
+<string>HaNoiTV 2</string>
+<key>url</key>
+<string>wmrtsp://123.30.191.62/htv2</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtv6</string>
+<key>shortDescription</key>
+<string>Kênh VTV6</string>
+<key>symbol</key>
+<string>VTV6</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/vtv6.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>cartoonclassic</string>
+<key>shortDescription</key>
+<string>Cartoon Classic</string>
+<key>symbol</key>
+<string>CartoonClassic</string>
+<key>url</key>
+<string>http://72.13.93.186/cartoonclassics</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>smiletv</string>
+<key>shortDescription</key>
+<string>Channel "Smile of a child" from Russia</string>
+<key>symbol</key>
+<string>SmileTV</string>
+<key>url</key>
+<string>http://mms.rrsat-internet.tv/smile</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>livesportfrance</string>
+<key>shortDescription</key>
+<string>Live sport from France</string>
+<key>symbol</key>
+<string>LiveSport</string>
+<key>url</key>
+<string>http://88.191.102.174:8080</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>phuthotv</string>
+<key>shortDescription</key>
+<string>Đài truyền hình Phú Thọ</string>
+<key>symbol</key>
+<string>PTV</string>
+<key>url</key>
+<string>rtmp://210.211.99.74:1935/live/livestream live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>baclieutv</string>
+<key>shortDescription</key>
+<string>Đài truyền hình Bạc Liêu</string>
+<key>symbol</key>
+<string>BTV</string>
+<key>url</key>
+<string>rtmp://113.161.218.10/live/BTV.test live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>vtv9</string>
+<key>shortDescription</key>
+<string>Kênh VTV9</string>
+<key>symbol</key>
+<string>VTV9</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/vtv9.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>htv3</string>
+<key>shortDescription</key>
+<string>Kênh HTV3</string>
+<key>symbol</key>
+<string>HTV3</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/htv3.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>antv</string>
+<key>shortDescription</key>
+<string>Kênh ANTV</string>
+<key>symbol</key>
+<string>ANTV</string>
+<key>url</key>
+<string>http://112.197.2.11:1935/live/antv.stream/playlist.m3u8</string>
+<key>url.IsAppleStream</key>
+<true />
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>channelIconName</key>
+<string>gotv</string>
+<key>shortDescription</key>
+<string>Kênh GoTV</string>
+<key>symbol</key>
+<string>GoTV</string>
+<key>url</key>
+<string>rtmp://117.103.230.36:1935/movies/m.sdp live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>CCTV1</string>
+<key>symbol</key>
+<string>CCTV1</string>
+<key>url</key>
+<string>mmst://162.105.129.241/cctv-1</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>Temple11</string>
+<key>symbol</key>
+<string>Temple11</string>
+<key>url</key>
+<string>mmst://207.7.154.95/G0355_003</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>Vision TV</string>
+<key>symbol</key>
+<string>Vision</string>
+<key>url</key>
+<string>wmrtsp://otv.ocfl.net/visiontv</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>OrangeTV.US</string>
+<key>symbol</key>
+<string>OrangeTV</string>
+<key>url</key>
+<string>wmrtsp://otv.ocfl.net/live</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>shortDescription</key>
+<string>Wildlife Channel</string>
+<key>symbol</key>
+<string>Wildlife</string>
+<key>url</key>
+<string>http://rs4wms.i2ic.com/wlc_2500</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>TV8 from France</string>
+<key>symbol</key>
+<string>TV8</string>
+<key>url</key>
+<string>wmrtsp://live.tv8.fr/tv</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>shortDescription</key>
+<string>Yoga in Dialy Life - Australia</string>
+<key>symbol</key>
+<string>Yoga</string>
+<key>url</key>
+<string>wmrtsp://streaming.swamiji.tv/YogaIP-TV</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>Live Sport TV</string>
+<key>symbol</key>
+<string>Sport</string>
+<key>url</key>
+<string>mmsh://88.191.102.174:8080</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>CBN Espanol</string>
+<key>symbol</key>
+<string>CBN</string>
+<key>url</key>
+<string>mmsh://LIVE1.CBN.ORG/IPTV2</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>shortDescription</key>
+<string>Metro TV News</string>
+<key>symbol</key>
+<string>Metro</string>
+<key>url</key>
+<string>rtmp://www.metrotvnews.com:1935/mobile/mobile live=1</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>shortDescription</key>
+<string>HTVC Du lịch</string>
+<key>symbol</key>
+<string>HTVC-DuLich</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/dulich live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>shortDescription</key>
+<string>HTV1</string>
+<key>symbol</key>
+<string>HTV1</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/htv1 live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<true />
+<key>shortDescription</key>
+<string>HTV4</string>
+<key>symbol</key>
+<string>HTV4</string>
+<key>url</key>
+<string>rtmp://203.205.0.60/live/htv4 live=1 swfUrl=http://www.htvc.vn/swfs/StrobeMediaPlayback.swf pageUrl=http://www.htvc.vn</string>
+</dict>
+<dict>
+<key>available</key>
+<false />
+<key>channelIconName</key>
+<string>quangnam</string>
+<key>shortDescription</key>
+<string>Truyền hình Quảng Nam</string>
+<key>symbol</key>
+<string>QN</string>
+<key>url.IsAppleStream</key>
+<true />
+<key>url</key>
+<string>http://112.197.2.11:1935/live/qrt.stream/playlist.m3u8</string>
+</dict>
+</array> 
 
 
 
