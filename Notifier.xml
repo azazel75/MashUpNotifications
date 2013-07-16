@@ -3,10 +3,10 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess2</new>
-<message1>Mashup v1.3.5 just released, check it out.</message1>
-<message2>Make sure to visit the new VIPlaylist.</message2>
-<message3>Your comments & feedback are appreciated. ;)</message3>
+<new>mess1</new>
+<message1>Realdebrid is experiencing technical difficulties.</message1>
+<message2>They will be offline until july 17 2013.</message2>
+<message3> </message3>
 <ANNOUNCEMENT>[B]Version 1.3.5[/B]</ANNOUNCEMENT>
-<old>mess1</old>
+<old>mess2</old>
 </item>
