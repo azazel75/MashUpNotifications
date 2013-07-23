@@ -3,10 +3,10 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>Realdebrid is experiencing technical difficulties.</message1>
-<message2>They will be offline until july 17 2013.</message2>
-<message3> </message3>
+<new>mess2</new>
+<message1>I would like to announce that The New.</message1>
+<message2>Pirate Bay was added under VIPlaylist and.</message2>
+<message3>Live section earlier.</message3>
 <ANNOUNCEMENT>[B]Version 1.3.5[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
