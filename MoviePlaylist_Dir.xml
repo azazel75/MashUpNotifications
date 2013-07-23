@@ -7,6 +7,11 @@ non directory mode 236
 <thumbnail>hackermil</thumbnail>
 <mode>235</mode>
 
+<name>The New Pirate Bay by BigBallzBaby</name>
+<link>https://github.com/mash2k3/MashUpTNPB/raw/master/TNPB_Directory.xml</link>
+<thumbnail>https://dl.dropboxusercontent.com/u/35068738/icons/tnpb.png</thumbnail>
+<mode>235</mode>
+
 <name>MaxPowers Movies</name>
 <link>http://mash2k3-repository.googlecode.com/svn/trunk/maxpowers%20playlist/MaxPowersMoviePl.xml</link>
 <thumbnail>maxpowers</thumbnail>
