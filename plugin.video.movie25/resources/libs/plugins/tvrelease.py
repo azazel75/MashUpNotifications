@@ -1,41 +1,46 @@
 import urllib, urllib2, re, string, urlparse, sys,   os
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin, HTMLParser
-
-from t0mm0.common.addon import Addon
 from resources.libs import main
-from t0mm0.common.net import Net
-from universal import playbackengine, watchhistory
+from t0mm0.common.addon import Addon
 
 addon_id = 'plugin.video.movie25'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addon = Addon(addon_id, sys.argv)
-net = Net()
 
-BASEURL = 'http://www.tv-release.net/category/'
-
+    
 art = main.art
 error_logo = art+'/bigx.png'
-wh = watchhistory.WatchHistory(addon_id)
-
 
 try:
+    import urllib, urllib2, re, string, urlparse, sys, os
+    
+    from t0mm0.common.net import Net
+    from metahandler import metahandlers
+    from sqlite3 import dbapi2 as database
+    from universal import playbackengine, watchhistory
     import urlresolver
-except:
-    addon.show_small_popup('MashUP: Tv-Release','Failed To import URLRESOLVER', 5000, error_logo)
-    addon.show_ok_dialog(['Failed To Import URLRESOLVER','Please Post Logfile In MashUP Forum @','http://www.xbmchub.com'],
-                             'MashUP: TV-Release')
+except Exception, e:
+    addon.log_error(str(e))
+    addon.show_small_popup('MashUP: Tv-Release','Failed To Import Modules', 5000, error_logo)
+    addon.show_ok_dialog(['Failed To Import Modules','Please Post Logfile In MashUP Forum @','http://www.xbmchub.com'],
+                          'MashUP: TV-Release')
+net = Net()
+BASEURL = 'http://www.tv-release.net/'
+wh = watchhistory.WatchHistory(addon_id)
 
 def MAINMENU():
-    main.addDir('TV 480',BASEURL+'tvshows/tv480p/',       1001,art+'/TV480.png')
-    main.addDir('TV 720',BASEURL+'tvshows/tv720p/',       1001,art+'/TV720.png')
-    main.addDir('TV MP4',BASEURL+'tvshows/tvmp4/',        1001,art+'/TVmp4.png')
-    main.addDir('TV Xvid',BASEURL+'tvshows/tvxvid/',       1001,art+'/TVxvid.png')
-    main.addDir('TV Packs',BASEURL+'tvshows/tvpack/',       1001,art+'/TVpacks.png')
-    main.addDir('TV Foreign',BASEURL+'tvshows/tv-foreign/',   1001,art+'/TVforeign.png')
-    main.addDir('Movies 480',BASEURL+'movies/movies480p/',    1001,art+'/Movies480.png')
-    main.addDir('Movies 720',BASEURL+'movies/movies720p/',    1001,art+'/Movies720.png')
-    main.addDir('Movies Xvid',BASEURL+'movies/moviesxvid/',    1001,art+'/Moviesxvid.png')
-    main.addDir('Movies Foreign',BASEURL+'movies/moviesforeign/', 1001,art+'/Moviesforeign.png')
+    main.addDir('TV 480',               BASEURL+'category/tvshows/tv480p/',       1001,art+'/TV480.png')
+    main.addDir('TV 720',               BASEURL+'category/tvshows/tv720p/',       1001,art+'/TV720.png')
+    main.addDir('TV MP4',               BASEURL+'category/tvshows/tvmp4/',        1001,art+'/TVmp4.png')
+    main.addDir('TV Xvid',              BASEURL+'category/tvshows/tvxvid/',       1001,art+'/TVxvid.png')
+    main.addDir('TV Packs',             BASEURL+'category/tvshows/tvpack/',       1001,art+'/TVpacks.png')
+    main.addDir('TV Foreign',           BASEURL+'category/tvshows/tv-foreign/',   1001,art+'/TVforeign.png')
+    main.addDir('Movies 480',           BASEURL+'category/movies/movies480p/',    1001,art+'/Movies480.png')
+    main.addDir('Movies 720',           BASEURL+'category/movies/movies720p/',    1001,art+'/Movies720.png')
+    main.addDir('Movies Xvid',          BASEURL+'category/movies/moviesxvid/',    1001,art+'/Moviesxvid.png')
+    main.addDir('Movies Foreign',       BASEURL+'category/movies/moviesforeign/', 1001,art+'/Moviesforeign.png')
+    main.addDir('Search Tv-Release',    BASEURL+'?s=',                            1001,art+'/tvrsearch1.png')#change mode number
+    main.addSpecial('Resolver Settings',BASEURL,                                  1004,art+'/tvrresolver.png')
     main.VIEWSB()
 
 def INDEX(url):
@@ -73,10 +78,12 @@ def INDEX(url):
             for name in r:
                 pass
         if types == 'tv':
+            url = url+'+'+types
             main.addDirTE(name,url,1003,'','','','','','')
         elif types == 'movie':
             if re.findall('\s\d+\s',name):
                 r = name.rpartition('\s\d{4}\s')
+                url = url+'+'+types
             main.addDirM(name,url,1003,'','','','','','')
         loadedLinks = loadedLinks + 1
         percent = (loadedLinks * 100)/totalLinks
@@ -97,8 +104,9 @@ def INDEX(url):
     main.VIEWS()
 
 def LISTHOSTERS(name,url):
-    print 'LISTHOSTERS(url): '+url
-    print 'LISTHOSTERS NAME: '+name
+    r = url.rpartition('+')
+    url = r[0]
+    types = r[2]
     html = GETHTML(url)
     if html == None: return
     main.addLink("[COLOR red]For Download Options, Bring up Context Menu Over Selected Link.[/COLOR]",'','')
@@ -107,7 +115,6 @@ def LISTHOSTERS(name,url):
     for url in r:
         media = urlresolver.HostedMediaFile(url=url)
         sources.append(media)
-    print sources
     sources = urlresolver.filter_source_list(sources)
     r = re.findall(r'\'url\': \'(.+?)\', \'host\': \'(.+?)\'', str(sources), re.M)
     for url, host in r:
@@ -115,20 +122,12 @@ def LISTHOSTERS(name,url):
         if 'www.real-debrid.com' in host:
             host = re.findall(r'//(.+?)/', url)
             host = host[0].replace('www.','')
-            print 'rd1'
-            print host
             host = host.rpartition('.')
-            print host
             host = host[0]
-            print 'rd'
-            print host
-            
-            
-            
         else:
             host = r[0]
-
-        main.addDown2(name+"[COLOR blue] :"+host.upper()+"[/COLOR]",url+'xocx'+url+'xocx',574,art+'/hosts/'+host+'.png',art+'/hosts/'+host+'.png')
+        url = url+'+'+types
+        main.addDown2(name+"[COLOR blue] :"+host.upper()+"[/COLOR]",url,1005,art+'/hosts/'+host+'.png',art+'/hosts/'+host+'.png')
 
                 
 def GOTOP(url):
@@ -146,13 +145,58 @@ def GOTOP(url):
     INDEX(url)
         
         
-    
+def PLAYMEDIA(name,url):
+    r = url.rpartition('+')
+    url = r[0]
+    types = r[2]
+    ok = True
+    playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+    playlist.clear()
+    r = re.findall(r'(.+?)\[COLOR', name)
+    name = r[0]
+    r=re.findall('Season(.+?)Episode([^<]+)',name)
+    if r:
+        infoLabels =main.GETMETAEpiT(name,'','')
+        video_type='episode'
+        season=infoLabels['season']
+        episode=infoLabels['episode']
+    else:
+        infoLabels =main.GETMETAT(name,'','','')
+        video_type='movie'
+        season=''
+        episode=''
+    img=infoLabels['cover_url']
+    fanart =infoLabels['backdrop_url']
+    imdb_id=infoLabels['imdb_id']
+    infolabels = { 'supports_meta' : 'true', 'video_type':video_type, 'name':str(infoLabels['title']), 'imdb_id':str(infoLabels['imdb_id']), 'season':str(season), 'episode':str(episode), 'year':str(infoLabels['year']) }
+    source = urlresolver.HostedMediaFile(url)
+    try:
+        if source:
+            xbmc.executebuiltin("XBMC.Notification(Please Wait!,Resolving Link,3000)")
+            stream_url = source.resolve()
+        else:
+            stream_url = False
+            return
+                
+        infoL={'Title': infoLabels['title'], 'Plot': infoLabels['plot'], 'Genre': infoLabels['genre']}
+        # play with bookmark
+        player = playbackengine.PlayWithoutQueueSupport(resolved_url=stream_url, addon_id=addon_id, video_type=video_type, title=str(infoLabels['title']),season=str(season), episode=str(episode), year=str(infoLabels['year']),img=img,infolabels=infoL, watchedCallbackwithParams=main.WatchedCallbackwithParams,imdb_id=imdb_id)
+        #WatchHistory
+        if selfAddon.getSetting("whistory") == "true":
+            wh.add_item(hname+' '+'[COLOR green]iWatchonline[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=str(img), fanart=str(fanart), is_folder=False)
+        player.KeepAlive()
+        return ok
+    except:
+        return ok
 
+
+
+    
+    
 
 def GETHTML(url):
     try:
         h = net.http_GET(url).content
-        #print h
         if '<h2>Under Maintenance</h2>' in h:
             addon.show_ok_dialog(['[COLOR green][B]TV-Release is Down For Maintenance,[/COLOR][/B]',
                                   '[COLOR green][B]Please Try Again Later[/COLOR][/B]',''],'MashUP: TV-Release')
@@ -163,6 +207,7 @@ def GETHTML(url):
         addon.log_notice(str(e))
         return MAINMENU()
     
-    
+def GETMETA(name,types):
+    type = types
 
 

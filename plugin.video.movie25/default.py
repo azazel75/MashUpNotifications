@@ -2321,6 +2321,14 @@ elif mode == 1002:
 elif mode == 1003:
     from resources.libs.plugins import tvrelease
     tvrelease.LISTHOSTERS(name,url)
+elif mode == 1004:
+    urlresolver.display_settings()
+elif mode == 1005:
+    from resources.libs.plugins import tvrelease
+    tvrelease.PLAYMEDIA(name,url)
+    
+    
+    
 
 elif mode == 2000:
     xbmc.executebuiltin("XBMC.Container.Update(path,replace)")
