@@ -382,9 +382,9 @@ def iWatchLINK(mname,url):
             if name[0:1]=='.':
                 name=name[1:]
             name=name.split('.')[0]
-            hosted_media = urlresolver.HostedMediaFile(host=name.lower(), media_id='DUMMY')
-            if hosted_media:
-                main.addDown2(mname+' [COLOR red]('+qua+')[/COLOR]'+' [COLOR blue]'+name.upper()+'[/COLOR]',url,649,art+'/hosts/'+name.lower()+'.png',art+'/hosts/'+name.lower()+'.png')
+            #hosted_media = urlresolver.HostedMediaFile(host=name.lower(), media_id=name.lower())
+            #if hosted_media:
+            main.addDown2(mname+' [COLOR red]('+qua+')[/COLOR]'+' [COLOR blue]'+name.upper()+'[/COLOR]',url,649,art+'/hosts/'+name.lower()+'.png',art+'/hosts/'+name.lower()+'.png')
 
 
 def iWatchLINKB(mname,url):

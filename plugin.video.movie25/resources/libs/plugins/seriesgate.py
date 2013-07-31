@@ -29,17 +29,17 @@ def HOMESG():
         link=main.OPENURL(url)
 
         main.addLink('[COLOR red]Knee Slapping Comedies[/COLOR]','','')
-        match=re.compile('<a href = "([^<]+)" target=".+? style=".+?"><img src="(.+?)"  height=".+?" width=".+?" alt="Watch (.+?)"').findall(link)
+        match=re.compile('<a href = "(.+?)" target=".+?" style=".+?"><img src="(.+?)"  height=".+?" width=".+?" alt="(.+?)"  />').findall(link)
+        
         for url,thumb,name in match[0:5]:
             main.addDirT(name,url,604,thumb,'','','','','')
         main.addLink('[COLOR red]Turmoil and Tears: Drama[/COLOR]','','')
-        match=re.compile('<a href = "([^<]+)" target=".+? style=".+?"><img src="(.+?)"  height=".+?" width=".+?" alt="Watch (.+?)"').findall(link)
+        match=re.compile('<a href = "(.+?)" target=".+?" style=".+?"><img src="(.+?)"  height=".+?" width=".+?" alt="(.+?)"  />').findall(link)
         for url,thumb,name in match[5:10]:
             main.addDirT(name,url,604,thumb,'','','','','')
         main.addLink('[COLOR red]Rumbling and Tumbling Action[/COLOR]','','')
-        match=re.compile('<a.+?href = "([^<]+)" style=".+?"><img src="(.+?)"  height=".+?" width=".+?" alt="Watch (.+?)"').findall(link)
-    
-        for url,thumb,name in match[10:15]:
+        match=re.compile('"wrapper_home"><a target=".+?" href = "(.+?)" style=".+?"><img src="(.+?)"  height=".+?" width=".+?" alt="(.+?)" />').findall(link)
+        for url,thumb,name in match:
             main.addDirT(name,url,604,thumb,'','','','','')
 
             

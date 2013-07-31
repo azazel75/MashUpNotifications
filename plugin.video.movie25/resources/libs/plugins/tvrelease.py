@@ -104,10 +104,7 @@ def INDEX(url):
     main.VIEWS()
 
 def LISTHOSTERS(name,url):
-    r = url.rpartition('+')
-    url = r[0]
-    types = r[2]
-    html = GETHTML(url)
+    html = main.OPENURL(url)
     if html == None: return
     main.addLink("[COLOR red]For Download Options, Bring up Context Menu Over Selected Link.[/COLOR]",'','')
     r = re.findall(r'class="td_cols"><a target=\'_blank\'.+?href=\'(.+?)\'>',html, re.M|re.DOTALL)
@@ -126,7 +123,6 @@ def LISTHOSTERS(name,url):
             host = host[0]
         else:
             host = r[0]
-        url = url+'+'+types
         main.addDown2(name+"[COLOR blue] :"+host.upper()+"[/COLOR]",url,1005,art+'/hosts/'+host+'.png',art+'/hosts/'+host+'.png')
 
                 
@@ -197,6 +193,7 @@ def PLAYMEDIA(name,url):
 def GETHTML(url):
     try:
         h = net.http_GET(url).content
+        h=h.encode("ascii", "ignore")
         if '<h2>Under Maintenance</h2>' in h:
             addon.show_ok_dialog(['[COLOR green][B]TV-Release is Down For Maintenance,[/COLOR][/B]',
                                   '[COLOR green][B]Please Try Again Later[/COLOR][/B]',''],'MashUP: TV-Release')
