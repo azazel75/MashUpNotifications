@@ -768,9 +768,10 @@ def resolve_180upload(url):
 def resolve_videto(url):
     error_logo = art+'/bigx.png'
     user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
+    from resources.libs import jsunpack
     try:
         html = net(user_agent).http_GET(url).content
-        print 'MashUp Vidto - Requesting GET URL: %s' % url
+        addon.log_error('MashUP: Resolve Vidto - Requesting GET URL: '+url)
         r = re.findall(r'<font class="err">File was removed</font>',html,re.I)
         if r:
             addon.log_error('MashUP: Resolve Vidto - File Was Removed')
@@ -801,7 +802,7 @@ def resolve_videto(url):
                     r = re.findall(r"var file_link = '(.+?)';",html)
         return r[0]
     except Exception, e:
-        print 'MashUP: Resolve Vidto Error - %s' % str(e)
+        print 'MashUP: Resolve Vidto Error - '+str(e)
         addon.show_small_popup('[B][COLOR green]MashUP: Vidto Resolver[/COLOR][/B]','Error, Check XBMC.log for Details',
                                5000, error_logo)
         return
