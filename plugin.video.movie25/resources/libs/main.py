@@ -564,34 +564,31 @@ def SearchGoogle(search, site):
 def resolve_veehd(url):
         name = "veeHD"
         cookie_file = os.path.join(datapath, '%s.cookies' % name)
+        user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
         try:
-            if os.path.exists(cookie_file) == False:
-                loginurl = 'http://veehd.com/login'
-                ref = 'http://veehd.com/'
-                submit = 'Login'        
-                terms = 'on'
-                remember_me = 'on'
-                data = {'ref': ref, 'uname': '', 'pword': '', 'submit': submit, 'terms': terms, 'remember_me': remember_me}
-                html = net.http_POST(loginurl, data).content
-                net.save_cookies(cookie_file)
-                
-
-            
+            loginurl = 'http://veehd.com/login'
+            ref = 'http://veehd.com/'
+            submit = 'Login'        
+            terms = 'on'
+            remember_me = 'on'
+            data = {'ref': ref, 'uname': '', 'pword': '', 'submit': submit, 'terms': terms, 'remember_me': remember_me}
+            html = net(user_agent).http_POST(loginurl, data).content
+            net().save_cookies(cookie_file)
             headers = {}
             headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2'}
-            net.set_cookies(cookie_file)
+            net().set_cookies(cookie_file)
             print 'MashUp VeeHD - Requesting GET URL: %s' % url
-            html = net.http_GET(url, headers).content
+            html = net().http_GET(url, headers).content
             fragment = re.findall('playeriframe".+?attr.+?src : "(.+?)"', html)
-            frag = 'http://%s%s'%(host,fragment[1])
-            net.set_cookies(cookie_file)
-            html = net.http_GET(frag, headers).content
+            frag = 'http://%s%s'%('veehd.com',fragment[1])
+            net().set_cookies(cookie_file)
+            html = net().http_GET(frag, headers).content
             r = re.search('"video/divx" src="(.+?)"', html)
             if r:
                 stream_url = r.group(1)
             if not r:
                 message = name + '- 1st attempt at finding the stream_url failed probably an Mp4, finding Mp4'
-                common.addon.log_debug(message)
+                addon.log_debug(message)
                 a = re.search('"url":"(.+?)"', html)
                 if a:
                     r=urllib.unquote(a.group(1))
@@ -605,7 +602,9 @@ def resolve_veehd(url):
             return stream_url
         except Exception, e:
             print '**** MashUp VeeHD Error occured: %s' % e
-            raise
+            addon.show_small_popup('[B][COLOR green]MashUP: VeeHD Resolver[/COLOR][/B]','Error, Check XBMC.log for Details',
+                                   5000, error_logo)
+            return
 
         
 def resolve_billionuploads(url):
