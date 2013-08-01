@@ -506,7 +506,8 @@ def FIXDOWN(name,filename,location,path):
 hubpath = xbmc.translatePath(os.path.join('special://home/addons', ''))
 maintenance=os.path.join(hubpath, 'plugin.video.hubmaintenance')
 
-
+def DownloaderClass2(url,dest):
+        urllib.urlretrieve(url,dest)
 
 def DownloaderClass(url,dest):
         dp = xbmcgui.DialogProgress()
@@ -602,7 +603,59 @@ def pop():
         popup = HUB('hub.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=34,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'))
     popup.doModal()
     del popup
+#######################################################################################
 
+class HUBx( xbmcgui.WindowXMLDialog ):
+        def __init__( self, *args, **kwargs ):
+            self.shut = kwargs['close_time'] 
+            xbmc.executebuiltin( "Skin.Reset(AnimeWindowXMLDialogClose)" )
+            xbmc.executebuiltin( "Skin.SetBool(AnimeWindowXMLDialogClose)" )
+                                       
+        def onInit( self ):
+            xbmc.Player().play('%s/resources/skins/DefaultSkin/media/theme.mp3'%selfAddon.getAddonInfo('path'))# Music
+            while self.shut > 0:
+                xbmc.sleep(1000)
+                self.shut -= 1
+            xbmc.Player().stop()
+            self._close_dialog()
+                
+        def onFocus( self, controlID ): pass
+    
+        def onClick( self, controlID ): 
+            if controlID == 12:
+                xbmc.Player().stop()
+                self._close_dialog()
+                
+            if controlID == 7:
+                xbmc.Player().stop()
+                self._close_dialog()
+
+        def onAction( self, action ):
+            if action in [ 5, 6, 7, 9, 10, 92, 117 ] or action.getButtonCode() in [ 275, 257, 261 ]:
+                xbmc.Player().stop()
+                self._close_dialog()
+
+        def _close_dialog( self ):
+            path = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/skins/DefaultSkin','media'))
+            popimage=os.path.join(path, 'tempimage.jpg')
+            xbmc.executebuiltin( "Skin.Reset(AnimeWindowXMLDialogClose)" )
+            time.sleep( .4 )
+            self.close()
+            os.remove(popimage)
+        
+def popVIP(image):
+    path = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/skins/DefaultSkin','media'))
+    popimage=os.path.join(path, 'tempimage.jpg')
+    DownloaderClass2(image,popimage)
+    if xbmc.getCondVisibility('system.platform.ios'):
+        if not xbmc.getCondVisibility('system.platform.atv'):
+            popup = HUBx('pop1.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=34,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'),)
+    if xbmc.getCondVisibility('system.platform.android'):
+        popup = HUBx('pop1.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=34,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'))
+    else:
+        popup = HUBx('pop.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=34,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'))
+    popup.doModal()
+    del popup
 ################################################################################ Favorites Function##############################################################################################################
 def ListglobalFavIWO():
         favpath=os.path.join(main.datapath,'Favourites')
@@ -1805,6 +1858,10 @@ elif mode==242:
 elif mode==243:
         print ""+url
         downloadedcontent.REMOVE(name,url)
+
+elif mode==244:
+        popVIP(url)
+        
 ######################################################################################################
         ######################################################################################
         ######################################################################################

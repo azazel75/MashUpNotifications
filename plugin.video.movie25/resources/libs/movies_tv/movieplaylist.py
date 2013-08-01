@@ -39,6 +39,9 @@ def Mplaylists(murl):
         if info:
             for msg,pic in info:
                 main.addLink(msg,'',pic)
+        popup=re.compile('<popup><name>([^<]+)</name.+?popImage>([^<]+)</popImage.+?thumbnail>([^<]+)</thumbnail></popup>').findall(link)
+        for name,image,thumb in popup:
+                main.addPlayc(name,image,244,thumb,'','','','','')
         main.GA("MoviePL",vip+"-Directory")
 
 
@@ -60,9 +63,14 @@ def MList(mname,murl):
         if info:
             for msg,pic in info:
                 main.addLink(msg,'',pic)
+        popup=re.compile('<popup><name>([^<]+)</name.+?popImage>([^<]+)</popImage.+?thumbnail>([^<]+)</thumbnail></popup>').findall(link)
+        for name,image,thumb in popup:
+                main.addPlayc(name,image,244,thumb,'','','','','')
+                
         directory=re.compile('<dir><name>([^<]+)</name.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail></dir>').findall(link)
         for name,url,thumb in directory:
                 main.addDir(name,url,236,thumb)
+        
         match=re.compile('<title>([^<]+)</title.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail>').findall(link)
         dialogWait = xbmcgui.DialogProgress()
         ret = dialogWait.create('Please wait until Movie list is cached.')
@@ -133,7 +141,18 @@ def MLink(mname,murl,thumb):
                                 else:
                                     stream_url = False
                                     return
-                                
+            elif re.findall('vidto',murl,re.I):
+                    try:
+                            stream_url =main.resolve_videto(murl)
+                    except:
+                        if hosted_media:
+                                source = hosted_media
+                                if source:
+                                    xbmc.executebuiltin("XBMC.Notification(Please Wait!,Resolving Link,5000)")
+                                    stream_url = source.resolve()
+                                else:
+                                    stream_url = False
+                                    return                
             else:
                     if hosted_media:
                         source = hosted_media

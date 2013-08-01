@@ -18,8 +18,7 @@ addon = Addon(addon_id)
 grab = metahandlers.MetaData(preparezip = False)
 Dir = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25', ''))
 repopath = xbmc.translatePath(os.path.join('special://home/addons/repository.mash2k3', ''))
-art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/art', ''))
-error_logo = art+'/bigx.png'
+
 
 datapath = addon.get_profile()
 if selfAddon.getSetting('visitor_ga')=='':
@@ -47,7 +46,7 @@ sys.path.append( os.path.join( selfAddon.getAddonInfo('path'), 'resources', 'lib
 ################################################################################ Common Calls ##########################################################################################################
 
 art = 'https://github.com/mash2k3/MashupArtwork/raw/master/art'
-
+error_logo = art+'/bigx.png'
 
 def OPENURL(url):
     try:
@@ -765,7 +764,47 @@ def resolve_180upload(url):
         raise
     finally:
         dialog.close()
-
+        
+def resolve_videto(url):
+    error_logo = art+'/bigx.png'
+    user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
+    try:
+        html = net(user_agent).http_GET(url).content
+        print 'MashUp Vidto - Requesting GET URL: %s' % url
+        r = re.findall(r'<font class="err">File was removed</font>',html,re.I)
+        if r:
+            addon.log_error('MashUP: Resolve Vidto - File Was Removed')
+            addon.show_small_popup('[B][COLOR green]MashUP: Vidto Resolver[/COLOR][/B]','No Such File Or The File Has Been Removed',
+                                   5000, error_logo)
+            return
+        if not r:
+            r = re.findall(r'(eval\(function\(p,a,c,k,e,d\)\{while.+?flvplayer.+?)</script>'
+                           ,html,re.M|re.DOTALL)
+            if r:
+                unpacked = jsunpack.unpack(r[0])#this is where it will error, not sure if resources,libs added to os path
+                r = re.findall(r'label:"\d+p",file:"(.+?)"}',unpacked)
+            if not r:
+                r = re.findall('type="hidden" name="(.+?)" value="(.+?)">',html)
+                post_data = {}
+                for name, value in r:
+                    post_data[name] = value
+                post_data['usr_login'] = ''
+                post_data['referer'] = url
+                addon.show_countdown(7, 'Please Wait', 'Resolving')
+                html = net(user_agent).http_POST(url,post_data).content
+                r = re.findall(r'(eval\(function\(p,a,c,k,e,d\)\{while.+?flvplayer.+?)</script>'
+                               ,html,re.M|re.DOTALL)
+                if r:
+                    unpacked = jsunpack.unpack(r[0])
+                    r = re.findall(r'label:"\d+p",file:"(.+?)"}',unpacked)
+                if not r:
+                    r = re.findall(r"var file_link = '(.+?)';",html)
+        return r[0]
+    except Exception, e:
+        print 'MashUP: Resolve Vidto Error - %s' % str(e)
+        addon.show_small_popup('[B][COLOR green]MashUP: Vidto Resolver[/COLOR][/B]','Error, Check XBMC.log for Details',
+                               5000, error_logo)
+        return
 ############################################################################### Download Code ###########################################################################################
 downloadPath = selfAddon.getSetting('download-folder')
 DownloadLog=os.path.join(datapath,'Downloads')
@@ -1617,13 +1656,13 @@ def addPlayc(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz)
         return ok
     
-def addDirb(name,url,mode,iconimage,fan):
+def addDirb(name,url,mode,iconimage,fanart):
         contextMenuItems = []
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
+        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
         ok=True
         liz=xbmcgui.ListItem(name, iconImage="%s/art/vidicon.png"%selfAddon.getAddonInfo("path"), thumbnailImage=iconimage)
         liz.setInfo( type="Video", infoLabels={ "Title": name } )
-        liz.setProperty('fanart_image', fan)
+        liz.setProperty('fanart_image', fanart)
         contextMenuItems.append(('Watch History','XBMC.Container.Update(%s?name=None&mode=222&url=None&iconimage=None)'% (sys.argv[0])))
         contextMenuItems.append(("My Fav's",'XBMC.Container.Update(%s?name=None&mode=639&url=None&iconimage=None)'% (sys.argv[0])))
         liz.addContextMenuItems(contextMenuItems, replaceItems=False)

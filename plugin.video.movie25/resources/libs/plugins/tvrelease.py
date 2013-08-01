@@ -143,7 +143,7 @@ def SEARCH(url):
     keyboard.doModal()
     if keyboard.isConfirmed():
         search_entered = keyboard.getText().replace(' ', '+')
-        addon.save_data('search', search_entered)
+        #addon.save_data('Search', search_entered)
     if search_entered == None or len(search_entered)<1:
         return MAINMENU()
     else:

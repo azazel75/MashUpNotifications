@@ -35,6 +35,9 @@ def VIPplaylists(murl):
         if info:
             for msg,pic in info:
                 main.addLink(msg,'',pic)
+        popup=re.compile('<popup><name>([^<]+)</name.+?popImage>([^<]+)</popImage.+?thumbnail>([^<]+)</thumbnail></popup>').findall(link)
+        for name,image,thumb in popup:
+                main.addPlayc(name,image,244,thumb,'','','','','')
         main.GA("Live",vip+"-Playlists")
 
 
@@ -55,6 +58,12 @@ def VIPList(mname,murl):
         if info:
             for msg,pic in info:
                 main.addLink(msg,'',pic)
+        popup=re.compile('<popup><name>([^<]+)</name.+?popImage>([^<]+)</popImage.+?thumbnail>([^<]+)</thumbnail></popup>').findall(link)
+        for name,image,thumb in popup:
+                main.addPlayc(name,image,244,thumb,'','','','','')
+        directory=re.compile('<dir><name>([^<]+)</name.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail></dir>').findall(link)
+        for name,url,thumb in directory:
+                main.addDir(name,url,236,thumb)
         match=re.compile('<title>([^<]+)</title.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail>').findall(link)
         for name,url,thumb in sorted(match):
             main.addPlayL(name+' [COLOR blue]'+vip+'[/COLOR]',url,183,thumb,'',fan,'','','')
