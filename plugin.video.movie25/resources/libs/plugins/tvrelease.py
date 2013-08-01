@@ -29,17 +29,17 @@ BASEURL = 'http://www.tv-release.net/'
 wh = watchhistory.WatchHistory(addon_id)
 
 def MAINMENU():
+    main.addDir('Search Tv-Release',    BASEURL+'?s=',                            1006,art+'/tvrsearch1.png')
     main.addDir('TV 480',               BASEURL+'category/tvshows/tv480p/',       1001,art+'/TV480.png')
     main.addDir('TV 720',               BASEURL+'category/tvshows/tv720p/',       1001,art+'/TV720.png')
     main.addDir('TV MP4',               BASEURL+'category/tvshows/tvmp4/',        1001,art+'/TVmp4.png')
     main.addDir('TV Xvid',              BASEURL+'category/tvshows/tvxvid/',       1001,art+'/TVxvid.png')
-    main.addDir('TV Packs',             BASEURL+'category/tvshows/tvpack/',       1001,art+'/TVpacks.png')
+    main.addDir('TV Packs',             BASEURL+'tv-pack/',                       1007,art+'/TVpacks.png')
     main.addDir('TV Foreign',           BASEURL+'category/tvshows/tv-foreign/',   1001,art+'/TVforeign.png')
     main.addDir('Movies 480',           BASEURL+'category/movies/movies480p/',    1001,art+'/Movies480.png')
     main.addDir('Movies 720',           BASEURL+'category/movies/movies720p/',    1001,art+'/Movies720.png')
     main.addDir('Movies Xvid',          BASEURL+'category/movies/moviesxvid/',    1001,art+'/Moviesxvid.png')
     main.addDir('Movies Foreign',       BASEURL+'category/movies/moviesforeign/', 1001,art+'/Moviesforeign.png')
-    main.addDir('Search Tv-Release',    BASEURL+'?s=',                            1001,art+'/tvrsearch1.png')#change mode number
     main.addSpecial('Resolver Settings',BASEURL,                                  1004,art+'/tvrresolver.png')
     main.VIEWSB()
 
@@ -52,7 +52,7 @@ def INDEX(url):
     html = GETHTML(url)
     if html == None:
         return
-    pattern = 'text-align:left;">\n<a href="(.+?)"><b><font size="\dpx">(.+?)</font>'
+    pattern = 'tag">(.+?)</a>.+?text-align:left.+?a href="(.+?)"><b><font size="\d+px">(.+?)</font>'
     r = re.findall(pattern, html, re.I|re.M|re.DOTALL)
     dialogWait = xbmcgui.DialogProgress()
     ret = dialogWait.create('Please wait until list is cached.')
@@ -60,7 +60,7 @@ def INDEX(url):
     loadedLinks = 0
     remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
     dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
-    for url, name in r:
+    for tag, url, name in r:
         if re.findall('\ss\d+e\d+\s', name, re.I|re.DOTALL):
             r = re.findall('(.+?)\ss(\d+)e(\d+)\s', name, re.I)
             for name, season, episode in r:
@@ -77,13 +77,12 @@ def INDEX(url):
             r = re.findall('(.+?)\shdtv\sx',name, re.I)
             for name in r:
                 pass
-        if types == 'tv':
-            url = url+'+'+types
+        name = name+'[COLOR blue]'+tag+'[/COLOR]'
+        if 'TV' in tag:
             main.addDirTE(name,url,1003,'','','','','','')
-        elif types == 'movie':
+        elif 'Movies' in tag:
             if re.findall('\s\d+\s',name):
                 r = name.rpartition('\s\d{4}\s')
-                url = url+'+'+types
             main.addDirM(name,url,1003,'','','','','','')
         loadedLinks = loadedLinks + 1
         percent = (loadedLinks * 100)/totalLinks
@@ -104,10 +103,19 @@ def INDEX(url):
     main.VIEWS()
 
 def LISTHOSTERS(name,url):
-    html = main.OPENURL(url)
+    html = GETHTML(url)
     if html == None: return
     main.addLink("[COLOR red]For Download Options, Bring up Context Menu Over Selected Link.[/COLOR]",'','')
     r = re.findall(r'class="td_cols"><a target=\'_blank\'.+?href=\'(.+?)\'>',html, re.M|re.DOTALL)
+    try:
+        t = re.findall(r'rel="nofollow">((?!.*\.rar).*)</a>', html, re.I)
+        r = r+t
+    except:
+        pass
+    if len(r) == 0:
+        addon.show_ok_dialog(['No Playable Streams Found,','It Might Be That They Are Still Being Uploaded,',
+                              'Or They Are Unstreamable Archive Files'],'MashUP: TV-Release')
+        return
     sources = []
     for url in r:
         media = urlresolver.HostedMediaFile(url=url)
@@ -125,6 +133,35 @@ def LISTHOSTERS(name,url):
             host = r[0]
         main.addDown2(name+"[COLOR blue] :"+host.upper()+"[/COLOR]",url,1005,art+'/hosts/'+host+'.png',art+'/hosts/'+host+'.png')
 
+def SEARCH(url):
+    last_search = addon.load_data('search')
+    if not last_search: last_search = ''
+    search_entered = ''
+    keyboard = xbmc.Keyboard(search_entered, '[COLOR green]MashUP: Search TV-Release[/COLOR]')
+    last_search = last_search.replace('+', ' ')
+    keyboard.setDefault(last_search)
+    keyboard.doModal()
+    if keyboard.isConfirmed():
+        search_entered = keyboard.getText().replace(' ', '+')
+        addon.save_data('search', search_entered)
+    if search_entered == None or len(search_entered)<1:
+        return MAINMENU()
+    else:
+        url = url+'"%s"&cat=' % (search_entered).replace('+', '%20')
+        INDEX(url)
+        
+
+def TVPACKS(url):
+    html = GETHTML(url)
+    if html == None:
+        return
+    pattern = '<li><a href="(.+?)"><span class="head">(.+?)</span>'
+    r = re.findall(pattern,html)
+    for url, name in r:
+        main.addDir(name, url, 1001,'')
+        
+    
+    
                 
 def GOTOP(url):
     default = url
@@ -142,12 +179,7 @@ def GOTOP(url):
         
         
 def PLAYMEDIA(name,url):
-    r = url.rpartition('+')
-    url = r[0]
-    types = r[2]
     ok = True
-    playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-    playlist.clear()
     r = re.findall(r'(.+?)\[COLOR', name)
     name = r[0]
     r=re.findall('Season(.+?)Episode([^<]+)',name)
@@ -165,15 +197,8 @@ def PLAYMEDIA(name,url):
     fanart =infoLabels['backdrop_url']
     imdb_id=infoLabels['imdb_id']
     infolabels = { 'supports_meta' : 'true', 'video_type':video_type, 'name':str(infoLabels['title']), 'imdb_id':str(infoLabels['imdb_id']), 'season':str(season), 'episode':str(episode), 'year':str(infoLabels['year']) }
-    source = urlresolver.HostedMediaFile(url)
     try:
-        if source:
-            xbmc.executebuiltin("XBMC.Notification(Please Wait!,Resolving Link,3000)")
-            stream_url = source.resolve()
-        else:
-            stream_url = False
-            return
-                
+        stream_url = urlresolver.resolve(url)
         infoL={'Title': infoLabels['title'], 'Plot': infoLabels['plot'], 'Genre': infoLabels['genre']}
         # play with bookmark
         player = playbackengine.PlayWithoutQueueSupport(resolved_url=stream_url, addon_id=addon_id, video_type=video_type, title=str(infoLabels['title']),season=str(season), episode=str(episode), year=str(infoLabels['year']),img=img,infolabels=infoL, watchedCallbackwithParams=main.WatchedCallbackwithParams,imdb_id=imdb_id)
@@ -185,15 +210,9 @@ def PLAYMEDIA(name,url):
     except:
         return ok
 
-
-
-    
-    
-
 def GETHTML(url):
     try:
         h = net.http_GET(url).content
-        h=h.encode("ascii", "ignore")
         if '<h2>Under Maintenance</h2>' in h:
             addon.show_ok_dialog(['[COLOR green][B]TV-Release is Down For Maintenance,[/COLOR][/B]',
                                   '[COLOR green][B]Please Try Again Later[/COLOR][/B]',''],'MashUP: TV-Release')
@@ -204,7 +223,5 @@ def GETHTML(url):
         addon.log_notice(str(e))
         return MAINMENU()
     
-def GETMETA(name,types):
-    type = types
 
 

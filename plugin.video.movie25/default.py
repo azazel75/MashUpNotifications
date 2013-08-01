@@ -2326,6 +2326,12 @@ elif mode == 1004:
 elif mode == 1005:
     from resources.libs.plugins import tvrelease
     tvrelease.PLAYMEDIA(name,url)
+elif mode == 1006:
+    from resources.libs.plugins import tvrelease
+    tvrelease.SEARCH(url)
+elif mode == 1007:
+    from resources.libs.plugins import tvrelease
+    tvrelease.TVPACKS(url)
     
     
     
