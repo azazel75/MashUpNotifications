@@ -1,20 +1,14 @@
 #-*- coding: utf-8 -*-
+import urllib,urllib2,re,cookielib,string, urlparse
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
+import urlresolver,os,time
+from t0mm0.common.addon import Addon
+from t0mm0.common.net import Net as net
+from metahandler import metahandlers
+import datetime,time
+from resources.libs import main, movie25
 
-try:
-    import urllib,urllib2,re,cookielib,string, urlparse
-    import urlresolver,os,time
-    from t0mm0.common.addon import Addon
-    from t0mm0.common.net import Net as net
-    from metahandler import metahandlers
-    import datetime,time
-    from resources.libs import main, movie25
-except Exception, e:
-    elogo = xbmc.translatePath('special://home/addons/plugin.video.movie25/resources/art/bigx.png')
-    xbmc.executebuiltin("XBMC.Notification([COLOR green]MashUP Error[/COLOR],[COLOR red]Failed To Import Needed Modules Check Log For Details[/COLOR],7000,"+elogo+")")
-    xbmc.log('MashUP ERROR Importing Modules: '+str(e))
-    sys.exit(0)
-    
+
 #Mash Up - by Mash2k3 2012.
 
 Mainurl ='http://www.movie25.com/movies/'
@@ -25,8 +19,6 @@ addon = Addon(addon_id)
 art = main.art
 from universal import watchhistory
 wh = watchhistory.WatchHistory('plugin.video.movie25')
-
-
 
 
 
@@ -896,7 +888,6 @@ def TextBoxes(heading,anounce):
                 self.win.getControl( self.CONTROL_TEXTBOX ).setText(text)
                 return
         TextBox()
-
 ################################################################################ Modes ##########################################################################################################
 
 
