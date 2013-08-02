@@ -3,10 +3,10 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess2</new>
+<new>mess1</new>
 <message1>Noobroom/Starplay section is down, it will</message1>
 <message2>require a login to access in the future, go.</message2>
 <message3>to noobroom.com and register before August 8.</message3>
 <ANNOUNCEMENT>[B]Version 1.3.5[/B]</ANNOUNCEMENT>
-<old>mess1</old>
+<old>mess2</old>
 </item>
