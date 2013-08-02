@@ -165,6 +165,7 @@ def VIDEOLINKST3(mname,murl):
                 else:
                         stream_url = False
                         return
+                print stream_url
                 infoLabels =main.GETMETAT(mname,'','',thumbs)
                 video_type='movie'
                 season=''

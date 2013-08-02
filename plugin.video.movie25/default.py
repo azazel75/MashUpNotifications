@@ -38,7 +38,7 @@ from resources.libs.plugins import seriesgate, sominaltvfilms, dubzonline, globa
 
 from resources.libs.live import livestation, hadynz, oneeightone, vipplaylist, naviplaylists, ilive, castalba, desistreams, musicstreams, countries,tubtub, customchannel
 
-from resources.libs.movies_tv import oneclickwatch, movieplaylist, mkvmovies, pencurimovie, backuptv, rlsmix, newmyvideolinks, dailyflix, oneclickmoviez, starplay, movie1k
+from resources.libs.movies_tv import oneclickwatch, multilinkplaylist, movieplaylist, mkvmovies, pencurimovie, backuptv, rlsmix, newmyvideolinks, dailyflix, oneclickmoviez, starplay, movie1k
 
 from resources.libs.international import  einthusan, cinevip
 
@@ -357,6 +357,11 @@ def SPORTS():
         main.addDir('Wild TV','https://www.wildtv.ca/shows',92,art+'/wildtv.png')
         main.addDir('Workouts','https://www.wildtv.ca/shows',194,art+'/workout.png')
         main.addDir('The Golf Channel','golf',217,art+'/golfchannel.png')
+        main.addDir('K1m05 On-Demand','https://github.com/mash2k3/MashUpK1m05/raw/master/OnDemandDir.xml',245,art+'/k1m05OD.png')   
+        main.addDir('Sports4u Streams','https://github.com/mash2k3/Sports4U_MashUp/raw/master/Sports4u-Directory.xml',181,art+'/sports4u.png')
+        main.addDir("K1m05's Sports",'https://github.com/mash2k3/MashUpK1m05/raw/master/k1m05%27s%20playlist/sportsk1.xml',182,art+'/k1m05.png')
+        main.addDir('Max Powers Streams','https://github.com/mash2k3/MashUpMaxPower/raw/master/maxpowers%20playlist/sportsmax',182,art+'/maxpowers.png')
+        
         main.GA("None","Sports")
 
 def MMA():
@@ -649,11 +654,11 @@ def popVIP(image):
     DownloaderClass2(image,popimage)
     if xbmc.getCondVisibility('system.platform.ios'):
         if not xbmc.getCondVisibility('system.platform.atv'):
-            popup = HUBx('pop1.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=34,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'),)
+            popup = HUBx('pop1.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=60,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'),)
     if xbmc.getCondVisibility('system.platform.android'):
-        popup = HUBx('pop1.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=34,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'))
+        popup = HUBx('pop1.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=60,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'))
     else:
-        popup = HUBx('pop.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=34,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'))
+        popup = HUBx('pop.xml',selfAddon.getAddonInfo('path'),'DefaultSkin',close_time=60,logo_path='%s/resources/skins/DefaultSkin/media/Logo/'%selfAddon.getAddonInfo('path'))
     popup.doModal()
     del popup
 ################################################################################ Favorites Function##############################################################################################################
@@ -1861,7 +1866,19 @@ elif mode==243:
 
 elif mode==244:
         popVIP(url)
-        
+
+
+elif mode==245:
+        print ""+url
+        multilinkplaylist.Mplaylists(url)
+
+elif mode==246:
+        print ""+url
+        multilinkplaylist.MList(name,url)
+
+elif mode==247:
+        print ""+url
+        multilinkplaylist.MLink(name,url,iconimage)        
 ######################################################################################################
         ######################################################################################
         ######################################################################################
