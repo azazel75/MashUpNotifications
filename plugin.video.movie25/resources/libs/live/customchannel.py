@@ -15,6 +15,8 @@ wh = watchhistory.WatchHistory('plugin.video.movie25')
 xmlPath = selfAddon.getSetting('xml-folder')
 
 def MAIN():
+    main.addPlayc('My XML Channel Instructions','nills',248,art+'/xml.png','','','','','')
+            
     if os.path.exists(xmlPath):
         xmlfolder=os.path.join(xmlPath,'MyXmlChannels')        
         try:
@@ -54,6 +56,11 @@ def MAIN():
         dialog.ok("MashUp", "Please set Custom Xml file Path", "in Addon settings under Custom Channels tab")
         selfAddon.openSettings()
 
+def XmlIns():
+        dir = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/message', ''))
+        chlg = os.path.join(dir, 'xmlchannels.txt')
+        main.TextBoxes("[B][COLOR red]MashUp XML Instructions![/B][/COLOR]",chlg)
+        
 def LIST(mname,murl):
     items=[]
     i=0

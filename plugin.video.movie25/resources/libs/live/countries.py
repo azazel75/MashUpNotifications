@@ -15,15 +15,6 @@ wh = watchhistory.WatchHistory('plugin.video.movie25')
 
 
 def COUNTRIES():
-        countarea='country2'
-        notified=os.path.join(main.datapath,str(countarea))
-        if not os.path.exists(notified):
-            open(notified,'w').write('version="%s",'%countarea)
-            dialog = xbmcgui.Dialog()
-            ok=dialog.ok('[B]Attention!!![/B]', 'Still need help in this section.','I need volunteers to help me maintain','this section or ill be forced to remove it.')
-        remove=os.path.join(main.datapath,str('country'))
-        if  os.path.exists(remove):
-                os.remove(remove)
         main.GA("Live","Countries")
         link=main.OPENURL('https://github.com/mash2k3/MashUpStreams/raw/master/countries.xml')
         link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace('type=playlistname=Sorted by user-assigned order','').replace('name=Sorted [COLOR=FF00FF00]by user-assigned order[/COLOR]','').replace('name=Live Tv Channels Twothumb','')

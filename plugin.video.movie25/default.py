@@ -58,17 +58,7 @@ def AtoZ():
                 main.addDir(i,'http://www.movie25.com/movies/'+i.lower()+'/',1,art+'/'+i.lower()+'.png')
         main.GA("None","Movie25-A-Z")   
 def MAIN():
-        mashup=132
-        notified=os.path.join(main.datapath,str(mashup))
-        if not os.path.exists(notified):
-            open(notified,'w').write('version="%s",'%mashup)
-            dir = addon.get_path()
-            chlg = os.path.join(dir, 'changelog.txt')
-            TextBoxes("[B][COLOR red]MashUp Changelog[/B][/COLOR]",chlg)
-            mashup=mashup-1
-            notified=os.path.join(main.datapath,str(mashup))
-            if  os.path.exists(notified):
-                os.remove(notified)
+        Notify()
         if selfAddon.getSetting("switchup") == "false":
                 main.addDirHome('Search','http://www.movie25.com/',420,art+'/search2.png')
                 main.addDirHome("All Fav's",'http://www.movie25.com/',639,art+'/favsu.png')
@@ -132,12 +122,13 @@ def MAIN():
                         for new,anounce,old in match:
                                 continue
                         if new != ' ':
-                                notified=os.path.join(main.datapath,str(new))
+                                runonce=os.path.join(main.datapath,'RunOnce')
+                                notified=os.path.join(runonce,str(new))
                                 if not os.path.exists(notified):
                                         open(notified,'w').write('version="%s",'%new)
                                         TextBoxes("[B][COLOR red]MashUp Announcements[/B][/COLOR]",anounce)
                                 if old != ' ':
-                                        notified=os.path.join(main.datapath,str(old))
+                                        notified=os.path.join(runonce,str(old))
                                         if  os.path.exists(notified):
                                                 os.remove(notified)
                         else:
@@ -154,13 +145,14 @@ def MAIN():
                         for new,mes1,mes2,mes3,old in match:
                                 continue
                         if new != ' ':
-                                notified=os.path.join(main.datapath,str(new))
+                                runonce=os.path.join(main.datapath,'RunOnce')
+                                notified=os.path.join(runonce,str(new))
                                 if not os.path.exists(notified):
                                         open(notified,'w').write('version="%s",'%new)
                                         dialog = xbmcgui.Dialog()
                                         ok=dialog.ok('[B]Important Announcement![/B]', str(mes1) ,str(mes2),str(mes3))
                                 if old != ' ':
-                                        notified=os.path.join(main.datapath,str(old))
+                                        notified=os.path.join(runonce,str(old))
                                         if  os.path.exists(notified):
                                                 os.remove(notified)
                         else:
@@ -197,7 +189,53 @@ def CheckForUpdate():
                                 open(UpdateFile,'w').write('date="%s"'%(date))
                                 
                 return
-
+def Notify():
+        mashup=132
+        runonce=os.path.join(main.datapath,'RunOnce')
+        try:
+            os.makedirs(runonce)
+        except:
+            pass
+        notified=os.path.join(runonce,str(mashup))
+        if not os.path.exists(notified):
+            open(notified,'w').write('version="%s",'%mashup)
+            dir = addon.get_path()
+            chlg = os.path.join(dir, 'changelog.txt')
+            TextBoxes("[B][COLOR red]MashUp Changelog[/B][/COLOR]",chlg)
+            mashup=mashup-1
+            notified=os.path.join(runonce,str(mashup))
+            if  os.path.exists(notified):
+                os.remove(notified)
+        files = 132
+        while files > 127:
+            delold=os.path.join(main.datapath,str(files))
+            if  os.path.exists(delold):
+                    os.remove(delold)
+                    files=files-1
+            else:
+                files=files-1
+        delold=os.path.join(main.datapath,'mess2')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        delold=os.path.join(main.datapath,'mess1')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        delold=os.path.join(main.datapath,'live1')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        delold=os.path.join(main.datapath,'live2')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        delold=os.path.join(main.datapath,'metadata')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        delold=os.path.join(main.datapath,'country2')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        delold=os.path.join(main.datapath,'country1')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        
         
 def GENRE(url):
         main.addDir('Action','http://www.movie25.com/movies/action/',1,art+'/act.png')
@@ -257,7 +295,8 @@ def GlobalFav():
     
 def TV():
         mashup='metadata'
-        notified=os.path.join(main.datapath,str(mashup))
+        runonce=os.path.join(main.datapath,'RunOnce')
+        notified=os.path.join(runonce,str(mashup))
         if not os.path.exists(notified):
             open(notified,'w').write('type="%s",'%mashup)
             dir = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/message', ''))
@@ -280,7 +319,8 @@ def TV():
 
 def ThreeDsec():
         mashup='metadata'
-        notified=os.path.join(main.datapath,str(mashup))
+        runonce=os.path.join(main.datapath,'RunOnce')
+        notified=os.path.join(runonce,str(mashup))
         if not os.path.exists(notified):
             open(notified,'w').write('type="%s",'%mashup)
             dir = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/message', ''))
@@ -292,7 +332,8 @@ def ThreeDsec():
 
 def TVAll():
         mashup='metadata'
-        notified=os.path.join(main.datapath,str(mashup))
+        runonce=os.path.join(main.datapath,'RunOnce')
+        notified=os.path.join(runonce,str(mashup))
         if not os.path.exists(notified):
             open(notified,'w').write('type="%s",'%mashup)
             dir = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/message', ''))
@@ -315,7 +356,8 @@ def TVAll():
 
 def HD():
         mashup='metadata'
-        notified=os.path.join(main.datapath,str(mashup))
+        runonce=os.path.join(main.datapath,'RunOnce')
+        notified=os.path.join(runonce,str(mashup))
         if not os.path.exists(notified):
             open(notified,'w').write('type="%s",'%mashup)
             dir = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/message', ''))
@@ -333,7 +375,8 @@ def HD():
         main.GA("None","HD")
 def INT():
         mashup='metadata'
-        notified=os.path.join(main.datapath,str(mashup))
+        runonce=os.path.join(main.datapath,'RunOnce')
+        notified=os.path.join(runonce,str(mashup))
         if not os.path.exists(notified):
             open(notified,'w').write('type="%s",'%mashup)
             dir = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.movie25/resources/message', ''))
@@ -414,13 +457,14 @@ def LiveStreams():
                 for new,mes1,mes2,mes3,old in match:
                         continue
                 if new != ' ':
-                        notified=os.path.join(main.datapath,str(new))
+                        runonce=os.path.join(main.datapath,'RunOnce')
+                        notified=os.path.join(runonce,str(new))
                         if not os.path.exists(notified):
                                 open(notified,'w').write('version="%s",'%new)
                                 dialog = xbmcgui.Dialog()
                                 ok=dialog.ok('[B]Live Section Announcement![/B]', str(mes1) ,str(mes2),str(mes3))
                         if old != ' ':
-                                notified=os.path.join(main.datapath,str(old))
+                                notified=os.path.join(runonce,str(old))
                                 if  os.path.exists(notified):
                                         os.remove(notified)
                 else:
@@ -1878,7 +1922,10 @@ elif mode==246:
 
 elif mode==247:
         print ""+url
-        multilinkplaylist.MLink(name,url,iconimage)        
+        multilinkplaylist.MLink(name,url,iconimage)
+
+elif mode==248:
+        customchannel.XmlIns()
 ######################################################################################################
         ######################################################################################
         ######################################################################################
