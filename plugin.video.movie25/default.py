@@ -165,7 +165,7 @@ def MAIN():
 
 def CheckForUpdate():
         try:
-                link2=main.OPENURL('https://github.com/mash2k3/MashUpFixes/raw/master/Fixes.xml')
+                link2=main.OPENURL('https://github.com/mash2k3/MashUpFixes/raw/master/AutoUpdate.xml')
         except:
                 link2='nill'
         link2=link2.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
@@ -182,8 +182,7 @@ def CheckForUpdate():
                         dialog = xbmcgui.Dialog()
                         ret = dialog.yesno('MashUp Update', 'There is a new fix update available.','Will you like to update now?', 'It is recommended that you update.','No', 'Yes')
                         if ret==True:
-                                cmd = 'plugin://plugin.video.movie25/?url=http://www.movie25.com/&mode=784&name=Fixes'
-                                xbmc.executebuiltin('XBMC.Container.Update(%s)' % cmd)
+                                AutoFIXES()
                                 open(UpdateFile,'w').write('date="%s"'%(date))
                         else:
                                 open(UpdateFile,'w').write('date="%s"'%(date))
@@ -538,9 +537,19 @@ def FIXES():
         for name,filename,location,path,thumb in match:
                 main.addDirFIX(name,filename,785,art+'/'+thumb+'.png',location,path)
 
+def AutoFIXES():
+        try:
+                link=main.OPENURL('https://github.com/mash2k3/MashUpFixes/raw/master/AutoUpdate.xml')
+        except:
+                xbmc.executebuiltin("XBMC.Notification(Sorry!,Repo is Down,5000,"")")
+        link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+        match=re.compile('<item><name>([^<]+)</name.+?filename>([^<]+)</filename.+?location>([^<]+)</location.+?path>([^<]+)</path.+?thumbnail>([^<]+)</thumbnail></item>').findall(link)
+        for name,filename,location,path,thumb in match:
+                FIXDOWN(name,filename,location,path)
+
 def FIXDOWN(name,filename,location,path):
     main.GA("Fixes",name+"-Fix")
-    url = 'https://dl.dropboxusercontent.com/u/35068738/FIXES'+filename
+    url = 'https://github.com/mash2k3/MashUpFixes/raw/master/FIXES/'+filename
     print "#############  Downloading from "+ url+"  #####################"
     path = xbmc.translatePath(os.path.join(str(location),str(path)))
     lib=os.path.join(path, str(filename))

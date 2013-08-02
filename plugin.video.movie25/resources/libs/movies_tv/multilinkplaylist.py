@@ -104,17 +104,9 @@ def MLink(mname,suburl,thumb):
         imdb_id=infoLabels['imdb_id']
         infolabels = { 'supports_meta' : 'true', 'video_type':video_type, 'name':str(infoLabels['title']), 'imdb_id':str(infoLabels['imdb_id']), 'season':str(season), 'episode':str(episode), 'year':str(infoLabels['year']) }
         suburl=main.unescapes(suburl)
-        match=re.compile('<sublink>(.+?)</sublink>').findall(suburl)
-        for url in match:
-
-                match2=re.compile('http://(.+?)/.+?').findall(url)
-                if match2:
-                        for host in match2:
-                                name = host.replace('www.','')
-                else:
-                        name = "Link "+str(i)
-                        i=i+1
-                namelist.append(name.upper())        
+        match=re.compile('<sublink>(.+?)</sublink><host>(.+?)</host>').findall(suburl)
+        for url,host in match:
+                namelist.append(host.upper())        
                 urllist.append(url)         
         dialog = xbmcgui.Dialog()
         answer =dialog.select("Pick Host", namelist)
