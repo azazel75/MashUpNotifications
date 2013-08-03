@@ -53,15 +53,15 @@ def OPENURL(url):
     UserAgent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
     try:
         print "MU-Openurl = " + url
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
+        #req = urllib2.Request(url)
+        #req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        #response = urllib2.urlopen(req)
+        #link=response.read()
+        #response.close()
         #link = net(UserAgent).http_GET(url).content
         link=link.replace('&#39;',"'").replace('&quot;','"').replace('&amp;',"&").replace("&#39;","'").replace('&lt;i&gt;','').replace("#8211;","-").replace('&lt;/i&gt;','').replace("&#8217;","'").replace('&amp;quot;','"').replace('&#215;','').replace('&#038;','&').replace('&#8216;','').replace('&#8211;','').replace('&#8220;','').replace('&#8221;','').replace('&#8212;','')
         link=link.replace('%3A',':').replace('%2F','/')
-        return link
+        return link.encode('utf-8', 'ignore')
     except:
         xbmc.executebuiltin("XBMC.Notification(Sorry!,Source Website is Down,3000,"+elogo+")")
         link ='website down'

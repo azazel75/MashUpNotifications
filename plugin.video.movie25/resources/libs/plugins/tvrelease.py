@@ -45,6 +45,14 @@ def MAINMENU():
 
 def INDEX(url):
     types = []
+    SearchType = None
+    if '!' in url:
+        r = url.rpartition('!')
+        print r
+        url = r[0]
+        SearchType = r[2]
+    else:
+        url = url
     if '/tvshows/' in url:
         types = 'tv'
     elif '/movies/' in url:
@@ -78,12 +86,19 @@ def INDEX(url):
             for name in r:
                 pass
         name = name+'[COLOR blue]'+tag+'[/COLOR]'
-        if 'TV' in tag:
+        if SearchType == None:
+            if 'TV' in tag:
+                main.addDirTE(name,url,1003,'','','','','','')
+            elif 'Movies' in tag:
+                if re.findall('\s\d+\s',name):
+                    r = name.rpartition('\s\d{4}\s')
+                main.addDirM(name,url,1003,'','','','','','')
+        elif SearchType == 'tv' and 'TV' in tag:
             main.addDirTE(name,url,1003,'','','','','','')
-        elif 'Movies' in tag:
-            if re.findall('\s\d+\s',name):
-                r = name.rpartition('\s\d{4}\s')
+        elif SearchType == 'movie' and 'Movies' in tag:
+            r = name.rpartition('\s\d{4}\s')
             main.addDirM(name,url,1003,'','','','','','')
+        
         loadedLinks = loadedLinks + 1
         percent = (loadedLinks * 100)/totalLinks
         remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
@@ -94,9 +109,11 @@ def INDEX(url):
     del dialogWait
     if '<!-- Zamango Pagebar 1.3 -->' in html:
         r = re.findall('<span class=\'zmg_pn_current\'>(\d+)</span>\n<span class=\'zmg_pn_standar\'><a href=\'(http://tv-release.net/category/.+?/\d+)\' title=\'Page \d+ of (\d+)\'>\d+</a>',html, re.I|re.DOTALL|re.M)
+        if len(r) == 0:
+            r = re.findall('<span class=\'zmg_pn_current\'>(\d+)</span>\n<span class=\'zmg_pn_standar\'><a href=\'(http://tv-release.net/page/\d+\?.+?)\' title=\'Page \d+ of (\d+)\'>\d+</a>', html, re.I|re.DOTALL|re.M)
         for current, url, total in r:
             name = '[COLOR green]Page '+current+' of '+total+', Next Page >>>[/COLOR]'
-            main.addDir(name, url, 1001, art+'/nextpage.png')
+            main.addDir(name, url.replace('%5C',''), 1001, art+'/nextpage.png')
             url = url+':'+total
             name = '[COLOR green]Goto Page[/COLOR]'
             main.addDir(name, url, 1002, art+'/gotopagetr.png')
@@ -134,7 +151,16 @@ def LISTHOSTERS(name,url):
         main.addDown2(name+"[COLOR blue] :"+host.upper()+"[/COLOR]",url,1005,art+'/hosts/'+host+'.png',art+'/hosts/'+host+'.png')
 
 def SEARCH(url):
+    dialog = xbmcgui.Dialog()
+    ret = dialog.select('[COLOR green][B]Choose A Search Type[/COLOR][/B]',['[B][COLOR green]TV Shows[/COLOR][/B]','[B][COLOR green]Movies[/COLOR][/B]'])
+    if ret == -1:
+        return MAINMENU()
+    if ret == 0:
+        searchType = 'tv'
+    if ret == 1:
+        searchType = 'movie'
     last_search = addon.load_data('search')
+    
     if not last_search: last_search = ''
     search_entered = ''
     keyboard = xbmc.Keyboard(search_entered, '[COLOR green]MashUP: Search TV-Release[/COLOR]')
@@ -148,6 +174,7 @@ def SEARCH(url):
         return MAINMENU()
     else:
         url = url+'"%s"&cat=' % (search_entered).replace('+', '%20')
+        url = url+'!'+searchType
         INDEX(url)
         
 
@@ -207,9 +234,7 @@ def PLAYMEDIA(name,url):
             wh.add_item(hname+' '+'[COLOR green]iWatchonline[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=str(img), fanart=str(fanart), is_folder=False)
         player.KeepAlive()
         return ok
-    except Exception, e:
-        if stream_url != False:
-                main.ErrorReport(e)
+    except:
         return ok
 
 def GETHTML(url):
