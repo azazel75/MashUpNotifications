@@ -52,6 +52,7 @@ def find_noobroom_video_url(page_url):
         html = response.read()
     except:
         pass
+    print html
     media_id = re.compile('"file": "(.+?)"').findall(html)[0]
     fork_url = re.compile('"streamer": "(.+?)"').findall(html)[0] + '&start=0&file=' + media_id
     #print fork_url
