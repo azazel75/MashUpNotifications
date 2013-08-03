@@ -618,7 +618,9 @@ def PLAY(name,murl):
                 wh.add_item(hname+' '+'[COLOR green]Movie25[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart=fanart, is_folder=False)
             player.KeepAlive()
             return ok
-        except:
+        except Exception, e:
+            if stream_url != False:
+                    main.ErrorReport(e)
             return ok
 
 def PLAYB(name,murl):
@@ -653,5 +655,7 @@ def PLAYB(name,murl):
                 wh.add_item(hname+' '+'[COLOR green]Movie25[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart=fanart, is_folder=False)
             player.KeepAlive()
             return ok
-        except:
+        except Exception, e:
+            if stream_url != False:
+                    main.ErrorReport(e)
             return ok

@@ -430,7 +430,9 @@ def iWatchLINKB(mname,url):
                 wh.add_item(hname+' '+'[COLOR green]iWatchonline[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=str(img), fanart=str(fanart), is_folder=False)
             player.KeepAlive()
             return ok
-        except:
+        except Exception, e:
+            if stream_url != False:
+                    main.ErrorReport(e)
             return ok
             
 

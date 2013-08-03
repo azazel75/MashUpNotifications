@@ -87,5 +87,7 @@ def LINKINT3(name,murl,thumb):
                     wh.add_item(name+' '+'[COLOR green]Cinevip[/COLOR]', sys.argv[0]+sys.argv[2], infolabels='', img=thumb, fanart='', is_folder=False)
                 player.KeepAlive()
                 return ok
-        except:
+        except Exception, e:
+                if stream_url != False:
+                        main.ErrorReport(e)
                 return ok

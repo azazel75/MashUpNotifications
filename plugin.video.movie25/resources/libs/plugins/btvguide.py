@@ -420,5 +420,7 @@ def PLAYBTV(mname,murl):
                         wh.add_item(mname+' '+'[COLOR green]BTV[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart='', is_folder=False)
                     player.KeepAlive()
                     return ok
-                except:
-                    return ok
+                except Exception, e:
+                        if stream_url != False:
+                                main.ErrorReport(e)
+                        return ok

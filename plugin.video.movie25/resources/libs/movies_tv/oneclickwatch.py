@@ -183,5 +183,7 @@ def VIDEOLINKST3(mname,murl):
                         wh.add_item(mname+' '+'[COLOR green]Oneclickwatch[/COLOR]', sys.argv[0]+sys.argv[2], infolabels='', img=img, fanart='', is_folder=False)
                 player.KeepAlive()
                 return ok
-        except:
+        except Exception, e:
+                if stream_url != False:
+                        main.ErrorReport(e)
                 return ok

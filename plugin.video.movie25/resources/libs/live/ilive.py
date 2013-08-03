@@ -85,25 +85,30 @@ def iLiveLink(mname,murl,thumb):
         xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Stream,3000)")
         link=main.OPENURL(murl)
         ok=True
-        playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-        playlist.clear()
-        link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
-        match=re.compile('http://www.ilive.to/embed/(.+?)&width=(.+?)&height=(.+?)&autoplay=true').findall(link)
-        for fid,wid,hei in match:
-            pageUrl='http://www.ilive.to/embedplayer.php?width='+wid+'&height='+hei+'&channel='+fid+'&autoplay=true'
-        link=main.OPENURL(pageUrl)
-        playpath=re.compile('file: "(.+?).flv"').findall(link)
-        if len(playpath)==0:
-                playpath=re.compile('http://snapshots.ilive.to/snapshots/(.+?)_snapshot.jpg').findall(thumb)      
-        for playPath in playpath:
-            stream_url = 'rtmp://edge.isearch.to/edge playpath=' + playPath + " swfUrl=http://player.ilive.to/player_ilive_2.swf pageUrl="+pageUrl+" live=1 timeout=15"
-        listitem = xbmcgui.ListItem(thumbnailImage=thumb)
-        listitem.setInfo('video', {'Title': mname, 'Genre': 'Live'} )
+        try:
+                playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+                playlist.clear()
+                link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+                match=re.compile('http://www.ilive.to/embed/(.+?)&width=(.+?)&height=(.+?)&autoplay=true').findall(link)
+                for fid,wid,hei in match:
+                    pageUrl='http://www.ilive.to/embedplayer.php?width='+wid+'&height='+hei+'&channel='+fid+'&autoplay=true'
+                link=main.OPENURL(pageUrl)
+                playpath=re.compile('file: "(.+?).flv"').findall(link)
+                if len(playpath)==0:
+                        playpath=re.compile('http://snapshots.ilive.to/snapshots/(.+?)_snapshot.jpg').findall(thumb)      
+                for playPath in playpath:
+                    stream_url = 'rtmp://edge.isearch.to/edge playpath=' + playPath + " swfUrl=http://player.ilive.to/player_ilive_2.swf pageUrl="+pageUrl+" live=1 timeout=15"
+                listitem = xbmcgui.ListItem(thumbnailImage=thumb)
+                listitem.setInfo('video', {'Title': mname, 'Genre': 'Live'} )
         
-        playlist.add(stream_url,listitem)
-        xbmcPlayer = xbmc.Player()
-        xbmcPlayer.play(playlist)
-        #WatchHistory
-        if selfAddon.getSetting("whistory") == "true":
-            wh.add_item(mname+' '+'[COLOR green]iLive[/COLOR]', sys.argv[0]+sys.argv[2], infolabels='', img=thumb, fanart='', is_folder=False)
-        return ok
+                playlist.add(stream_url,listitem)
+                xbmcPlayer = xbmc.Player()
+                xbmcPlayer.play(playlist)
+                #WatchHistory
+                if selfAddon.getSetting("whistory") == "true":
+                    wh.add_item(mname+' '+'[COLOR green]iLive[/COLOR]', sys.argv[0]+sys.argv[2], infolabels='', img=thumb, fanart='', is_folder=False)
+                return ok
+        except Exception, e:
+                if stream_url != False:
+                    main.ErrorReport(e)
+                return ok

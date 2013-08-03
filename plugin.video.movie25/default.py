@@ -8,11 +8,11 @@ try:
     from t0mm0.common.net import Net as net
     from metahandler import metahandlers
     import datetime,time
-    from resources.libs import main, movie25
+    from resources.libs import main
 except Exception, e:
     elogo = xbmc.translatePath('special://home/addons/plugin.video.movie25/resources/art/bigx.png')
     xbmc.executebuiltin("XBMC.Notification([COLOR green]MashUP Error[/COLOR],[COLOR red]Failed To Import Needed Modules Check Log For Details[/COLOR],7000,"+elogo+")")
-    xbmc.log('MashUP ERROR - Importing Modules: '+str(e))
+    xbmc.log('MashUp ERROR - Importing Modules: '+str(e))
     sys.exit(0)
     
 #Mash Up - by Mash2k3 2012.
@@ -994,7 +994,7 @@ if mode==None or url==None or len(url)<1:
                 
        
 elif mode==1:
-        print ""+url
+        from resources.libs import movie25
         movie25.LISTMOVIES(url)
         
 elif mode==2:
@@ -1002,22 +1002,27 @@ elif mode==2:
         GENRE(url)
 
 elif mode==4:
+        from resources.libs import movie25
         print ""+url
         movie25.SEARCH(url)
         
 elif mode==420:
+        from resources.libs import movie25
         print ""+url
         movie25.Searchhistory()
 
 elif mode==3:
+        from resources.libs import movie25
         print ""+url
         movie25.VIDEOLINKS(name,url)
 
 elif mode==5:
+        from resources.libs import movie25
         print ""+url
         movie25.PLAY(name,url)
 
 elif mode==171:
+        from resources.libs import movie25
         print ""+url
         movie25.PLAYB(name,url)
 elif mode==6:
@@ -1027,68 +1032,85 @@ elif mode==7:
         YEAR()
 
 elif mode==23:
+        from resources.libs import movie25
         movie25.ENTYEAR()
         
 elif mode==8:
+        from resources.libs import movie25
         print ""+url
         movie25.YEARB(url)
 
 elif mode==9:
+        from resources.libs import movie25
         print ""+url
         movie25.NEXTPAGE(url)
         
 elif mode==10:
+        from resources.libs import movie25
         movie25.FAVS()
 
 elif mode==11:
+        from resources.libs import movie25
         print ""+url
         movie25.PUTLINKS(name,url)
 
 elif mode==12:
+        from resources.libs import movie25
         print ""+url
         movie25.OELINKS(name,url)
 
 elif mode==13:
+        from resources.libs import movie25
         print ""+url
         movie25.FNLINKS(name,url)
 
 elif mode==14:
+        from resources.libs import movie25
         print ""+url
         movie25.VIDLINKS(name,url)
 
 elif mode==15:
+        from resources.libs import movie25
         print ""+url
         movie25.FLALINKS(name,url)
 
 elif mode==16:
+        from resources.libs import movie25
         print ""+url
         movie25.NOVLINKS(name,url)
 
 elif mode==17:
+        from resources.libs import movie25
         print ""+url
         movie25.UPLINKS(name,url)
 
 elif mode==18:
+        from resources.libs import movie25
         print ""+url
         movie25.XVLINKS(name,url)
 
 elif mode==19:
+        from resources.libs import movie25
         print ""+url
         movie25.ZOOLINKS(name,url)
 
 elif mode==20:
+        from resources.libs import movie25
         print ""+url
         movie25.ZALINKS(name,url)
 
 elif mode==21:
+        from resources.libs import movie25
         print ""+url
         movie25.VIDXLINKS(name,url)
 
 elif mode==22:
+        from resources.libs import movie25
         print ""+url
         movie25.SOCKLINKS(name,url)
 
 elif mode==24:
+        from resources.libs import movie25
         print ""+url
         movie25.NOWLINKS(name,url)
 
@@ -1240,6 +1262,7 @@ elif mode==59:
         UFC()
         
 elif mode==60:
+        from resources.libs import movie25
         print ""+url
         movie25.UFCMOVIE25()
 
@@ -1627,42 +1650,52 @@ elif mode==204:
 
 
 elif mode==145:
+        from resources.libs import movie25
         print ""+url
         movie25.MOVSHLINKS(name,url)
 
 elif mode==146:
+        from resources.libs import movie25
         print ""+url
         movie25.DIVXSLINKS(name,url)
 
 elif mode==147:
+        from resources.libs import movie25
         print ""+url
         movie25.SSIXLINKS(name,url)
 
 elif mode==148:
+        from resources.libs import movie25
         print ""+url
         movie25.GORLINKS(name,url)
 
 elif mode==150:
+        from resources.libs import movie25
         print ""+url
         movie25.MOVPLINKS(name,url)
 
 elif mode==151:
+        from resources.libs import movie25
         print ""+url
         movie25.DACLINKS(name,url)
 
 elif mode==152:
+        from resources.libs import movie25
         print ""+url
         movie25.VWEEDLINKS(name,url)
 
 elif mode==153:
+        from resources.libs import movie25
         print ""+url
         movie25.MOVDLINKS(name,url)
 
 elif mode==154:
+        from resources.libs import movie25
         print ""+url
         movie25.MOVRLINKS(name,url)
 
 elif mode==155:
+        from resources.libs import movie25
         print ""+url
         movie25.BUPLOADSLINKS(name,url)
 
@@ -1671,6 +1704,7 @@ elif mode==156:
         HubMain()
 
 elif mode==157:
+        from resources.libs import movie25
         print ""+url
         movie25.PLAYEDLINKS(name,url)
 
@@ -1901,10 +1935,12 @@ elif mode==206:
     youplaylist.YOULink(name,url,iconimage)
 
 elif mode==207:
+        from resources.libs import movie25
         print ""+url
         movie25.GotoPage(url)
 
 elif mode==208:
+        from resources.libs import movie25
         print ""+url
         movie25.GotoPageB(url)
 

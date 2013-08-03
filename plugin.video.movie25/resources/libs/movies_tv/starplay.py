@@ -85,23 +85,28 @@ def LINKSP5(mname,url):
         main.GA("Starplay","Watched")
         MainUrlb = "http://87.98.161.165"
         ok=True
-        mname  = mname.replace('[COLOR red]','').replace('[/COLOR]','')
-        xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Link,5000)")
-        stream_url=find_noobroom_video_url(url)
-        infoLabels =main.GETMETAT(mname,'','','')
-        video_type='movie'
-        season=''
-        episode=''
-        img=infoLabels['cover_url']
-        fanart =infoLabels['backdrop_url']
-        imdb_id=infoLabels['imdb_id']
-        infolabels = { 'supports_meta' : 'true', 'video_type':video_type, 'name':str(infoLabels['title']), 'imdb_id':str(infoLabels['imdb_id']), 'season':str(season), 'episode':str(episode), 'year':str(infoLabels['year']) }
+        try:
+                mname  = mname.replace('[COLOR red]','').replace('[/COLOR]','')
+                xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Link,5000)")
+                stream_url=find_noobroom_video_url(url)
+                infoLabels =main.GETMETAT(mname,'','','')
+                video_type='movie'
+                season=''
+                episode=''
+                img=infoLabels['cover_url']
+                fanart =infoLabels['backdrop_url']
+                imdb_id=infoLabels['imdb_id']
+                infolabels = { 'supports_meta' : 'true', 'video_type':video_type, 'name':str(infoLabels['title']), 'imdb_id':str(infoLabels['imdb_id']), 'season':str(season), 'episode':str(episode), 'year':str(infoLabels['year']) }
 
-        infoL={'Title': infoLabels['title'], 'Plot': infoLabels['plot'], 'Genre': infoLabels['genre']}
-        # play with bookmark
-        player = playbackengine.PlayWithoutQueueSupport(resolved_url=stream_url, addon_id=addon_id, video_type=video_type, title=str(infoLabels['title']),season=str(season), episode=str(episode), year=str(infoLabels['year']),img=img,infolabels=infoL, watchedCallbackwithParams=main.WatchedCallbackwithParams,imdb_id=imdb_id)
-        #WatchHistory
-        if selfAddon.getSetting("whistory") == "true":
-            wh.add_item(mname+' '+'[COLOR green]Starplay[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart='', is_folder=False)
-        player.KeepAlive()
-        return ok
+                infoL={'Title': infoLabels['title'], 'Plot': infoLabels['plot'], 'Genre': infoLabels['genre']}
+                # play with bookmark
+                player = playbackengine.PlayWithoutQueueSupport(resolved_url=stream_url, addon_id=addon_id, video_type=video_type, title=str(infoLabels['title']),season=str(season), episode=str(episode), year=str(infoLabels['year']),img=img,infolabels=infoL, watchedCallbackwithParams=main.WatchedCallbackwithParams,imdb_id=imdb_id)
+                #WatchHistory
+                if selfAddon.getSetting("whistory") == "true":
+                    wh.add_item(mname+' '+'[COLOR green]Starplay[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart='', is_folder=False)
+                player.KeepAlive()
+                return ok
+        except Exception, e:
+                if stream_url != False:
+                        main.ErrorReport(e)
+                return ok

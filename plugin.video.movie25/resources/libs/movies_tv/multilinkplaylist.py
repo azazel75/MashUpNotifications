@@ -185,6 +185,8 @@ def MLink(mname,suburl,thumb):
                 wh.add_item(mname+' '+'[COLOR green]VIPlaylist[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart=fanart, is_folder=False)
             player.KeepAlive()
             return ok
-        except:
+        except Exception, e:
+            if stream_url != False:
+                    main.ErrorReport(e)
             return ok
 

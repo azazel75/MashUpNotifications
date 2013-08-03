@@ -255,7 +255,9 @@ def LINKSP2B(mname,murl):
                     wh.add_item(mname+' '+'[COLOR green]NewmyVideoLink[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=infoLabels['cover_url'], fanart=infoLabels['backdrop_url'], is_folder=False)
                 player.KeepAlive()
                 return ok
-        except:
+        except Exception, e:
+                if stream_url != False:
+                        main.ErrorReport(e)
                 return ok
             
 
