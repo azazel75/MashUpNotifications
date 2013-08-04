@@ -341,6 +341,7 @@ def TVAll():
         main.addDir('dubzonline','TV',613,art+'/wfs/dubzonline.png')
         main.addDir('AnimeFreak TV','TV',625,art+'/animefreak.png')
         main.addDir('Global BC','gbc',165,art+'/globalbc.png')
+        main.addDir('tubePLUS','tp+',1020,art+'/tubeplus.png')
         main.GA("None","Plugin")
 
 def HD():
@@ -2789,6 +2790,43 @@ elif mode == 1006:
 elif mode == 1007:
     from resources.libs.plugins import tvrelease
     tvrelease.TVPACKS(url)
+
+elif mode == 1020:
+    from resources.libs.plugins import tubeplus
+    tubeplus.MAINMENU()
+elif mode == 1021:
+    from resources.libs.plugins import tubeplus
+    tubeplus.TVMENU()
+elif mode == 1022:
+    from resources.libs.plugins import tubeplus
+    tubeplus.MOVIE_MENU()
+elif mode == 1023:
+    from resources.libs.plugins import tubeplus
+    tubeplus.TUBE_CHARTS(url)
+elif mode == 1040:
+    from resources.libs.plugins import tubeplus
+    tubeplus.MOVIES_SPECIAL(url)
+elif mode == 1041:
+    from resources.libs.plugins import tubeplus
+    tubeplus.LATEST_TV(url)
+elif mode == 1042:
+    from resources.libs.plugins import tubeplus
+    tubeplus.LAST_AIRED(url)
+elif mode == 1043:
+    from resources.libs.plugins import tubeplus
+    tubeplus.TV_TOP10(url)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                    
+                    
+    
     
     
     
