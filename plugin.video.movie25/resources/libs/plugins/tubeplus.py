@@ -45,7 +45,7 @@ def TVMENU():
     #main.addDir('[COLOR green][B]S[/B]earch TV Shows[/COLOR]',BASE_URL+'search/','mode','')
 
 def MOVIE_MENU():
-    html = main.OPENURL(BASE_URL)
+    html = main.OPENURL2(BASE_URL)
     r = re.findall(r'<h1 id="list_head" class="short">&nbsp;&nbsp;&nbsp;(.+?)</h1>',html)
     for movies_special in r:
         main.addDir('[COLOR green]'+movies_special+'[/COLOR]',BASE_URL,1040,'')
@@ -55,7 +55,7 @@ def MOVIE_MENU():
     main.addDir('[COLOR green][B]M[/B]ovies by A to Z[/COLOR]',BASE_URL+'browse/movies/All_Genres/-/','mode','')
 
 def TV_TOP10(url):
-    html = main.OPENURL(url)
+    html = main.OPENURL2(url)
     if html == None:
         return
     r = re.findall('Top 10 TV Episodes</h1>(.+?)&laquo;More TV Shows&raquo;', html, re.M|re.DOTALL)
@@ -87,7 +87,7 @@ def TV_TOP10(url):
 
             
 def LAST_AIRED(url):
-    html = main.OPENURL(url)
+    html = main.OPENURL2(url)
     html = html.decode('ISO-8859-1').encode('utf-8', 'ignore')
     if html == None:
         return
@@ -119,7 +119,7 @@ def LAST_AIRED(url):
         
 
 def LATEST_TV(url):
-    html = main.OPENURL(url)
+    html = main.OPENURL2(url)
     html = html.replace('&rsquo;',"'")
     if html == None:
         return
@@ -150,7 +150,7 @@ def LATEST_TV(url):
 
 def GENRES(url):
     Curl = url
-    html = main.OPENURL(url)
+    html = main.OPENURL2(url)
     if html == None:
         return
     r = re.findall(r'{value:1, te(.+?)var selected_genre', html, re.M)
@@ -170,7 +170,7 @@ def GENRES(url):
         url = url+genre+'/ALL/'
     print url
     try:
-        html = main.OPENURL(url)
+        html = main.OPENURL2(url)
         #html = html.replace('xc2\x92', "'")
         if html == None:
             print 'html None'
@@ -223,7 +223,7 @@ def TEST(url):
 
 
 def MOVIES_SPECIAL(url):
-    html = main.OPENURL(url)
+    html = main.OPENURL2(url)
     if html == None:
         return
     r = re.findall(r'<h1 id="list_head" class="short">.+?Movies Special</h1>(.+?)&laquo;More Movies&raquo;</a>',html, re.M|re.DOTALL)

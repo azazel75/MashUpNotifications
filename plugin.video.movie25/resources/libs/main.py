@@ -66,6 +66,17 @@ def OPENURL(url):
         xbmc.executebuiltin("XBMC.Notification(Sorry!,Source Website is Down,3000,"+elogo+")")
         link ='website down'
         return link
+
+def OPENURL2(url):
+    UserAgent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
+    try:
+        print "MU-Openurl = " + url
+        link = net(UserAgent).http_GET(url).content
+        return link.encode('utf-8', 'ignore')
+    except:
+        xbmc.executebuiltin("XBMC.Notification(Sorry!,Source Website is Down,3000,"+elogo+")")
+        link ='website down'
+        return link
         
 def REDIRECT(url):
         req = urllib2.Request(url)
