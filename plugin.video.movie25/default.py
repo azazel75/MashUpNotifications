@@ -2836,6 +2836,9 @@ elif mode == 1042:
 elif mode == 1043:
     from resources.libs.plugins import tubeplus
     tubeplus.TV_TOP10(url)
+elif mode == 1044:
+    from resources.libs.plugins import tubeplus
+    tubeplus.GENRES(url)
     
     
     

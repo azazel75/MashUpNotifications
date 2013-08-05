@@ -40,7 +40,7 @@ def TVMENU():
     main.addDir('[COLOR green][B]L[/B]ast Aired TV Shows/Episodes[/COLOR]',BASE_URL,1042,'')
     main.addDir('[COLOR green][B]A[/B]ll latest Aired TV Shows/Episodes[/COLOR]',BASE_URL+'browse/tv-shows/Last/ALL/',1041,'')
     main.addDir('[COLOR green][B]T[/B]op 10 Tv Episodes[/COLOR]',BASE_URL,1043,'')
-    main.addDir('[COLOR green][B]T[/B]V Shows by Genres[/COLOR]',BASE_URL+'browse/tv-shows/','mode','')
+    main.addDir('[COLOR green][B]T[/B]V Shows by Genres[/COLOR]',BASE_URL+'browse/tv-shows/',1044,'')
     main.addDir('[COLOR green][B]T[/B]V Shows A to Z[/COLOR]',BASE_URL,'mode','')
     #main.addDir('[COLOR green][B]S[/B]earch TV Shows[/COLOR]',BASE_URL+'search/','mode','')
 
@@ -50,7 +50,7 @@ def MOVIE_MENU():
     for movies_special in r:
         main.addDir('[COLOR green]'+movies_special+'[/COLOR]',BASE_URL,1040,'')
     main.addDir('[COLOR green][B]M[/B]ost Popular Movies[/COLOR]',BASE_URL+'browse/movies/Last/ALL/','mode','')
-    main.addDir('[COLOR green][B]M[/B]ovies By Genres[/COLOR]',BASE_URL,'mode','')
+    main.addDir('[COLOR green][B]M[/B]ovies By Genres[/COLOR]',BASE_URL+'browse/movies/',1044,'')
     main.addDir('[COLOR green][B]M[/B]ost Popular Genres[/COLOR]',BASE_URL,'mode',art+'/tpmostpopgenre.png')
     main.addDir('[COLOR green][B]M[/B]ovies by A to Z[/COLOR]',BASE_URL+'browse/movies/All_Genres/-/','mode','')
 
@@ -147,6 +147,80 @@ def LATEST_TV(url):
         if (dialogWait.iscanceled()):
             return False
     dialogWait.close()
+
+def GENRES(url):
+    Curl = url
+    html = main.OPENURL(url)
+    if html == None:
+        return
+    r = re.findall(r'{value:1, te(.+?)var selected_genre', html, re.M)
+    pattern = 'xt: "(.+?)"'
+    r = re.findall(r''+pattern+'', str(r), re.I|re.DOTALL)
+    res_genre = []
+    res_url = []
+    for genre in r:
+        res_genre.append(genre.encode('utf8'))
+        res_url.append(genre.encode('utf8'))
+    dialog = xbmcgui.Dialog()
+    ret = dialog.select('Choose Genre', res_genre)
+    if ret == -1:
+        return
+    elif ret >= 0:
+        genre = res_url [ret - 0]
+        url = url+genre+'/ALL/'
+    print url
+    try:
+        html = main.OPENURL(url)
+        #html = html.replace('xc2\x92', "'")
+        if html == None:
+            print 'html None'
+            return
+    except:#Mash can you add your error calling function
+        pass#remove the pass and add call to your error routine
+    r = re.findall(r'Alphabetically \[\<b\>'+genre+', ALL\<\/b\>\]\<\/div\>(.+?)\<div id=\"list_footer\"\>\<\/div\>', html, re.I|re.M|re.DOTALL)
+    pattern = '<div class="left">.+?<a target="_blank" title="Watch online: (.+?)" href="/(.+?)">'
+    r = re.findall(pattern, str(r), re.I|re.M|re.DOTALL)
+    dialogWait = xbmcgui.DialogProgress()
+    ret = dialogWait.create('Please wait until list is cached.')
+    totalLinks = len(r)
+    loadedLinks = 0
+    remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+    dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
+    
+    for name, url in r:
+        url = BASE_URL+url
+        if 'tv-shows' in Curl:
+            print url#add in the tv show adddir
+
+        else:
+            name = name.replace('\\','').replace('xc2x92','')
+            main.addDirM(name,url,'mode','','','','','','')
+        loadedLinks = loadedLinks + 1
+        percent = (loadedLinks * 100)/totalLinks
+        remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+        dialogWait.update(percent,'[B]Will load instantly from now on[/B]',remaining_display)
+        if (dialogWait.iscanceled()):
+            return False
+    dialogWait.close()
+    if re.findall(r'<div id="paging">', html):
+        r = re.findall('\<li title="Page (\d+)"\>.+?"\>(\d+)(?=\<\/a\>\<\/li\>\<li title="Next Page"\>\<a href="/(.+?)")',html)
+        for current, total, npurl in r:
+            name = '[COLOR green]Page '+current+' of '+total+', Next Page >>>[/COLOR]'
+            main.addDir(name, BASE_URL+url, '', art+'/nextpage.png')
+            url = url+':'+total
+            name = '[COLOR green]Goto Page[/COLOR]'
+            main.addDir(name, url, 1002, art+'/gotopagetr.png')
+    main.VIEWS()
+            
+        
+        
+
+    
+def TEST(url):
+    print 'test'
+    print url
+        
+
 
 def MOVIES_SPECIAL(url):
     html = main.OPENURL(url)
