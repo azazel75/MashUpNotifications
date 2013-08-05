@@ -53,15 +53,15 @@ def OPENURL(url):
     UserAgent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
     try:
         print "MU-Openurl = " + url
-        #req = urllib2.Request(url)
-        #req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        #response = urllib2.urlopen(req)
-        #link=response.read()
-        #response.close()
-        link = net(UserAgent).http_GET(url).content
-        #link=link.replace('&#39;',"'").replace('&quot;','"').replace('&amp;',"&").replace("&#39;","'").replace('&lt;i&gt;','').replace("#8211;","-").replace('&lt;/i&gt;','').replace("&#8217;","'").replace('&amp;quot;','"').replace('&#215;','').replace('&#038;','&').replace('&#8216;','').replace('&#8211;','').replace('&#8220;','').replace('&#8221;','').replace('&#8212;','')
-        #link=link.replace('%3A',':').replace('%2F','/')
-        return link.encode('utf-8', 'ignore')
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        response.close()
+        #link = net(UserAgent).http_GET(url).content
+        link=link.replace('&#39;',"'").replace('&quot;','"').replace('&amp;',"&").replace("&#39;","'").replace('&lt;i&gt;','').replace("#8211;","-").replace('&lt;/i&gt;','').replace("&#8217;","'").replace('&amp;quot;','"').replace('&#215;','').replace('&#038;','&').replace('&#8216;','').replace('&#8211;','').replace('&#8220;','').replace('&#8221;','').replace('&#8212;','')
+        link=link.replace('%3A',':').replace('%2F','/')
+        return link
     except:
         xbmc.executebuiltin("XBMC.Notification(Sorry!,Source Website is Down,3000,"+elogo+")")
         link ='website down'
@@ -100,7 +100,7 @@ def SwitchUp():
 
 def ErrorReport(e):
         elogo = xbmc.translatePath('special://home/addons/plugin.video.movie25/resources/art/bigx.png')
-        xbmc.executebuiltin("XBMC.Notification([COLOR green]MashUp Error[/COLOR],"+str(e)+",7000,"+elogo+")")
+        xbmc.executebuiltin("XBMC.Notification([COLOR green]MashUp Error[/COLOR],"+str(e)+",10000,"+elogo+")")
         xbmc.log('***********MashUp Error: '+str(e)+'**************')
 ################################################################################ Notifications #########################################################################################################
 
@@ -362,32 +362,32 @@ def GETMETAEpi(mname,data):
 def GETMETAEpiT(mname,thumb,desc):
         if selfAddon.getSetting("meta-view") == "true":
                 mname  = mname.replace('[COLOR purple]','').replace('[COLOR green]','').replace('[COLOR yellow]','').replace('[COLOR aqua]','').replace('[COLOR blue]','').replace('[COLOR red]','').replace('[/COLOR]','')
+                mname  = mname.replace('New Episode','').replace('Main Event','').replace('New Episodes','')
                 mname=mname+' MU'
                 r = re.findall('(.+?)\ss(\d+)e(\d+)\s',mname,re.I)
                 if r:
                     for name,sea,epi in r:
                         year=''
                         name=name.replace(' US','').replace(' (US)','').replace(' UK',' (UK)').replace(' AU','').replace(' and',' &').replace(' 2013','').replace(' 2011','').replace(' 2012','').replace(' 2010','')
+                        if re.findall('twisted',name,re.I):
+                            year='2013'
+                        if re.findall('the newsroom',name,re.I):
+                            year='2012'
                         metaq = grab.get_meta('tvshow',name,None,None,year)
                         imdb=metaq['imdb_id']
                         tit=metaq['title']
                         year=metaq['year']
                         epiname=''
-                """t = re.findall('(.+?)\ss(\d{2})e(\d{3})\s',mname,re.I)
-                if t:
-                    for name,sea,epi in t:
-                        year=''
-                        name=name.replace(' US','').replace(' (US)','').replace(' (us)','').replace(' UK',' (UK)').replace(' AU','').replace(' and',' &').replace(' 2013','').replace(' 2011','').replace(' 2012','').replace(' 2010','')
-                        metaq = grab.get_meta('tvshow',name,None,None,year)
-                        imdb=metaq['imdb_id']
-                        tit=metaq['title']
-                        year=metaq['year']
-                        epiname=''"""
+
                 f = re.findall('(.+?)\sseason\s(\d+)\sepisode\s(\d+)\s',mname,re.I)
                 if f:
                     for name,sea,epi in f:
                         year=''
                         name=name.replace(' US','').replace(' (US)','').replace(' (us)','').replace(' (uk Series)','').replace(' (UK)','').replace(' UK',' (UK)').replace(' AU','').replace(' AND',' &').replace(' And',' &').replace(' and',' &').replace(' 2013','').replace(' 2011','').replace(' 2012','').replace(' 2010','')
+                        if re.findall('twisted',name,re.I):
+                            year='2013'
+                        if re.findall('the newsroom',name,re.I):
+                            year='2012'
                         metaq = grab.get_meta('tvshow',name,None,None,year)
                         imdb=metaq['imdb_id']
                         tit=metaq['title']
@@ -1884,7 +1884,9 @@ def addDown3(name,url,mode,iconimage,fanart):#starplay only
         liz.setProperty('fanart_image', infoLabels['backdrop_url'])
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz)
         return ok
+
 def addDown4(name,url,mode,iconimage,plot,fanart,dur,genre,year):
+        Commands=[]
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&plot="+urllib.quote_plus(plot)+"&fanart="+urllib.quote_plus(fanart)+"&genre="+urllib.quote_plus(genre)
         ok=True
         if re.findall('(.+?)\ss(\d+)e(\d+)\s',name,re.I):
@@ -1930,8 +1932,9 @@ def addDown4(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         plot=plot.encode('ascii', 'ignore')
         plot=plot.replace(",",'.')
         name=name.replace(",",'')
-        args=[(url,name,mode,iconimage,str(plot),type)] 
-        Commands=[("[B][COLOR blue]Add[/COLOR][/B] to My Fav's","XBMC.RunScript(" + script1 + ", " + str(args) + ")"),
+        args=[(url,name,mode,iconimage,str(plot),type)]
+        if '</sublink>' not in url:
+            Commands=[("[B][COLOR blue]Add[/COLOR][/B] to My Fav's","XBMC.RunScript(" + script1 + ", " + str(args) + ")"),
               ("[B][COLOR red]Remove[/COLOR][/B] from My Fav's","XBMC.RunScript(" + script2 + ", " + str(args) + ")"),
                   ('Direct Download', 'XBMC.RunPlugin(%s?mode=190&name=%s&url=%s)' % (sys.argv[0], sysname, sysurl)),
                   ('Download with jDownloader', 'XBMC.RunPlugin(%s?mode=776&name=%s&url=%s)' % (sys.argv[0], sysname, url))]
@@ -1948,7 +1951,10 @@ def addDown4(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         liz.addContextMenuItems( Commands )
         liz.setInfo( type="Video", infoLabels = infoLabels)
         liz.setProperty('fanart_image', infoLabels['backdrop_url'])
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+        if '</sublink>' in url:
+            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        else:
+            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
         return ok
 
 def addInfo(name,url,mode,iconimage,gen,year):

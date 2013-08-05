@@ -71,7 +71,7 @@ def MList(mname,murl):
         for name,url,thumb in directory:
                 main.addDir(name,url,236,thumb)
         
-        match=re.compile('<title>([^<]+)</title.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail>').findall(link)
+        match=re.compile('<title>([^<]+)</title.+?link>(.+?)</link.+?thumbnail>([^<]+)</thumbnail>').findall(link)
         dialogWait = xbmcgui.DialogProgress()
         ret = dialogWait.create('Please wait until Movie list is cached.')
         totalLinks = len(match)
@@ -79,7 +79,11 @@ def MList(mname,murl):
         remaining_display = 'Movies loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
         dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
         for name,url,thumb in match:
-                main.addDown4(name+' [COLOR blue]'+vip+'[/COLOR]',url,237,thumb,'',fan,'','','')
+                if '</sublink>' in url:
+                        main.addDown4(name+' [COLOR blue]'+vip+'[/COLOR]',url,249,thumb,'',fan,'','','')
+                        
+                else:        
+                        main.addDown4(name+' [COLOR blue]'+vip+'[/COLOR]',url,237,thumb,'',fan,'','','')
                 loadedLinks = loadedLinks + 1
                 percent = (loadedLinks * 100)/totalLinks
                 remaining_display = 'Movies loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
@@ -89,6 +93,15 @@ def MList(mname,murl):
         dialogWait.close()
         del dialogWait
         main.GA(vip+"-Directory",vip+"-Playlist")
+
+
+def subLink(mname,suburl):
+        match=re.compile('<sublink>(.+?)</sublink>').findall(suburl)
+        for url in match:
+                match6=re.compile('http://(.+?)/.+?').findall(url)
+                for url2 in match6:
+                        host = url2.replace('www.','').replace('.in','').replace('.net','').replace('.com','').replace('.to','').replace('.org','').replace('.ch','')
+                        main.addDown2(mname+' [COLOR blue]'+host.upper()+'[/COLOR]',url,237,art+'/hosts/'+host.lower()+'.png',art+'/hosts/'+host.lower()+'.png')
 
 def MLink(mname,murl,thumb):
         main.GA(mname,"Watched")

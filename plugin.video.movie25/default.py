@@ -48,7 +48,6 @@ def AtoZ():
                 main.addDir(i,'http://www.movie25.com/movies/'+i.lower()+'/',1,art+'/'+i.lower()+'.png')
         main.GA("None","Movie25-A-Z")   
 def MAIN():
-        Notify()
         if selfAddon.getSetting("switchup") == "false":
                 main.addDirHome('Search','http://www.movie25.com/',420,art+'/search2.png')
                 main.addDirHome("All Fav's",'http://www.movie25.com/',639,art+'/favsu.png')
@@ -91,12 +90,12 @@ def MAIN():
         main.addLink('@mashupxbmc','',art+'/twittermash.png')
         main.addPlayc('Hub Maintenance','http://www.movie25.com/',156,art+'/hubmain.png','','','','','')
         main.addDirHome("MashUp How To's",'PLvNKtQkKaqg-PVXvlP7sYcfiEoaC56v3W',205,art+'/howto.png')
-        
+        main.VIEWSB()
 
-        main.CheckVersion()#Checks If Plugin Version is up to date
+        
  
         
-
+def Announcements():
         #Announcement Notifier from xml file
         
         try:
@@ -150,7 +149,7 @@ def MAIN():
     
                 else:
                     print 'Github Link Down'
-        main.VIEWSB()
+        
 
 
 def CheckForUpdate():
@@ -529,6 +528,7 @@ def FIXES():
                 main.addDirFIX(name,filename,785,art+'/'+thumb+'.png',location,path)
 
 def AutoFIXES():
+        dialog = xbmcgui.Dialog()
         try:
                 link=main.OPENURL('https://github.com/mash2k3/MashUpFixes/raw/master/AutoUpdate.xml')
         except:
@@ -537,6 +537,7 @@ def AutoFIXES():
         match=re.compile('<item><name>([^<]+)</name.+?filename>([^<]+)</filename.+?location>([^<]+)</location.+?path>([^<]+)</path.+?thumbnail>([^<]+)</thumbnail></item>').findall(link)
         for name,filename,location,path,thumb in match:
                 FIXDOWN(name,filename,location,path)
+        dialog.ok("MashUp", "Please Restart MashUp", "If you are still experiencing problems", "Restart XBMC")
 
 def FIXDOWN(name,filename,location,path):
     main.GA("Fixes",name+"-Fix")
@@ -556,12 +557,23 @@ hubpath = xbmc.translatePath(os.path.join('special://home/addons', ''))
 maintenance=os.path.join(hubpath, 'plugin.video.hubmaintenance')
 
 def DownloaderClass2(url,dest):
-        urllib.urlretrieve(url,dest)
+        try:
+            urllib.urlretrieve(url,dest)
+        except Exception, e:
+            dialog = xbmcgui.Dialog()
+            main.ErrorReport(e)
+            dialog.ok("MashUp", "Report the error below at xbmchub.com", str(e), "We will try our best to help you")
+
 
 def DownloaderClass(url,dest):
-        dp = xbmcgui.DialogProgress()
-        dp.create("MashUp","Downloading & Copying File",'')
-        urllib.urlretrieve(url,dest,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
+        try:
+            dp = xbmcgui.DialogProgress()
+            dp.create("MashUp","Downloading & Copying File",'')
+            urllib.urlretrieve(url,dest,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
+        except Exception, e:
+            dialog = xbmcgui.Dialog()
+            main.ErrorReport(e)
+            dialog.ok("MashUp", "Report the error below at xbmchub.com", str(e), "We will try our best to help you")
  
 def _pbhook(numblocks, blocksize, filesize, url=None,dp=None):
         try:
@@ -587,6 +599,7 @@ try:
         path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
         lib=os.path.join(path, 'repository.xbmchub-1.0.1.zip')
         DownloaderClass(url,lib)
+        print lib
         addonfolder = xbmc.translatePath(os.path.join('special://home/addons',''))
         time.sleep(2)
         xbmc.executebuiltin("XBMC.Extract(%s,%s)"%(lib,addonfolder))
@@ -600,6 +613,7 @@ try:
         path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
         lib=os.path.join(path, 'repository.mash2k3-1.5.zip')
         DownloaderClass(url,lib)
+        print lib
         addonfolder = xbmc.translatePath(os.path.join('special://home/addons',''))
         time.sleep(2)
         xbmc.executebuiltin("XBMC.Extract(%s,%s)"%(lib,addonfolder))
@@ -990,8 +1004,11 @@ print "Thumb: "+str(iconimage)
 
 if mode==None or url==None or len(url)<1:
         print ""
+        Notify()
         MAIN()
         CheckForUpdate()
+        main.CheckVersion()#Checks If Plugin Version is up to date
+        Announcements()
                 
        
 elif mode==1:
@@ -2147,6 +2164,10 @@ elif mode==247:
 elif mode==248:
     from resources.libs.live import customchannel
     customchannel.XmlIns()
+
+elif mode==249:
+    from resources.libs.movies_tv import movieplaylist
+    movieplaylist.subLink(name,url)
 ######################################################################################################
         ######################################################################################
         ######################################################################################

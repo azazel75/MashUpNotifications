@@ -324,10 +324,19 @@ def iWatchSeason(name,murl,thumb):
         for season in match:
                 main.addDir2(name+' '+season,murl,591,thumb,'')
 
+def GET_HTML(url):
+    req = urllib2.Request(url)
+    req.add_header('User-Agent', 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543 Safari/419.3')
+    response = urllib2.urlopen(req)
+    link = response.read()
+    response.close()
+    link = link.replace('\\','')
+    return link
+
 def iWatchEpisode(mname,murl):
         seanum  = mname.split('n ')[1]
-        link=main.OPENURL(murl)
-        link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+        link=GET_HTML(murl)
+        #link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
         descs=re.compile('<meta name="description" content="(.+?)">').findall(link)
         if len(descs)>0:
                 desc=descs[0]
@@ -338,8 +347,7 @@ def iWatchEpisode(mname,murl):
                 thumb=thumbs[0]
         else:
                 thumb=''
-        match=re.compile('<td class=sideleft><a href="([^<]+)"><i class=icon-play-circle></i>(.+?)</a></td><td>(.+?)</td>').findall(link)
-                          
+        match=re.compile('<td class=sideleft><a href.+?"([^<]+)".+?<i class=icon-play-circle></i>(.+?)</a></td.+?td>(.+?)</td>').findall(link)
         dialogWait = xbmcgui.DialogProgress()
         ret = dialogWait.create('Please wait until Show list is cached.')
         totalLinks = len(match)
@@ -372,10 +380,11 @@ def GetUrl(url):
 
 def iWatchLINK(mname,url):      
         xbmc.executebuiltin("XBMC.Notification(Please Wait!,Collecting Hosts,1500)")
-        link=main.OPENURL(url)
+        link=GET_HTML(url)
         link=main.unescapes(link)
         main.addLink("[COLOR red]For Download Options, Bring up Context Menu Over Selected Link.[/COLOR]",'','')
-        match=re.compile('<td class=sideleft><a href="(.+?)" target=.+?<img pagespeed_lazy_src=".+?>(.+?)</a></td><td><img pagespeed_lazy_src=".+?/></td><td>.+?</td><td>(.+?)</td>').findall(link)
+        match=re.compile('<td class=sideleft><a href.+?"(.+?)".+?loadIfVisible.+?>(.+?)</a>.+?loadIfVisible.+?td>.+?</td.+?td>(.+?)</td>').findall(link)
+        
         
         for url, name, qua in match:
             name=name.replace(' ','')
@@ -411,7 +420,7 @@ def iWatchLINKB(mname,url):
         infolabels = { 'supports_meta' : 'true', 'video_type':video_type, 'name':str(infoLabels['title']), 'imdb_id':str(infoLabels['imdb_id']), 'season':str(season), 'episode':str(episode), 'year':str(infoLabels['year']) }
         link=main.OPENURL(url)
         link=main.unescapes(link)
-        match=re.compile('<iframe.+?src=\"(.+?)\"').findall(link)
+        match=re.compile('class=frame src="(.+?)"').findall(link)
         hosted_media = urlresolver.HostedMediaFile(match[0])
         source=hosted_media
         try :
