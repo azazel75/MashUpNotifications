@@ -1,7 +1,7 @@
 import urllib,urllib2,re,cookielib,urlresolver,os,sys
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 from resources.libs import main
-
+from t0mm0.common.net import Net as net
 #Mash Up - by Mash2k3 2012.
 
 from t0mm0.common.addon import Addon
@@ -10,11 +10,23 @@ addon_id = 'plugin.video.movie25'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addon = Addon('plugin.video.movie25', sys.argv)
 art = main.art
+
     
 wh = watchhistory.WatchHistory('plugin.video.movie25')
+user = selfAddon.getSetting('username')
+passw = selfAddon.getSetting('password')
+if user == False:
+        dialog = xbmcgui.Dialog()
+        dialog.ok("MashUp", "Please set Custom Xml file Path", "in Addon settings under Custom Channels tab")
+        selfAddon.openSettings()
+def GetNewUrl():
+        link=main.OPENURL('http://www.noobroom.com')
+        match=re.compile('value="(.+?)">').findall(link)
+        return match[0]
 
 
 def LISTSP5(murl):
+        murl=GetNewUrl()+'/latest.php'
         link=main.OPENURL(murl)
         main.addLink("[COLOR red]For Download Options, Bring up Context Menu Over Selected Link.[/COLOR]",'',art+'/link.png')
         match=re.compile(" href='(.+?)'>(.+?)</a><br>(.+?) - <").findall(link)
@@ -41,18 +53,13 @@ def LISTSP5(murl):
 def find_noobroom_video_url(page_url):
     import re
     import urllib2
+    
     headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36', 'Cookie':'place=1; save=1'}
+   
 
-    req = urllib2.Request(page_url)
-    html = ''
-    for k, v in headers.items():
-                req.add_header(k, v)
-    try:            
-        response = urllib2.urlopen(req)
-        html = response.read()
-    except:
-        pass
-    print html
+    url=GetNewUrl()+'/login2.php'
+    log_in = net().http_POST(url,{'email':user,'password':passw}).content
+    html = net().http_GET(page_url).content
     media_id = re.compile('"file": "(.+?)"').findall(html)[0]
     fork_url = re.compile('"streamer": "(.+?)"').findall(html)[0] + '&start=0&file=' + media_id
     #print fork_url
@@ -87,7 +94,8 @@ def LINKSP5(mname,url):
         ok=True
         try:
                 mname  = mname.replace('[COLOR red]','').replace('[/COLOR]','')
-                xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Link,5000)")
+                xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Link,9000)")
+
                 stream_url=find_noobroom_video_url(url)
                 infoLabels =main.GETMETAT(mname,'','','')
                 video_type='movie'
@@ -107,6 +115,5 @@ def LINKSP5(mname,url):
                 player.KeepAlive()
                 return ok
         except Exception, e:
-                if stream_url != False:
-                        main.ErrorReport(e)
+                main.ErrorReport(e)
                 return ok

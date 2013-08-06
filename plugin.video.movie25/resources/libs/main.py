@@ -938,21 +938,22 @@ def Download_Source(name,url):
     else:
             xbmc.executebuiltin("XBMC.Notification(Sorry!,Link Not Found,6000)")
             stream_url = False
-            
-def Noobroom(url):
+
+
+def GetNoobroom():
+        link=OPENURL('http://www.noobroom.com')
+        match=re.compile('value="(.+?)">').findall(link)
+        return match[0]            
+def Noobroom(page_url):
     import re
     import urllib2
     headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36', 'Cookie':'place=1; save=1'}
 
-    req = urllib2.Request(url)
-    html = ''
-    for k, v in headers.items():
-                req.add_header(k, v)
-    try:            
-        response = urllib2.urlopen(req)
-        html = response.read()
-    except:
-        pass
+    user = selfAddon.getSetting('username')
+    passw = selfAddon.getSetting('password')
+    url=GetNoobroom()+'/login2.php'
+    log_in = net().http_POST(url,{'email':user,'password':passw}).content
+    html = net().http_GET(page_url).content
     media_id = re.compile('"file": "(.+?)"').findall(html)[0]
     fork_url = re.compile('"streamer": "(.+?)"').findall(html)[0] + '&start=0&file=' + media_id
     #print fork_url

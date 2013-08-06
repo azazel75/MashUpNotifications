@@ -32,7 +32,10 @@
 	<setting id="download-in-background" type="bool" label="[B]Download in Background[/B]" default="true" />
     <setting id="notify-percent" enable="eq(-1,true)" label="[B]Notify Per[/B]" type="enum" values="2[B] %[/B]|5[B] %[/B]|10[B] %[/B]|20[B] %[/B]|25[B] %[/B]|50[B] %[/B]|100[B] %[/B]" default="2" />
    </category>
-   
+	<category label="Noobroom login">
+    <setting id="username" type="text" label="Username" default="" visible="true"/>
+    <setting id="password" type="text"label="Password" default="" visible="true" option="hidden" />
+	</category>	
    <category label="Custom Channels">
     <setting id="customchannel" type="bool" label="Custom Channels" default="true"/>
     <setting id="xml-folder" type="folder" label="[B]XML File Path[/B]" default=""/>
