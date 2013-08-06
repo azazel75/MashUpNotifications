@@ -85,7 +85,7 @@ def INDEX(url):
             r = re.findall('(.+?)\shdtv\sx',name, re.I)
             for name in r:
                 pass
-        name = name+'[COLOR blue]'+tag+'[/COLOR]'
+        name = name+' [COLOR blue]'+tag+'[/COLOR]'
         if SearchType == None:
             if 'TV' in tag:
                 main.addDirTE(name,url,1003,'','','','','','')
@@ -150,32 +150,112 @@ def LISTHOSTERS(name,url):
             host = r[0]
         main.addDown2(name+"[COLOR blue] :"+host.upper()+"[/COLOR]",url,1005,art+'/hosts/'+host+'.png',art+'/hosts/'+host+'.png')
 
-def SEARCH(url):
+def SEARCHhistory():
     dialog = xbmcgui.Dialog()
     ret = dialog.select('[COLOR green][B]Choose A Search Type[/COLOR][/B]',['[B][COLOR green]TV Shows[/COLOR][/B]','[B][COLOR green]Movies[/COLOR][/B]'])
     if ret == -1:
         return MAINMENU()
     if ret == 0:
         searchType = 'tv'
+        seapath=os.path.join(main.datapath,'Search')
+        SeaFile=os.path.join(seapath,'SearchHistoryTv')
+        if not os.path.exists(SeaFile):
+            SEARCH(searchType)
+        else:
+            main.addDir('Search','tv',1008,art+'/search.png')
+            main.addDir('Clear History',SeaFile,128,art+'/cleahis.png')
+            thumb=art+'/link.png'
+            searchis=re.compile('search="(.+?)",').findall(open(SeaFile,'r').read())
+            for seahis in reversed(searchis):
+                    url=seahis
+                    seahis=seahis.replace('%20',' ')
+                    url = 'http://tv-release.net/?s='+url+'&cat=163'
+                    main.addDir(seahis,url,1001,thumb)
     if ret == 1:
         searchType = 'movie'
-    last_search = addon.load_data('search')
-    
-    if not last_search: last_search = ''
-    search_entered = ''
-    keyboard = xbmc.Keyboard(search_entered, '[COLOR green]MashUP: Search TV-Release[/COLOR]')
-    last_search = last_search.replace('+', ' ')
-    keyboard.setDefault(last_search)
-    keyboard.doModal()
-    if keyboard.isConfirmed():
-        search_entered = keyboard.getText().replace(' ', '+')
-        #addon.save_data('Search', search_entered)
-    if search_entered == None or len(search_entered)<1:
-        return MAINMENU()
-    else:
-        url = url+'"%s"&cat=' % (search_entered).replace('+', '%20')
-        url = url+'!'+searchType
-        INDEX(url)
+        seapath=os.path.join(main.datapath,'Search')
+        SeaFile=os.path.join(seapath,'SearchHistory25')
+        if not os.path.exists(SeaFile):
+            SEARCH(searchType)
+        else:
+            main.addDir('Search','movie',1008,art+'/search.png')
+            main.addDir('Clear History',SeaFile,128,art+'/cleahis.png')
+            thumb=art+'/link.png'
+            searchis=re.compile('search="(.+?)",').findall(open(SeaFile,'r').read())
+            for seahis in reversed(searchis):
+                    url=seahis
+                    seahis=seahis.replace('%20',' ')
+                    url = 'http://tv-release.net/?s='+url+'&cat=164'
+                    main.addDir(seahis,url,1001,thumb)
+
+
+
+def SEARCH(murl):
+    if murl == 'tv':
+        seapath=os.path.join(main.datapath,'Search')
+        SeaFile=os.path.join(seapath,'SearchHistoryTv')
+        try:
+            os.makedirs(seapath)
+        except:
+            pass
+            keyb = xbmc.Keyboard('', '[COLOR green]MashUP: Search For Shows or Episodes[/COLOR]')
+            keyb.doModal()
+            if (keyb.isConfirmed()):
+                    search = keyb.getText()
+                    encode=urllib.quote(search)
+                    if not os.path.exists(SeaFile) and encode != '':
+                        open(SeaFile,'w').write('search="%s",'%encode)
+                    else:
+                        if encode != '':
+                            open(SeaFile,'a').write('search="%s",'%encode)
+                    searchis=re.compile('search="(.+?)",').findall(open(SeaFile,'r').read())
+                    for seahis in reversed(searchis):
+                        continue
+                    if len(searchis)>=10:
+                        searchis.remove(searchis[0])
+                        os.remove(SeaFile)
+                        for seahis in searchis:
+                            try:
+                                open(SeaFile,'a').write('search="%s",'%seahis)
+                            except:
+                                pass
+                    url = 'http://tv-release.net/?s='+encode+'&cat=163'
+                    INDEX(url)
+            else:
+                return MAINMENU()
+    elif murl=='movie':
+        seapath=os.path.join(main.datapath,'Search')
+        SeaFile=os.path.join(seapath,'SearchHistory25')
+        try:
+            os.makedirs(seapath)
+        except:
+            pass
+            keyb = xbmc.Keyboard('', '[COLOR green]MashUP: Search For Movies[/COLOR]')
+            keyb.doModal()
+            if (keyb.isConfirmed()):
+                    search = keyb.getText()
+                    encode=urllib.quote(search)
+                    if not os.path.exists(SeaFile) and encode != '':
+                        open(SeaFile,'w').write('search="%s",'%encode)
+                    else:
+                        if encode != '':
+                            open(SeaFile,'a').write('search="%s",'%encode)
+                    searchis=re.compile('search="(.+?)",').findall(open(SeaFile,'r').read())
+                    for seahis in reversed(searchis):
+                        continue
+                    if len(searchis)>=10:
+                        searchis.remove(searchis[0])
+                        os.remove(SeaFile)
+                        for seahis in searchis:
+                            try:
+                                open(SeaFile,'a').write('search="%s",'%seahis)
+                            except:
+                                pass
+                    url = 'http://tv-release.net/?s='+encode+'&cat=164'
+                    INDEX(url)
+            else:
+                return MAINMENU()
+
         
 
 def TVPACKS(url):

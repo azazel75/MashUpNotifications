@@ -151,7 +151,7 @@ def SEARCHM(murl):
         except:
             pass
         if murl == 'ws':
-            keyb = xbmc.Keyboard('', 'Search For Shows or Episodes')
+            keyb = xbmc.Keyboard('', 'Search For Movies')
             keyb.doModal()
             if (keyb.isConfirmed()):
                     search = keyb.getText()

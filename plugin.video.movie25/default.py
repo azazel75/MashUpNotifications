@@ -2807,7 +2807,12 @@ elif mode == 1005:
     tvrelease.PLAYMEDIA(name,url)
 elif mode == 1006:
     from resources.libs.plugins import tvrelease
+    tvrelease.SEARCHhistory()
+
+elif mode == 1008:
+    from resources.libs.plugins import tvrelease
     tvrelease.SEARCH(url)
+    
 elif mode == 1007:
     from resources.libs.plugins import tvrelease
     tvrelease.TVPACKS(url)
