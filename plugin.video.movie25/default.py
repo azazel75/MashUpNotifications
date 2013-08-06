@@ -2831,6 +2831,13 @@ elif mode == 1022:
 elif mode == 1023:
     from resources.libs.plugins import tubeplus
     tubeplus.TUBE_CHARTS(url)
+elif mode == 1024:
+    from resources.libs.plugins import tubeplus
+    tubeplus.SEARCHhistory()
+elif mode == 1025:
+    from resources.libs.plugins import tubeplus
+    tubeplus.SEARCH(url)
+
 elif mode == 1040:
     from resources.libs.plugins import tubeplus
     tubeplus.MOVIES_SPECIAL(url)
