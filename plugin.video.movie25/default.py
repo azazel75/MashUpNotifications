@@ -87,6 +87,7 @@ def MAIN():
         main.addPlayc('Resolver Settings','http://www.movie25.com/',99,art+'/resset.png','','','','','')
         main.addDirHome('Fixes','http://www.movie25.com/',784,art+'/fixes.png')
         main.addPlayc('Need Help?','http://www.movie25.com/',100,art+'/xbmchub.png','','','','','')
+        main.addLink('mash2k3@yahoo.com','',art+'/paypalmash.png')
         main.addLink('@mashupxbmc','',art+'/twittermash.png')
         main.addPlayc('Hub Maintenance','http://www.movie25.com/',156,art+'/hubmain.png','','','','','')
         main.addDirHome("MashUp How To's",'PLvNKtQkKaqg-PVXvlP7sYcfiEoaC56v3W',205,art+'/howto.png')
@@ -315,6 +316,7 @@ def ThreeDsec():
             chlg = os.path.join(dir, 'metadata.txt')
             TextBoxes("[B][COLOR red]Important Announcement![/B][/COLOR]",chlg)
         main.addDir('3D Movies (Newmyvideolinks) True HD[COLOR red] DC[/COLOR]','3D',34,art+'/3d.png')
+        main.addDir('3D Movies (TNPB by BigBallzBaby) True HD[COLOR red] DC[/COLOR]','https://github.com/mash2k3/MashUpTNPB/raw/master/3D%20Movies.xml',236,art+'/3d.png')
         main.addDir('3D Movies (MkvMovies) True HD','http://mkvmovies.gamezonewap.info/search/label/3D',224,art+'/3d.png')
 
 
@@ -329,6 +331,7 @@ def TVAll():
             TextBoxes("[B][COLOR red]Important Announcement![/B][/COLOR]",chlg)
         #main.addDir('Watch-Free Series','TV',501,art+'/wfs/wsf.png')
         main.addDir('Watchseries.it[COLOR red] DC[/COLOR]','TV',572,art+'/wfs/watchseries.png')
+        main.addDir('tubePLUS','tp+',1020,art+'/tubeplus.png')
         main.addDir('BTV Guide','TV',551,art+'/wfs/btvguide.png')
         main.addDir('Series Gate','TV',601,art+'/wfs/sg.png')
         main.addDir('iWatchOnline [COLOR red] DC[/COLOR]','TV',584,art+'/iwatchonline.png')
@@ -339,8 +342,7 @@ def TVAll():
         main.addDir('FMA','TV',567,art+'/wfs/fma.png')
         main.addDir('dubzonline','TV',613,art+'/wfs/dubzonline.png')
         main.addDir('AnimeFreak TV','TV',625,art+'/animefreak.png')
-        main.addDir('Global BC','gbc',165,art+'/globalbc.png')
-        main.addDir('tubePLUS','tp+',1020,art+'/tubeplus.png')
+        main.addDir('Global BC','gbc',165,art+'/globalbc.png')       
         main.GA("None","Plugin")
 
 def HD():

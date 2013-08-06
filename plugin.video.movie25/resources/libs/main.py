@@ -841,7 +841,7 @@ class StopDownloading(Exception):
 def GetUrliW(url):
         link=OPENURL(url)
         link=unescapes(link)
-        match=re.compile('<iframe.+?src=\"(.+?)\"').findall(link)
+        match=re.compile('class=frame src="(.+?)"').findall(link)
         link=match[0]
         return link
 
