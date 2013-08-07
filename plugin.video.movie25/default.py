@@ -350,11 +350,11 @@ def TVAll():
             TextBoxes("[B][COLOR red]Important Announcement![/B][/COLOR]",chlg)
         #main.addDir('Watch-Free Series','TV',501,art+'/wfs/wsf.png')
         main.addDir('Watchseries.it[COLOR red] DC[/COLOR]','TV',572,art+'/wfs/watchseries.png')
-        main.addDir('tubePLUS','tp+',1020,art+'/tubeplus.png')
+        main.addDir('tubePLUS[COLOR red] DC[/COLOR]','tp+',1020,art+'/tubeplus.png')
         main.addDir('BTV Guide','TV',551,art+'/wfs/btvguide.png')
         main.addDir('Series Gate','TV',601,art+'/wfs/sg.png')
         main.addDir('iWatchOnline [COLOR red] DC[/COLOR]','TV',584,art+'/iwatchonline.png')
-        main.addDir('TV-Release [COLOR red](Works Best With Debrid)[/COLOR]','tvr',1000,art+'/tvrelease.png')
+        main.addDir('TV-Release[COLOR red] DC[/COLOR][COLOR blue] (Works Best With Debrid)[/COLOR]','tvr',1000,art+'/tvrelease.png')
         main.addDir('Sceper [COLOR red](Debrid Only)[/COLOR]','TV',539,art+'/wfs/sceper.png')
         main.addDir('SominalTvFilms','TV',619,art+'/wfs/sominal.png')
         main.addDir('Extramina','TV',530,art+'/wfs/extramina.png')
@@ -2864,7 +2864,9 @@ elif mode == 1026:
 elif mode == 1027:
     from resources.libs.plugins import tubeplus
     tubeplus.VIDEOLINKS(name,url)
-    
+elif mode == 1028:
+    from resources.libs.plugins import tubeplus
+    tubeplus.GOTOP(url)    
 elif mode == 1040:
     from resources.libs.plugins import tubeplus
     tubeplus.MOVIES_SPECIAL(url)
@@ -2892,9 +2894,15 @@ elif mode == 1047:
 elif mode == 1048:
     from resources.libs.plugins import tubeplus
     tubeplus.INDEX2(url)
-    
-    
-    
+elif mode == 1049:
+    from resources.libs.plugins import tubeplus
+    tubeplus.SEASONS(name,url,iconimage)
+elif mode == 1050:
+    from resources.libs.plugins import tubeplus
+    tubeplus.EPISODES(name,url,plot)        
+elif mode == 1051:
+    from resources.libs.plugins import tubeplus
+    tubeplus.INDEXtv(url)   
     
     
     

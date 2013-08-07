@@ -41,24 +41,25 @@ def MAINMENU():
 
 
 def TVMENU():
-    main.addDir('[COLOR=FF67cc33][B]Last Aired TV Shows/Episodes[/B][/COLOR]',BASE_URL,1042,'')
-    main.addDir('[COLOR=FF67cc33][B]All latest Aired TV Shows/Episodes[/B][/COLOR]',BASE_URL+'browse/tv-shows/Last/ALL/',1041,'')
-    main.addDir('[COLOR=FF67cc33][B]Top 10 Tv Episodes[/B][/COLOR]',BASE_URL,1043,'')
-    main.addDir('[COLOR=FF67cc33][B]TV Shows by Genres[/B][/COLOR]',BASE_URL+'browse/tv-shows/',1044,'')
-    main.addDir('[COLOR=FF67cc33][B]TV Shows A to Z[/B][/COLOR]',BASE_URL,'mode','')
+    main.addDir('[COLOR=FF67cc33][B]Last Aired TV Shows/Episodes[/B][/COLOR]',BASE_URL,1042,art+'/tplatest.png')
+    main.addDir('[COLOR=FF67cc33][B]All latest Aired TV Shows/Episodes[/B][/COLOR]',BASE_URL+'browse/tv-shows/Last/ALL/',1041,art+'/tplatest.png')
+    main.addDir('[COLOR=FF67cc33][B]Top 10 Tv Episodes[/B][/COLOR]',BASE_URL,1043,art+'/tptop10.png')
+    main.addDir('[COLOR=FF67cc33][B]TV Shows by Genres[/B][/COLOR]',BASE_URL+'browse/tv-shows/',1044,art+'/tpgenres.png')
+    main.addDir('[COLOR=FF67cc33][B]TV Shows A to Z[/B][/COLOR]',BASE_URL+'browse/tv-shows/',1047,art+'/tpatoz.png')
     #main.addDir('[COLOR=FF67cc33][B]S[/B]earch TV Shows[/COLOR]',BASE_URL+'search/','mode','')
 
 def MOVIE_MENU():
     html = main.OPENURL2(BASE_URL)
     r = re.findall(r'<h1 id="list_head" class="short">&nbsp;&nbsp;&nbsp;(.+?)</h1>',html)
-    for movies_special in r:
-        main.addDir('[COLOR=FF67cc33]'+movies_special+'[/COLOR]',BASE_URL,1040,'')
-    main.addDir('[COLOR=FF67cc33][B]Most Popular Movies[/B][/COLOR]',BASE_URL+'browse/movies/Last/ALL/','mode','')
-    main.addDir('[COLOR=FF67cc33][B]Movies By Genres[/B][/COLOR]',BASE_URL+'browse/movies/',1044,'')
-    main.addDir('[COLOR=FF67cc33][B]Most Popular Genres[/B][/COLOR]',BASE_URL,'mode',art+'/tpmostpopgenre.png')
-    main.addDir('[COLOR=FF67cc33][B]Movies by A to Z[/B][/COLOR]',BASE_URL+'browse/movies/','1047','')
+    for movies_special in r[0:1]:
+        main.addDir('[COLOR=FF67cc33]'+movies_special+'[/COLOR]',BASE_URL,1040,art+'/tppopular.png')
+    main.addDir('[COLOR=FF67cc33][B]Most Popular Movies[/B][/COLOR]',BASE_URL+'browse/movies/Last/ALL/',1048,art+'/tppopular.png')
+    main.addDir('[COLOR=FF67cc33][B]Movies By Genres[/B][/COLOR]',BASE_URL+'browse/movies/',1044,art+'/tpgenres.png')
+    main.addDir('[COLOR=FF67cc33][B]Most Popular Genres[/B][/COLOR]',BASE_URL+'browse/movies/',1046,art+'/tpmostpopgenre.png')
+    main.addDir('[COLOR=FF67cc33][B]Movies by A to Z[/B][/COLOR]',BASE_URL+'browse/movies/',1047,art+'/tpatoz.png')
     
 
+    
 
 def TV_TOP10(url):
     html = main.OPENURL2(url)
@@ -154,6 +155,42 @@ def LATEST_TV(url):
             return False
     dialogWait.close()
 
+def SEASONS(mname,url,thumb):
+    if thumb == None:
+        thumb=''
+    if 'http://www.tubeplus.me/' not in url:
+        url=BASE_URL+url
+    html = main.OPENURL2(url)
+    r = re.findall(r'id="l(sea.+?)" class="season"',html,flags=re.DOTALL|re.M)
+    for seasons in r:
+        linkback=seasons
+        seasons=seasons.replace('_',' ').replace('season','Season')
+        meta_name = mname+' '+seasons
+        main.addDir2(meta_name,url,1050,thumb,linkback)
+    
+
+def EPISODES(mname,url,linkback):
+    html = main.OPENURL2(url)
+    r = re.compile(r'parts" id="'+linkback+'"><a name=(.+?)<div id="parts_header">',re.M|re.DOTALL).findall(html)
+    match = re.compile('href=/(.+?'+linkback+'.+?)">(.+?)</a>').findall(str(r))
+    dialogWait = xbmcgui.DialogProgress()
+    ret = dialogWait.create('Please wait until list is cached.')
+    totalLinks = len(match)
+    loadedLinks = 0
+    remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+    dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
+    for url, epi in match:
+        epi=main.unescapes(epi)
+        epi = epi.replace('\\','').replace('xc2x92','')
+        loadedLinks = loadedLinks + 1
+        percent = (loadedLinks * 100)/totalLinks
+        remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+        dialogWait.update(percent,'[B]Will load instantly from now on[/B]',remaining_display)
+        main.addDirTE(mname+' '+epi,url,1026,'','','','','','')
+        if (dialogWait.iscanceled()):
+            return False
+    dialogWait.close()
+
 def GENRES(url):
     Curl = url
     html = main.OPENURL2(url)
@@ -183,7 +220,7 @@ def GENRES(url):
     except:#Mash can you add your error calling function
         pass#remove the pass and add call to your error routine
     r = re.findall(r'Alphabetically \[\<b\>'+genre+', ALL\<\/b\>\]\<\/div\>(.+?)\<div id=\"list_footer\"\>\<\/div\>', html, re.I|re.M|re.DOTALL)
-    pattern = '<div class="left">.+?<a target="_blank" title="Watch online: (.+?)" href="/(.+?)">'
+    pattern = 'title="Watch online: ([^"]*)" href="/([^"]*)"><img border="0" alt=".+?" src="([^"]*)"></a>'
     r = re.findall(pattern, str(r), re.I|re.M|re.DOTALL)
     dialogWait = xbmcgui.DialogProgress()
     ret = dialogWait.create('Please wait until list is cached.')
@@ -192,14 +229,14 @@ def GENRES(url):
     remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
     dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
     
-    for name, url in r:
+    for name, url, thumb in r:
         url = BASE_URL+url
         if 'tv-shows' in Curl:
-             main.addDir(name, url, '1042','')
+             main.addDir(name,url,1049,'http://www.tubeplus.me'+thumb)
 
         else:
             name = name.replace('\\','').replace('xc2x92','')
-            main.addDirM(name,url,'mode','','','','','','')
+            main.addDirM(name,url,1026,'http://www.tubeplus.me'+thumb,'','','','','')
         loadedLinks = loadedLinks + 1
         percent = (loadedLinks * 100)/totalLinks
         remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
@@ -214,7 +251,7 @@ def GENRES(url):
             main.addDir(name, BASE_URL+url, '', art+'/nextpage.png')
             url = url+':'+total
             name = '[COLOR=FF67cc33]Goto Page[/COLOR]'
-            main.addDir(name, url, 1002, art+'/gotopagetr.png')
+            main.addDir(name, url, 1028, art+'/gotopagetr.png')
     main.VIEWS()
             
 def SEARCHhistory():
@@ -256,6 +293,8 @@ def SEARCHhistory():
                     url = 'http://www.tubeplus.me/search/movies/'+url+'/0/'
                     main.addDir(seahis,url,1025,thumb)
 
+def GOTOP(url):
+    xbmc.executebuiltin("XBMC.Notification(Sorry!,This feature will be ready next update,8000)")
 
 
 def SEARCH(murl):
@@ -338,7 +377,7 @@ def SEARCH(murl):
     for name, url, image in match:
         name = name.replace('_',' ').replace('/','').replace('\\x92',"'").replace('&rsquo;',"'").replace('&quot;','"').replace('&#044;',',')
         if 'tv-shows' in surl:
-            main.addDirT(name.replace('.',''),url,1026,'http://www.tubeplus.me'+image,'','','','','')
+            main.addDirT(name.replace('.',''),url,1049,'http://www.tubeplus.me'+image,'','','','','')
         else:
             main.addDirM(name.replace('.',''),url,1026,'http://www.tubeplus.me'+image,'','','','','')
         loadedLinks = loadedLinks + 1
@@ -353,9 +392,12 @@ def SEARCH(murl):
        
 
     
-def POPGENRES(url):
-    print 'popgenre'
-    print url
+    
+
+
+def INDEXONE(url):
+    res_genre = []
+    res_url = []
     html = main.OPENURL2(url)
     if html == None:
         return
@@ -364,12 +406,15 @@ def POPGENRES(url):
     r = re.findall(r''+pattern+'', str(r))
     for url, name in r:
         url = BASE_URL+url
-        main.addDir(name, url, '1046', '')
-
-def INDEXONE(url):
-    print 'INDEXONE'
-    print url
-    html = main.OPENURL2(url)
+        res_genre.append(name.encode('utf8'))
+        res_url.append(url.encode('utf8'))
+    dialog = xbmcgui.Dialog()
+    ret = dialog.select('Choose Genre', res_genre)
+    if ret == -1:
+        return
+    elif ret >= 0:
+        genre = res_url [ret - 0]
+    html = main.OPENURL2(genre)
     if html == None:
         return
     r = re.findall(r'var chart_movies(.+?)for\s\(movie in chart_movies\)', html, re.M|re.DOTALL)
@@ -382,31 +427,98 @@ def INDEXONE(url):
     remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
     dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
     for name, url in r:
-        main.addDirM(name,url,'mode','','','','','','')
+        main.addDirM(name,url,1026,'','','','','','')
         loadedLinks = loadedLinks + 1
         percent = (loadedLinks * 100)/totalLinks
         remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
         dialogWait.update(percent,'[B]Will load instantly from now on[/B]',remaining_display)
         if (dialogWait.iscanceled()):
             return False
+        
+            
     dialogWait.close()
 
 
+def INDEX2(url):
+    html = main.OPENURL2(url)
+    if html == None:
+        return
+    pattern = 'title="Watch online: ([^"]*)" href="/([^"]*)"><img border="0" alt=".+?" src="([^"]*)"></a>'
+    r = re.findall(r''+pattern+'', html, re.M|re.DOTALL)
+    dialogWait = xbmcgui.DialogProgress()
+    ret = dialogWait.create('Please wait until list is cached.')
+    totalLinks = len(r)
+    loadedLinks = 0
+    remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+    dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
+    for name, nurl,thumb in r:
+        loadedLinks = loadedLinks + 1
+        percent = (loadedLinks * 100)/totalLinks
+        remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+        dialogWait.update(percent,'[B]Will load instantly from now on[/B]',remaining_display)
+        url = BASE_URL+nurl
+        main.addDirM(name,url,1026,'http://www.tubeplus.me'+thumb,'','','','','')
+        if (dialogWait.iscanceled()):
+            return False
+    if re.findall(r'<div id="paging">', html):
+        r = re.findall('\<li title="Page (\d+)"\>.+?"\>(\d+)(?=\<\/a\>\<\/li\>\<li title="Next Page"\>\<a href="/(.+?)")',html)
+        for current, total, npurl in r:
+            name = '[COLOR=FF67cc33]Page '+current+' of '+total+', Next Page >>>[/COLOR]'
+            main.addDir(name, BASE_URL+npurl, 1048, art+'/nextpage.png')
+            url = url+':'+total
+            name = '[COLOR=FF67cc33]Goto Page[/COLOR]'
+            main.addDir(name, url, 1028, art+'/gotopagetr.png')
+        
+    dialogWait.close()
+
+def INDEXtv(url):
+    html = main.OPENURL2(url)
+    if html == None:
+        return
+    pattern = 'title="Watch online: ([^"]*)" href="/([^"]*)"><img border="0" alt=".+?" src="([^"]*)"></a>'
+    r = re.findall(r''+pattern+'', html, re.M|re.DOTALL)
+    dialogWait = xbmcgui.DialogProgress()
+    ret = dialogWait.create('Please wait until list is cached.')
+    totalLinks = len(r)
+    loadedLinks = 0
+    remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+    dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
+    for name, nurl,thumb in r:
+        loadedLinks = loadedLinks + 1
+        percent = (loadedLinks * 100)/totalLinks
+        remaining_display = 'Media loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
+        dialogWait.update(percent,'[B]Will load instantly from now on[/B]',remaining_display)
+        url = BASE_URL+nurl
+        main.addDirT(name,url,1049,'http://www.tubeplus.me'+thumb,'','','','','')
+        if (dialogWait.iscanceled()):
+            return False
+    if re.findall(r'<div id="paging">', html):
+        r = re.findall('\<li title="Page (\d+)"\>.+?"\>(\d+)(?=\<\/a\>\<\/li\>\<li title="Next Page"\>\<a href="/(.+?)")',html)
+        for current, total, npurl in r:
+            name = '[COLOR=FF67cc33]Page '+current+' of '+total+', Next Page >>>[/COLOR]'
+            main.addDir(name, BASE_URL+npurl, 1051, art+'/nextpage.png')
+            url = url+':'+total
+            name = '[COLOR=FF67cc33]Goto Page[/COLOR]'
+            main.addDir(name, url, 1028, art+'/gotopagetr.png')
+        
+    dialogWait.close()
 
 def MOVIEAZ(url):
-    print 'movie a-z'
-    print url
     html = main.OPENURL2(url)
     if html == None:
         return
     r = re.findall('<div id="alphabetic">(.+?)<!-- ###', html, re.M|re.DOTALL)
-    print r
     pattern = '<a href=\"\/(.+?)\"\>(.+?)\</a>'
     r = re.findall(r''+pattern+'', str(r))
-    print r
     for url, name in r:
         url = BASE_URL+url
-        main.addDir(name, url, 'mode', '')
+        thumb=art+'/'+name.lower()+'.png'
+        if name =='#':
+            thumb=art+'/09.png'
+        if 'tv-shows' in url:
+            main.addDir(name, url, 1051,thumb)
+        else:
+            main.addDir(name, url, 1048,thumb)
         
         
 
@@ -438,7 +550,8 @@ def MOVIES_SPECIAL(url):
     
 def LINK(mname,murl):      
         xbmc.executebuiltin("XBMC.Notification(Please Wait!,Collecting Hosts,1500)")
-        murl=BASE_URL+murl
+        if 'http://www.tubeplus.me/' not in murl:
+            murl=BASE_URL+murl
         html = main.OPENURL(murl)
         main.addLink("[COLOR red]For Download Options, Bring up Context Menu Over Selected Link.[/COLOR]",'','')
         r = re.compile(r'class="(o.+?)">.+?javascript:show\(\'(.+?)\'\,\'.+?\'\,\s\'(.+?)\'\)\;.+?<b>(.+?)said work',re.M|re.DOTALL).findall(html)
@@ -459,6 +572,7 @@ def LINK(mname,murl):
 def VIDEOLINKS(mname,url):
         ok=True
         hname=mname
+        hname=hname.split('          online')[0]
         xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Link,3000)")
         r=re.findall('Season(.+?)Episode([^<]+)',mname)
         if r:
