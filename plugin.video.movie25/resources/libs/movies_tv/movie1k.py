@@ -16,11 +16,11 @@ def LISTTV2(murl):
         xbmc.executebuiltin("XBMC.Notification(Please Wait!,Collecting Source Data,7000)")
         if murl=='movintv':
             main.addDir('Search Movie1k','www.movie1k.org',132,art+'/search.png')
-            urllist=main.OPENURL('http://www.movie1k.org/category/tv-show/')+main.OPENURL('http://www.movie1k.org/category/tv-show/page/2/')+main.OPENURL('http://www.movie1k.org/category/tv-show/page/3/')+main.OPENURL('http://www.movie1k.org/category/tv-show/page/4/')+main.OPENURL('http://www.movie1k.org/category/tv-show/page/5/')
+            urllist=main.OPENURL('http://www.movie1k.net/category/tv-show/')+main.OPENURL('http://www.movie1k.net/category/tv-show/page/2/')+main.OPENURL('http://www.movie1k.net/category/tv-show/page/3/')+main.OPENURL('http://www.movie1k.net/category/tv-show/page/4/')+main.OPENURL('http://www.movie1k.net/category/tv-show/page/5/')
         elif murl=='movin':
-            urllist=main.OPENURL('http://www.movie1k.org/category/hindi-movies/')+main.OPENURL('http://www.movie1k.org/category/hindi-movies/page/2/')+main.OPENURL('http://www.movie1k.org/category/hindi-movies/page/3/')+main.OPENURL('http://www.movie1k.org/category/hindi-movies/page/4/')+main.OPENURL('http://www.movie1k.org/category/hindi-movies/page/5/')+main.OPENURL('http://www.movie1k.org/category/hindi-movies/page/6/')+main.OPENURL('http://www.movie1k.org/category/hindi-movies/page/7/')
+            urllist=main.OPENURL('http://www.movie1k.net/category/hindi-movies/')+main.OPENURL('http://www.movie1k.net/category/hindi-movies/page/2/')+main.OPENURL('http://www.movie1k.net/category/hindi-movies/page/3/')+main.OPENURL('http://www.movie1k.net/category/hindi-movies/page/4/')+main.OPENURL('http://www.movie1k.net/category/hindi-movies/page/5/')+main.OPENURL('http://www.movie1k.net/category/hindi-movies/page/6/')+main.OPENURL('http://www.movie1k.net/category/hindi-movies/page/7/')
         elif murl=='movindub':
-            urllist=main.OPENURL('http://www.movie1k.org/category/hindi-dubbed-movies/')+main.OPENURL('http://www.movie1k.org/category/hindi-dubbed-movies/page/2/')+main.OPENURL('http://www.movie1k.org/category/hindi-dubbed-movies/page/3/')+main.OPENURL('http://www.movie1k.org/category/hindi-dubbed-movies/page/4/')+main.OPENURL('http://www.movie1k.org/category/hindi-dubbed-movies/page/5/')+main.OPENURL('http://www.movie1k.org/category/hindi-dubbed-movies/page/6/')+main.OPENURL('http://www.movie1k.org/category/hindi-dubbed-movies/page/7/')
+            urllist=main.OPENURL('http://www.movie1k.net/category/hindi-dubbed-movies/')+main.OPENURL('http://www.movie1k.net/category/hindi-dubbed-movies/page/2/')+main.OPENURL('http://www.movie1k.net/category/hindi-dubbed-movies/page/3/')+main.OPENURL('http://www.movie1k.net/category/hindi-dubbed-movies/page/4/')+main.OPENURL('http://www.movie1k.net/category/hindi-dubbed-movies/page/5/')+main.OPENURL('http://www.movie1k.net/category/hindi-dubbed-movies/page/6/')+main.OPENURL('http://www.movie1k.net/category/hindi-dubbed-movies/page/7/')
             murl=murl
         
         if urllist:
@@ -56,9 +56,9 @@ def SearchhistoryMovie1k():
             url='M1k'
             SEARCHMovie1k(url)
         else:
-            main.addDir('Search','M1k',133,"%s/art/search.png"%selfAddon.getAddonInfo("path"))
-            main.addDir('Clear History',SeaFile,128,"%s/art/cleahis.png"%selfAddon.getAddonInfo("path"))
-            thumb="%s/art/link.png"%selfAddon.getAddonInfo("path")
+            main.addDir('Search','M1k',133,art+'/search.png')
+            main.addDir('Clear History',SeaFile,128,art+'/cleahis.png')
+            thumb=art+'/link.png'
             searchis=re.compile('search="(.+?)",').findall(open(SeaFile,'r').read())
             for seahis in reversed(searchis):
                     url=seahis
@@ -82,7 +82,7 @@ def SEARCHMovie1k(murl):
                 if (keyb.isConfirmed()):
                         search = keyb.getText()
                         encode=urllib.quote(search)
-                        surl='http://www.movie1k.org/?s='+encode
+                        surl='http://www.movie1k.net/?s='+encode
                         if not os.path.exists(SeaFile) and encode != '':
                             open(SeaFile,'w').write('search="%s",'%encode)
                         else:
@@ -101,7 +101,7 @@ def SEARCHMovie1k(murl):
                                     pass
         else:
                 encode = murl
-                surl='http://www.movie1k.org/?s='+encode
+                surl='http://www.movie1k.net/?s='+encode
         link=main.OPENURL(surl)
         match=re.compile('href="(.+?)"><img width=".+?" height=".+?" src="(.+?)" class=".+?" alt="Watch.+?" title="(.+?)" />').findall(link)
         for url,thumb,name in match:
@@ -111,7 +111,7 @@ def SEARCHMovie1k(murl):
 def VIDEOLINKST2(mname,murl,thumb):
         sources = []
         main.GA("Movie1k","Watched")
-        xbmc.executebuiltin("XBMC.Notification(Please Wait!,Collecting Hosts,5000)")
+        xbmc.executebuiltin("XBMC.Notification(Please Wait!,Collecting Hosts,10000)")
         f = re.findall('(.+?) Season (.+?) Episode ([^<]+)',mname,re.I)
         if f:
             infoLabels =main.GETMETAEpiT(mname,thumb,'')

@@ -2858,7 +2858,13 @@ elif mode == 1024:
 elif mode == 1025:
     from resources.libs.plugins import tubeplus
     tubeplus.SEARCH(url)
-
+elif mode == 1026:
+    from resources.libs.plugins import tubeplus
+    tubeplus.LINK(name,url)
+elif mode == 1027:
+    from resources.libs.plugins import tubeplus
+    tubeplus.VIDEOLINKS(name,url)
+    
 elif mode == 1040:
     from resources.libs.plugins import tubeplus
     tubeplus.MOVIES_SPECIAL(url)
@@ -2874,6 +2880,18 @@ elif mode == 1043:
 elif mode == 1044:
     from resources.libs.plugins import tubeplus
     tubeplus.GENRES(url)
+elif mode == 1045:
+    from resources.libs.plugins import tubeplus
+    tubeplus.POPGENRES(url)
+elif mode == 1046:
+    from resources.libs.plugins import tubeplus
+    tubeplus.INDEXONE(url)
+elif mode == 1047:
+    from resources.libs.plugins import tubeplus
+    tubeplus.MOVIEAZ(url)
+elif mode == 1048:
+    from resources.libs.plugins import tubeplus
+    tubeplus.INDEX2(url)
     
     
     

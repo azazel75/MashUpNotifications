@@ -400,8 +400,7 @@ def iWatchLINKB(mname,url):
         main.GA("iWatchonline","Watched")
         ok=True
         hname=mname
-        playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-        playlist.clear()
+        xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Link,3000)")
         mname=mname.split('   [COLOR red]')[0]
         r=re.findall('Season(.+?)Episode([^<]+)',mname)
         if r:

@@ -269,7 +269,8 @@ def GETMETAB(mname,genre,year,thumb):
                 infoLabels = {'title': mname,'cover_url': thumb,'backdrop_url': fan,'season': '','episode': '','year': year,'plot': '','genre': genre,'imdb_id': ''}
         return infoLabels
 
-def GETMETAT(mname,genre,fan,thumb): 
+def GETMETAT(mname,genre,fan,thumb):
+        originalName=mname
         if selfAddon.getSetting("meta-view") == "true":
                 mname  = mname.replace(' EXTENDED and UNRATED','').replace('[COLOR purple]','').replace('MaxPowers','').replace('720p','').replace('1080p','').replace('TS','').replace('HD','').replace('Cam','').replace('R6','').replace('CAM','').replace('H.M.','').replace('HackerMil','').replace('[COLOR green]','').replace('[COLOR yellow]','').replace('[COLOR aqua]','').replace('[COLOR blue]','').replace('[COLOR red]','').replace('[/COLOR]','').replace('(','').replace(')','').replace('[','').replace(']','')
                 if re.findall('\s\d{4}',mname):
@@ -308,6 +309,8 @@ def GETMETAT(mname,genre,fan,thumb):
                 if infoLabels['cover_url']=='':
                     thumb=art+'vidicon.png'
                     infoLabels['cover_url']=thumb
+                infoLabels['metaName']=infoLabels['title']
+                infoLabels['title']=originalName
         else:
                 if thumb=='':
                     thumb=art+'vidicon.png'
@@ -874,6 +877,7 @@ def Download_Source(name,url):
         name=name.replace('/','').replace('.','')
         url=GetUrliW(url)
     
+    
     name=name.split(' [')[0]
     name=name.split('[')[0]
     name=name.split(' /')[0]
@@ -904,6 +908,13 @@ def Download_Source(name,url):
             stream_url = source.resolve()
         else:
             stream_url=url
+    match3=re.findall('xoxv(.+?)xoxe(.+?)xoxc',url)
+    if match3:
+        for hoster, hurl in match3:
+            media= urlresolver.HostedMediaFile(host=hoster, media_id=hurl)
+            source = media
+            if source:
+                    stream_url = source.resolve()
         
     if stream_url:
             print stream_url
@@ -1111,6 +1122,12 @@ def jDownloader(murl):
         match=re.compile('(.+?)xocx(.+?)xocx').findall(murl)
         for hurl, durl in match:
             murl=geturl('http://watchseries.lt'+hurl)
+    match3=re.findall('xoxv(.+?)xoxe(.+?)xoxc',murl)
+    if match3:
+        for hoster, hurl in match3:
+            media= urlresolver.HostedMediaFile(host=hoster, media_id=hurl)
+            r=re.findall("'url': '(.+?)',",str(media))[0]
+            murl=r
     print "Downloading "+murl+" via jDownlaoder"
     cmd = 'plugin://plugin.program.jdownloader/?action=addlink&url='+murl
     xbmc.executebuiltin('XBMC.RunPlugin(%s)' % cmd)
@@ -1515,6 +1532,11 @@ def addDirM(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                     watched_mark = 'Mark as Watched'
                 else:
                     watched_mark = 'Mark as Unwatched'
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )  
         if selfAddon.getSetting("meta-view") != "true":
             if fanart == '':
                 fanart=Dir+'fanart.jpg'
@@ -1522,6 +1544,8 @@ def addDirM(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                 iconimage=art+'vidicon.png'
             if plot=='':
                 plot='Sorry description not available'
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
         type='DIR'
         plot=infoLabels['plot']
         img=infoLabels['cover_url']
@@ -1537,7 +1561,7 @@ def addDirM(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         if selfAddon.getSetting("meta-view") == "true":
                 video_type='movie'
                 imdb=infoLabels['imdb_id']
-                cname=infoLabels['title']
+                cname=infoLabels['metaName']
                 Commands.append(('Play Trailer','XBMC.RunPlugin(%s?mode=782&name=%s&url=%s&iconimage=%s)'% (sys.argv[0],cname,url,imdb)))
                 Commands.append((watched_mark, 'XBMC.RunPlugin(%s?mode=777&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
                 Commands.append(('Refresh Metadata', 'XBMC.RunPlugin(%s?mode=778&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
@@ -1562,6 +1586,12 @@ def addPlayM(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                     watched_mark = 'Mark as Watched'
                 else:
                     watched_mark = 'Mark as Unwatched'
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
+        
         if selfAddon.getSetting("meta-view") != "true":
             if fanart == '':
                 fanart=Dir+'fanart.jpg'
@@ -1569,6 +1599,8 @@ def addPlayM(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                 iconimage=art+'vidicon.png'
             if plot=='':
                 plot='Sorry description not available'
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
         type='PLAY'
         plot=infoLabels['plot']
         img=infoLabels['cover_url']
@@ -1584,7 +1616,7 @@ def addPlayM(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         if selfAddon.getSetting("meta-view") == "true":
                 video_type='movie'
                 imdb=infoLabels['imdb_id']
-                cname=infoLabels['title']
+                cname=infoLabels['metaName']
                 Commands.append(('Play Trailer','XBMC.RunPlugin(%s?mode=782&name=%s&url=%s&iconimage=%s)'% (sys.argv[0],cname,url,imdb)))
                 Commands.append((watched_mark, 'XBMC.RunPlugin(%s?mode=777&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
                 Commands.append(('Refresh Metadata', 'XBMC.RunPlugin(%s?mode=778&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
@@ -1858,16 +1890,24 @@ def addDown3(name,url,mode,iconimage,fanart):#starplay only
                 xbmcplugin.setContent(int(sys.argv[1]), 'Movies')
                 tmdbid=infoLabels['tmdb_id']
                 plot=infoLabels['plot']
-                name=infoLabels['title']
+                name=infoLabels['metaName']
                 if infoLabels['overlay'] == 6:
                     watched_mark = 'Mark as Watched'
                 else:
                     watched_mark = 'Mark as Unwatched'
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
+                
         if selfAddon.getSetting("meta-view") != "true":
             if fanart == '':
                 fanart=Dir+'fanart.jpg'
             if iconimage=='':
                 iconimage=art+'vidicon.png'
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
 
             plot='Sorry description not available'
             plot=plot.replace(",",'.')
@@ -1886,7 +1926,7 @@ def addDown3(name,url,mode,iconimage,fanart):#starplay only
         if selfAddon.getSetting("meta-view") == "true":
                 video_type='movie'
                 imdb=infoLabels['imdb_id']
-                cname=infoLabels['title']
+                cname=infoLabels['metaName']
                 Commands.append(('Play Trailer','XBMC.RunPlugin(%s?mode=782&name=%s&url=%s&iconimage=%s)'% (sys.argv[0],cname,url,imdb)))
                 Commands.append((watched_mark, 'XBMC.RunPlugin(%s?mode=777&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
                 Commands.append(('Refresh Metadata', 'XBMC.RunPlugin(%s?mode=778&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
@@ -1929,6 +1969,11 @@ def addDown4(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                     watched_mark = 'Mark as Watched'
                 else:
                     watched_mark = 'Mark as Unwatched'
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE ) 
         if selfAddon.getSetting("meta-view") != "true":
             if fanart == '':
                 fanart=Dir+'fanart.jpg'
@@ -1936,6 +1981,8 @@ def addDown4(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                 iconimage=art+'vidicon.png'
             if plot=='':
                 plot='Sorry description not available'
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
         sysurl = urllib.quote_plus(url)
         sysname= urllib.quote_plus(name)
         type='PLAY'
@@ -1953,7 +2000,7 @@ def addDown4(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         if selfAddon.getSetting("meta-view") == "true":
                 video_type='movie'
                 imdb=infoLabels['imdb_id']
-                cname=infoLabels['title']
+                cname=infoLabels['metaName']
                 Commands.append(('Play Trailer','XBMC.RunPlugin(%s?mode=782&name=%s&url=%s&iconimage=%s)'% (sys.argv[0],cname,url,imdb)))
                 Commands.append((watched_mark, 'XBMC.RunPlugin(%s?mode=777&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
                 Commands.append(('Refresh Metadata', 'XBMC.RunPlugin(%s?mode=778&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
@@ -1980,6 +2027,14 @@ def addInfo(name,url,mode,iconimage,gen,year):
                     watched_mark = 'Mark as Watched'
                 else:
                     watched_mark = 'Mark as Unwatched'
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
+        else:
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
         args=[(url,name)]
         script1=Dir+'/resources/scripts/addFavs.py'
         script2=Dir+'/resources/scripts/delFavs.py'
@@ -1988,10 +2043,11 @@ def addInfo(name,url,mode,iconimage,gen,year):
         if selfAddon.getSetting("meta-view") == "true":
                 video_type='movie'
                 imdb=infoLabels['imdb_id']
-                cname=infoLabels['title']
+                cname=infoLabels['metaName']
                 Commands.append(('Play Trailer','XBMC.RunPlugin(%s?mode=782&name=%s&url=%s&iconimage=%s)'% (sys.argv[0],cname,url,imdb)))
                 Commands.append((watched_mark, 'XBMC.RunPlugin(%s?mode=777&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
                 Commands.append(('Refresh Metadata', 'XBMC.RunPlugin(%s?mode=778&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
+            
         liz=xbmcgui.ListItem(name, iconImage=art+'/vidicon.png', thumbnailImage=infoLabels['cover_url'])
         liz.addContextMenuItems( Commands )
         liz.setInfo( type="Video", infoLabels = infoLabels)
@@ -2009,6 +2065,11 @@ def addDirIWO(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                     watched_mark = 'Mark as Watched'
                 else:
                     watched_mark = 'Mark as Unwatched'
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
+                xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
         if selfAddon.getSetting("meta-view") != "true":
             if fanart == '':
                 fanart=Dir+'fanart.jpg'
@@ -2016,6 +2077,8 @@ def addDirIWO(name,url,mode,iconimage,plot,fanart,dur,genre,year):
                 iconimage=art+'vidicon.png'
             if plot=='':
                 plot='Sorry description not available'
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+            xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
         type='DIR'
         plot=infoLabels['plot']
         img=infoLabels['cover_url']
@@ -2032,7 +2095,7 @@ def addDirIWO(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         if selfAddon.getSetting("meta-view") == "true":
                 video_type='movie'
                 imdb=infoLabels['imdb_id']
-                cname=infoLabels['title']
+                cname=infoLabels['metaName']
                 Commands.append(('Play Trailer','XBMC.RunPlugin(%s?mode=782&name=%s&url=%s&iconimage=%s)'% (sys.argv[0],cname,url,imdb)))
                 Commands.append((watched_mark, 'XBMC.RunPlugin(%s?mode=777&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
                 Commands.append(('Refresh Metadata', 'XBMC.RunPlugin(%s?mode=778&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
@@ -2091,7 +2154,7 @@ def addDLog(name,url,mode,iconimage,plot,fanart,dur,genre,year):
         if selfAddon.getSetting("meta-view") == "true":
                 
                 imdb=infoLabels['imdb_id']
-                cname=infoLabels['title']
+                cname=infoLabels['metaName']
                 Commands.append(('Play Trailer','XBMC.RunPlugin(%s?mode=782&name=%s&url=%s&iconimage=%s)'% (sys.argv[0],cname,url,imdb)))
                 Commands.append((watched_mark, 'XBMC.RunPlugin(%s?mode=777&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))
                 Commands.append(('Refresh Metadata', 'XBMC.RunPlugin(%s?mode=778&name=%s&url=%s&iconimage=%s)' % (sys.argv[0], cname, video_type,imdb)))

@@ -64,7 +64,7 @@ def VIPList(mname,murl):
         directory=re.compile('<dir><name>([^<]+)</name.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail></dir>').findall(link)
         for name,url,thumb in directory:
                 main.addDir(name,url,236,thumb)
-        match=re.compile('<title>([^<]+)</title.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail>').findall(link)
+        match=re.compile('<title>([^<]+)</title.+?link>(.+?)</link.+?thumbnail>([^<]+)</thumbnail>').findall(link)
         for name,url,thumb in sorted(match):
             main.addPlayL(name+' [COLOR blue]'+vip+'[/COLOR]',url,183,thumb,'',fan,'','','')
         main.GA(vip+"-Playlists",mname)
@@ -72,8 +72,25 @@ def VIPList(mname,murl):
 def VIPLink(mname,murl,thumb):
         main.GA(mname,"Watched")
         ok=True
+        namelist=[]
+        urllist=[]
         playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
         playlist.clear()
+        match=re.compile('<sublink>(.+?)</sublink>').findall(murl)
+        if match:
+                i=1
+                for url in match:
+                        name= 'Link '+str(i)
+                        namelist.append(name)        
+                        urllist.append(url)
+                        i=i+1
+                dialog = xbmcgui.Dialog()
+                answer =dialog.select("Pick A Link", namelist)
+                if answer != -1:
+                        murl=urllist[int(answer)]
+                        xbmc.executebuiltin("XBMC.Notification(Please Wait!,Opening Link,5000)")
+                else:
+                      return  
         stream_url = murl
         listitem = xbmcgui.ListItem(thumbnailImage=thumb)
         listitem.setInfo('video', {'Title': mname, 'Genre': 'Live'} )
