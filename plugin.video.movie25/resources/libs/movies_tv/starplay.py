@@ -15,10 +15,12 @@ art = main.art
 wh = watchhistory.WatchHistory('plugin.video.movie25')
 user = selfAddon.getSetting('username')
 passw = selfAddon.getSetting('password')
-if user == False:
+if user == '' and passw == '':
         dialog = xbmcgui.Dialog()
-        dialog.ok("MashUp", "Please set Custom Xml file Path", "in Addon settings under Custom Channels tab")
+        dialog.ok("[COLOR=FF67cc33]MashUp[/COLOR]", "Please set your Noobroom credentials", "in Addon settings under Noobroom login tab")
         selfAddon.openSettings()
+
+        
 def GetNewUrl():
         link=main.OPENURL('http://www.noobroom.com')
         match=re.compile('value="(.+?)">').findall(link)
@@ -111,7 +113,7 @@ def LINKSP5(mname,url):
                 player = playbackengine.PlayWithoutQueueSupport(resolved_url=stream_url, addon_id=addon_id, video_type=video_type, title=str(infoLabels['title']),season=str(season), episode=str(episode), year=str(infoLabels['year']),img=img,infolabels=infoL, watchedCallbackwithParams=main.WatchedCallbackwithParams,imdb_id=imdb_id)
                 #WatchHistory
                 if selfAddon.getSetting("whistory") == "true":
-                    wh.add_item(mname+' '+'[COLOR green]Starplay[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart='', is_folder=False)
+                    wh.add_item(mname+' '+'[COLOR=FF67cc33]Starplay[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=img, fanart='', is_folder=False)
                 player.KeepAlive()
                 return ok
         except Exception, e:

@@ -152,7 +152,7 @@ def LISTHOSTERS(name,url):
 
 def SEARCHhistory():
     dialog = xbmcgui.Dialog()
-    ret = dialog.select('[COLOR green][B]Choose A Search Type[/COLOR][/B]',['[B][COLOR green]TV Shows[/COLOR][/B]','[B][COLOR green]Movies[/COLOR][/B]'])
+    ret = dialog.select('[COLOR green][B]Choose A Search Type[/COLOR][/B]',['[B][COLOR=FF67cc33]TV Shows[/COLOR][/B]','[B][COLOR=FF67cc33]Movies[/COLOR][/B]'])
     if ret == -1:
         return MAINMENU()
     if ret == 0:
@@ -198,7 +198,7 @@ def SEARCH(murl):
             os.makedirs(seapath)
         except:
             pass
-            keyb = xbmc.Keyboard('', '[COLOR green]MashUP: Search For Shows or Episodes[/COLOR]')
+            keyb = xbmc.Keyboard('', '[COLOR=FF67cc33]MashUP: Search For Shows or Episodes[/COLOR]')
             keyb.doModal()
             if (keyb.isConfirmed()):
                     search = keyb.getText()
@@ -230,7 +230,7 @@ def SEARCH(murl):
             os.makedirs(seapath)
         except:
             pass
-            keyb = xbmc.Keyboard('', '[COLOR green]MashUP: Search For Movies[/COLOR]')
+            keyb = xbmc.Keyboard('', '[COLOR=FF67cc33]MashUP: Search For Movies[/COLOR]')
             keyb.doModal()
             if (keyb.isConfirmed()):
                     search = keyb.getText()
@@ -311,7 +311,7 @@ def PLAYMEDIA(name,url):
         player = playbackengine.PlayWithoutQueueSupport(resolved_url=stream_url, addon_id=addon_id, video_type=video_type, title=str(infoLabels['title']),season=str(season), episode=str(episode), year=str(infoLabels['year']),img=img,infolabels=infoL, watchedCallbackwithParams=main.WatchedCallbackwithParams,imdb_id=imdb_id)
         #WatchHistory
         if selfAddon.getSetting("whistory") == "true":
-            wh.add_item(hname+' '+'[COLOR green]iWatchonline[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=str(img), fanart=str(fanart), is_folder=False)
+            wh.add_item(hname+' '+'[COLOR=FF67cc33]TvRelease[/COLOR]', sys.argv[0]+sys.argv[2], infolabels=infolabels, img=str(img), fanart=str(fanart), is_folder=False)
         player.KeepAlive()
         return ok
     except:
@@ -321,8 +321,8 @@ def GETHTML(url):
     try:
         h = net.http_GET(url).content
         if '<h2>Under Maintenance</h2>' in h:
-            addon.show_ok_dialog(['[COLOR green][B]TV-Release is Down For Maintenance,[/COLOR][/B]',
-                                  '[COLOR green][B]Please Try Again Later[/COLOR][/B]',''],'MashUP: TV-Release')
+            addon.show_ok_dialog(['[COLOR=FF67cc33][B]TV-Release is Down For Maintenance,[/COLOR][/B]',
+                                  '[COLOR=FF67cc33][B]Please Try Again Later[/COLOR][/B]',''],'MashUP: TV-Release')
             return MAINMENU()
         return h.encode("utf-8")
     except urllib2.URLError, e:

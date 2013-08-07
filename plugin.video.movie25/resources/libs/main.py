@@ -26,7 +26,7 @@ if selfAddon.getSetting('visitor_ga')=='':
     selfAddon.setSetting('visitor_ga',str(randint(0, 0x7fffffff)))
 
 VERSION = "1.3.6"
-PATH = "MashUp-"            
+PATH = "Mash Up-"            
 UATRACK="UA-38312513-1" 
 
 try:
@@ -111,8 +111,8 @@ def SwitchUp():
 
 def ErrorReport(e):
         elogo = xbmc.translatePath('special://home/addons/plugin.video.movie25/resources/art/bigx.png')
-        xbmc.executebuiltin("XBMC.Notification([COLOR green]MashUp Error[/COLOR],"+str(e)+",10000,"+elogo+")")
-        xbmc.log('***********MashUp Error: '+str(e)+'**************')
+        xbmc.executebuiltin("XBMC.Notification([COLOR=FF67cc33]Mash Up Error[/COLOR],"+str(e)+",10000,"+elogo+")")
+        xbmc.log('***********Mash Up Error: '+str(e)+'**************')
 ################################################################################ Notifications #########################################################################################################
 
 def CheckVersion():
@@ -596,7 +596,7 @@ def resolve_veehd(url):
             headers = {}
             headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2'}
             net().set_cookies(cookie_file)
-            print 'MashUp VeeHD - Requesting GET URL: %s' % url
+            print 'Mash Up VeeHD - Requesting GET URL: %s' % url
             html = net().http_GET(url, headers).content
             fragment = re.findall('playeriframe".+?attr.+?src : "(.+?)"', html)
             frag = 'http://%s%s'%('veehd.com',fragment[1])
@@ -620,8 +620,8 @@ def resolve_veehd(url):
                     stream_url = a[1]
             return stream_url
         except Exception, e:
-            print '**** MashUp VeeHD Error occured: %s' % e
-            addon.show_small_popup('[B][COLOR green]MashUP: VeeHD Resolver[/COLOR][/B]','Error, Check XBMC.log for Details',
+            print '**** Mash Up VeeHD Error occured: %s' % e
+            addon.show_small_popup('[B][COLOR green]Mash Up: VeeHD Resolver[/COLOR][/B]','Error, Check XBMC.log for Details',
                                    5000, error_logo)
             return
 
@@ -634,7 +634,7 @@ def resolve_billionuploads(url):
             dialog.create('Resolving', 'Resolving BillionUploads Link...')       
             dialog.update(0)
         
-            print 'MashUp BillionUploads - Requesting GET URL: %s' % url
+            print 'Mash Up BillionUploads - Requesting GET URL: %s' % url
             html = net.http_GET(url).content
                
             #Check page for any error msgs
@@ -691,10 +691,10 @@ def resolve_billionuploads(url):
             dialog.close()
             common.addon.show_countdown(3, 'Please Wait', 'Resolving')
                
-            dialog.create('Resolving', 'Resolving MashUp BillionUploads Link...') 
+            dialog.create('Resolving', 'Resolving Mash Up BillionUploads Link...') 
             dialog.update(50)
         
-            print 'MashUp BillionUploads - Requesting POST URL: %s DATA: %s' % (url, data)
+            print 'Mash Up BillionUploads - Requesting POST URL: %s DATA: %s' % (url, data)
             html = net.http_POST(url, data).content
             dialog.update(100)
             link = re.search('&product_download_url=(.+?)"', html).group(1)
@@ -702,7 +702,7 @@ def resolve_billionuploads(url):
             return link
 
     except Exception, e:
-        print '**** MashUp BillionUploads Error occured: %s' % e
+        print '**** Mash Up BillionUploads Error occured: %s' % e
         raise
     finally:
         dialog.close()
@@ -717,7 +717,7 @@ def resolve_180upload(url):
         
         puzzle_img = os.path.join(datapath, "180_puzzle.png")
         
-        print 'MashUp 180Upload - Requesting GET URL: %s' % url
+        print 'Mash Up 180Upload - Requesting GET URL: %s' % url
         html = net.http_GET(url).content
 
         dialog.update(50)
@@ -761,24 +761,24 @@ def resolve_180upload(url):
                return False
                
            wdlg.close()
-           dialog.create('Resolving', 'Resolving MashUp 180Upload Link...') 
+           dialog.create('Resolving', 'Resolving Mash Up 180Upload Link...') 
            dialog.update(50)
            if solution:
                data.update({'adcopy_challenge': hugekey,'adcopy_response': solution})
 
-        print 'MashUp 180Upload - Requesting POST URL: %s' % url
+        print 'Mash Up 180Upload - Requesting POST URL: %s' % url
         html = net.http_POST(url, data).content
         dialog.update(100)
         
         link = re.search('<a href="(.+?)" onclick="thanks\(\)">Download now!</a>', html)
         if link:
-            print 'MashUp 180Upload Link Found: %s' % link.group(1)
+            print 'Mash Up 180Upload Link Found: %s' % link.group(1)
             return link.group(1)
         else:
             raise Exception('Unable to resolve 180Upload Link')
 
     except Exception, e:
-        print '**** MashUp 180Upload Error occured: %s' % e
+        print '**** Mash Up 180Upload Error occured: %s' % e
         raise
     finally:
         dialog.close()
@@ -789,11 +789,11 @@ def resolve_videto(url):
     from resources.libs import jsunpack
     try:
         html = net(user_agent).http_GET(url).content
-        addon.log_error('MashUP: Resolve Vidto - Requesting GET URL: '+url)
+        addon.log_error('Mash Up: Resolve Vidto - Requesting GET URL: '+url)
         r = re.findall(r'<font class="err">File was removed</font>',html,re.I)
         if r:
-            addon.log_error('MashUP: Resolve Vidto - File Was Removed')
-            addon.show_small_popup('[B][COLOR green]MashUP: Vidto Resolver[/COLOR][/B]','No Such File Or The File Has Been Removed',
+            addon.log_error('Mash Up: Resolve Vidto - File Was Removed')
+            addon.show_small_popup('[B][COLOR green]Mash Up: Vidto Resolver[/COLOR][/B]','No Such File Or The File Has Been Removed',
                                    5000, error_logo)
             return
         if not r:
@@ -820,8 +820,8 @@ def resolve_videto(url):
                     r = re.findall(r"var file_link = '(.+?)';",html)
         return r[0]
     except Exception, e:
-        print 'MashUP: Resolve Vidto Error - '+str(e)
-        addon.show_small_popup('[B][COLOR green]MashUP: Vidto Resolver[/COLOR][/B]','Error, Check XBMC.log for Details',
+        print 'Mash Up: Resolve Vidto Error - '+str(e)
+        addon.show_small_popup('[B][COLOR green]Mash Up: Vidto Resolver[/COLOR][/B]','Error, Check XBMC.log for Details',
                                5000, error_logo)
         return
 ############################################################################### Download Code ###########################################################################################
@@ -1326,7 +1326,7 @@ def APP_LAUNCH():
                     "utmwv=" + VERSION + \
                     "&utmn=" + str(randint(0, 0x7fffffff)) + \
                     "&utmt=" + "event" + \
-                    "&utme="+ quote("5(APP LAUNCH*"+"MashUp v"+VERSION+"/ Repo v"+RepoVer+"*"+build+"*"+PLATFORM+")")+\
+                    "&utme="+ quote("5(APP LAUNCH*"+"Mash Up v"+VERSION+"/ Repo v"+RepoVer+"*"+build+"*"+PLATFORM+")")+\
                     "&utmp=" + quote(PATH) + \
                     "&utmac=" + UATRACK + \
                     "&utmcc=__utma=%s" % ".".join(["1", VISITOR, VISITOR, VISITOR,VISITOR,"2"])
@@ -1339,7 +1339,7 @@ def APP_LAUNCH():
                     "utmwv=" + VERSION + \
                     "&utmn=" + str(randint(0, 0x7fffffff)) + \
                     "&utmt=" + "event" + \
-                    "&utme="+ quote("5(APP LAUNCH*"+"MashUp v"+VERSION+"/ Repo v"+RepoVer+"*"+PLATFORM+")")+\
+                    "&utme="+ quote("5(APP LAUNCH*"+"Mash Up v"+VERSION+"/ Repo v"+RepoVer+"*"+PLATFORM+")")+\
                     "&utmp=" + quote(PATH) + \
                     "&utmac=" + UATRACK + \
                     "&utmcc=__utma=%s" % ".".join(["1", VISITOR, VISITOR, VISITOR,VISITOR,"2"])

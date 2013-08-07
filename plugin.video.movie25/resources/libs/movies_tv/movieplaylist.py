@@ -41,7 +41,7 @@ def Mplaylists(murl):
                 main.addLink(msg,'',pic)
         popup=re.compile('<popup><name>([^<]+)</name.+?popImage>([^<]+)</popImage.+?thumbnail>([^<]+)</thumbnail></popup>').findall(link)
         for name,image,thumb in popup:
-                main.addPlayc(name,image,244,thumb,'','','','','')
+                main.addPlayc(name,image,244,thumb,'',fan,'','','')
         main.GA("MoviePL",vip+"-Directory")
 
 
@@ -65,11 +65,11 @@ def MList(mname,murl):
                 main.addLink(msg,'',pic)
         popup=re.compile('<popup><name>([^<]+)</name.+?popImage>([^<]+)</popImage.+?thumbnail>([^<]+)</thumbnail></popup>').findall(link)
         for name,image,thumb in popup:
-                main.addPlayc(name,image,244,thumb,'','','','','')
+                main.addPlayc(name,image,244,thumb,'',fan,'','','')
                 
         directory=re.compile('<dir><name>([^<]+)</name.+?link>([^<]+)</link.+?thumbnail>([^<]+)</thumbnail></dir>').findall(link)
         for name,url,thumb in directory:
-                main.addDir(name,url,236,thumb)
+                main.addDirb(name,url,236,thumb,fan)
         
         match=re.compile('<title>([^<]+)</title.+?link>(.+?)</link.+?thumbnail>([^<]+)</thumbnail>').findall(link)
         dialogWait = xbmcgui.DialogProgress()
@@ -79,6 +79,7 @@ def MList(mname,murl):
         remaining_display = 'Movies loaded :: [B]'+str(loadedLinks)+' / '+str(totalLinks)+'[/B].'
         dialogWait.update(0,'[B]Will load instantly from now on[/B]',remaining_display)
         for name,url,thumb in match:
+                
                 if '</sublink>' in url:
                         main.addDown4(name+' [COLOR blue]'+vip+'[/COLOR]',url,249,thumb,'',fan,'','','')
                         

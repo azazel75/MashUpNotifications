@@ -29,30 +29,30 @@ BASE_URL = 'http://www.tubeplus.me/'
 wh = watchhistory.WatchHistory(addon_id)
 
 def MAINMENU():
-    main.addDir('',    BASE_URL+'?s=',1024,art+'/tpsearch.png')
-    main.addDir('',BASE_URL,1021,art+'/tptvshows.png')
-    main.addDir('',BASE_URL,1022,art+'/tpmovies.png')
+    main.addDir('Search',    BASE_URL+'?s=',1024,art+'/tpsearch.png')
+    main.addDir('TV Shows',BASE_URL,1021,art+'/tptvshows.png')
+    main.addDir('Movies',BASE_URL,1022,art+'/tpmovies.png')
     #main.addDir('TubePLUS Movie Charts','http://www.tubeplus.me/tool/',1023,'')
-    main.addSpecial('',BASE_URL,1004,art+'/tpsettings.png')
+    main.addSpecial('Resolver Settings',BASE_URL,1004,art+'/tpsettings.png')
     main.VIEWSB()
 
 def TVMENU():
-    main.addDir('[COLOR green][B]L[/B]ast Aired TV Shows/Episodes[/COLOR]',BASE_URL,1042,'')
-    main.addDir('[COLOR green][B]A[/B]ll latest Aired TV Shows/Episodes[/COLOR]',BASE_URL+'browse/tv-shows/Last/ALL/',1041,'')
-    main.addDir('[COLOR green][B]T[/B]op 10 Tv Episodes[/COLOR]',BASE_URL,1043,'')
-    main.addDir('[COLOR green][B]T[/B]V Shows by Genres[/COLOR]',BASE_URL+'browse/tv-shows/',1044,'')
-    main.addDir('[COLOR green][B]T[/B]V Shows A to Z[/COLOR]',BASE_URL,'mode','')
-    #main.addDir('[COLOR green][B]S[/B]earch TV Shows[/COLOR]',BASE_URL+'search/','mode','')
+    main.addDir('[COLOR=FF67cc33][B]Last Aired TV Shows/Episodes[/B][/COLOR]',BASE_URL,1042,'')
+    main.addDir('[COLOR=FF67cc33][B]All latest Aired TV Shows/Episodes[/B][/COLOR]',BASE_URL+'browse/tv-shows/Last/ALL/',1041,'')
+    main.addDir('[COLOR=FF67cc33][B]Top 10 Tv Episodes[/B][/COLOR]',BASE_URL,1043,'')
+    main.addDir('[COLOR=FF67cc33][B]TV Shows by Genres[/B][/COLOR]',BASE_URL+'browse/tv-shows/',1044,'')
+    main.addDir('[COLOR=FF67cc33][B]TV Shows A to Z[/B][/COLOR]',BASE_URL,'mode','')
+    #main.addDir('[COLOR=FF67cc33][B]S[/B]earch TV Shows[/COLOR]',BASE_URL+'search/','mode','')
 
 def MOVIE_MENU():
     html = main.OPENURL2(BASE_URL)
     r = re.findall(r'<h1 id="list_head" class="short">&nbsp;&nbsp;&nbsp;(.+?)</h1>',html)
     for movies_special in r:
-        main.addDir('[COLOR green]'+movies_special+'[/COLOR]',BASE_URL,1040,'')
-    main.addDir('[COLOR green][B]M[/B]ost Popular Movies[/COLOR]',BASE_URL+'browse/movies/Last/ALL/','mode','')
-    main.addDir('[COLOR green][B]M[/B]ovies By Genres[/COLOR]',BASE_URL+'browse/movies/',1044,'')
-    main.addDir('[COLOR green][B]M[/B]ost Popular Genres[/COLOR]',BASE_URL,'mode',art+'/tpmostpopgenre.png')
-    main.addDir('[COLOR green][B]M[/B]ovies by A to Z[/COLOR]',BASE_URL+'browse/movies/All_Genres/-/','mode','')
+        main.addDir('[COLOR=FF67cc33]'+movies_special+'[/COLOR]',BASE_URL,1040,'')
+    main.addDir('[COLOR=FF67cc33][B]Most Popular Movies[/B][/COLOR]',BASE_URL+'browse/movies/Last/ALL/','mode','')
+    main.addDir('[COLOR=FF67cc33][B]Movies By Genres[/B][/COLOR]',BASE_URL+'browse/movies/',1044,'')
+    main.addDir('[COLOR=FF67cc33][B]Most Popular Genres[/B][/COLOR]',BASE_URL,'mode',art+'/tpmostpopgenre.png')
+    main.addDir('[COLOR=FF67cc33][B]Movies by A to Z[/B][/COLOR]',BASE_URL+'browse/movies/All_Genres/-/','mode','')
 
 def TV_TOP10(url):
     html = main.OPENURL2(url)
@@ -205,16 +205,16 @@ def GENRES(url):
     if re.findall(r'<div id="paging">', html):
         r = re.findall('\<li title="Page (\d+)"\>.+?"\>(\d+)(?=\<\/a\>\<\/li\>\<li title="Next Page"\>\<a href="/(.+?)")',html)
         for current, total, npurl in r:
-            name = '[COLOR green]Page '+current+' of '+total+', Next Page >>>[/COLOR]'
+            name = '[COLOR=FF67cc33]Page '+current+' of '+total+', Next Page >>>[/COLOR]'
             main.addDir(name, BASE_URL+url, '', art+'/nextpage.png')
             url = url+':'+total
-            name = '[COLOR green]Goto Page[/COLOR]'
+            name = '[COLOR=FF67cc33]Goto Page[/COLOR]'
             main.addDir(name, url, 1002, art+'/gotopagetr.png')
     main.VIEWS()
             
 def SEARCHhistory():
     dialog = xbmcgui.Dialog()
-    ret = dialog.select('[COLOR green][B]Choose A Search Type[/COLOR][/B]',['[B][COLOR green]TV Shows[/COLOR][/B]','[B][COLOR green]Movies[/COLOR][/B]'])
+    ret = dialog.select('[COLOR=FF67cc33][B]Choose A Search Type[/COLOR][/B]',['[B][COLOR=FF67cc33]TV Shows[/COLOR][/B]','[B][COLOR=FF67cc33]Movies[/COLOR][/B]'])
     if ret == -1:
         return MAINMENU()
     if ret == 0:
@@ -261,7 +261,7 @@ def SEARCH(murl):
             os.makedirs(seapath)
         except:
             pass
-            keyb = xbmc.Keyboard('', '[COLOR green]MashUP: Search For Shows or Episodes[/COLOR]')
+            keyb = xbmc.Keyboard('', '[COLOR=FF67cc33]MashUP: Search For Shows or Episodes[/COLOR]')
             keyb.doModal()
             if (keyb.isConfirmed()):
                     search = keyb.getText()
@@ -293,7 +293,7 @@ def SEARCH(murl):
             os.makedirs(seapath)
         except:
             pass
-            keyb = xbmc.Keyboard('', '[COLOR green]MashUP: Search For Movies[/COLOR]')
+            keyb = xbmc.Keyboard('', '[COLOR=FF67cc33]MashUP: Search For Movies[/COLOR]')
             keyb.doModal()
             if (keyb.isConfirmed()):
                     search = keyb.getText()

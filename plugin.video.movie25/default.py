@@ -11,8 +11,8 @@ try:
     from resources.libs import main
 except Exception, e:
     elogo = xbmc.translatePath('special://home/addons/plugin.video.movie25/resources/art/bigx.png')
-    xbmc.executebuiltin("XBMC.Notification([COLOR green]MashUP Error[/COLOR],[COLOR red]Failed To Import Needed Modules Check Log For Details[/COLOR],7000,"+elogo+")")
-    xbmc.log('MashUp ERROR - Importing Modules: '+str(e))
+    xbmc.executebuiltin("XBMC.Notification([COLOR=FF67cc33]Mash Up Error[/COLOR],[COLOR red]Failed To Import Needed Modules Check Log For Details[/COLOR],7000,"+elogo+")")
+    xbmc.log('Mash Up ERROR - Importing Modules: '+str(e))
     sys.exit(0)
     
 #Mash Up - by Mash2k3 2012.
@@ -79,7 +79,7 @@ def MAIN():
         main.addDirHome('TV Latest','http://www.movie25.com/',27,art+'/tv2.png')
         main.addDirHome('Live Streams','http://www.movie25.com/',115,art+'/live.png')
         main.addDirHome('Built in Plugins','http://www.movie25.com/',500,art+'/plugins.png')
-        main.addDirHome('[COLOR green]VIP[/COLOR]laylists','http://www.movie25.com/',234,art+'/moviepl.png')
+        main.addDirHome('[COLOR=FF67cc33]VIP[/COLOR]laylists','http://www.movie25.com/',234,art+'/moviepl.png')
         main.addDirHome('Sports','http://www.movie25.com/',43,art+'/sportsec2.png')
         main.addDirHome('Adventure','http://www.movie25.com/',63,art+'/adv2.png')
         main.addDirHome('Kids Zone','http://www.movie25.com/',76,art+'/kidzone2.png')
@@ -90,7 +90,7 @@ def MAIN():
         main.addLink('mash2k3@yahoo.com','',art+'/paypalmash.png')
         main.addLink('@mashupxbmc','',art+'/twittermash.png')
         main.addPlayc('Hub Maintenance','http://www.movie25.com/',156,art+'/hubmain.png','','','','','')
-        main.addDirHome("MashUp How To's",'PLvNKtQkKaqg-PVXvlP7sYcfiEoaC56v3W',205,art+'/howto.png')
+        main.addDirHome("Mash Up How To's",'PLvNKtQkKaqg-PVXvlP7sYcfiEoaC56v3W',205,art+'/howto.png')
         main.VIEWSB()
 
         
@@ -101,12 +101,13 @@ def Announcements():
         
         try:
                 link=main.OPENURL('https://github.com/mash2k3/MashUpNotifications/raw/master/Notifier.xml')
+                link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+
         except:
                 link='nill'
 
         r = re.findall(r'ANNOUNCEMENTWINDOW ="ON"',link)
         if r:
-                link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
                 match=re.compile('<item><new>(.+?)</new><message1>.+?</message1><message2>.+?</message2><message3>.+?</message3><ANNOUNCEMENT>(.+?)</ANNOUNCEMENT><old>(.+?)</old></item>').findall(link)
                 if len(match)>0:
                         for new,anounce,old in match:
@@ -116,7 +117,7 @@ def Announcements():
                                 notified=os.path.join(runonce,str(new))
                                 if not os.path.exists(notified):
                                         open(notified,'w').write('version="%s",'%new)
-                                        TextBoxes("[B][COLOR red]MashUp Announcements[/B][/COLOR]",anounce)
+                                        TextBoxes("[B][COLOR red]Mash Up Announcements[/B][/COLOR]",anounce)
                                 if old != ' ':
                                         notified=os.path.join(runonce,str(old))
                                         if  os.path.exists(notified):
@@ -129,7 +130,6 @@ def Announcements():
                 
         
         else:
-                link=link.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
                 match=re.compile('<item><new>(.+?)</new><message1>(.+?)</message1><message2>(.+?)</message2><message3>(.+?)</message3><ANNOUNCEMENT>.+?</ANNOUNCEMENT><old>(.+?)</old></item>').findall(link)
                 if len(match)>0:
                         for new,mes1,mes2,mes3,old in match:
@@ -151,7 +151,26 @@ def Announcements():
                 else:
                     print 'Github Link Down'
         
-
+        match=re.compile('<item><new>(.+?)</new><video>(.+?)</video><old>(.+?)</old></item>').findall(link)
+        if len(match)>0:
+                from resources.libs import youtube
+                for new,video,old in match:
+                        continue
+                if new != ' ':
+                        runonce=os.path.join(main.datapath,'RunOnce')
+                        notified=os.path.join(runonce,str(new))
+                        if not os.path.exists(notified):
+                                open(notified,'w').write('version="%s",'%new)
+                                youtube.YOULink('Mash',video,'')
+                        if old != ' ':
+                                notified=os.path.join(runonce,str(old))
+                                if  os.path.exists(notified):
+                                        os.remove(notified)
+                else:
+                        print 'No Messages'
+    
+        else:
+            print 'Github Link Down'
 
 def CheckForUpdate():
         try:
@@ -170,7 +189,7 @@ def CheckForUpdate():
                     oldDate=update[0]
                     if int(date)>int(oldDate):
                         dialog = xbmcgui.Dialog()
-                        ret = dialog.yesno('MashUp Update', 'There is a new fix update available.','Will you like to update now?', 'It is recommended that you update.','No', 'Yes')
+                        ret = dialog.yesno('Mash Up Update', 'There is a new fix update available.','Will you like to update now?', 'It is recommended that you update.','No', 'Yes')
                         if ret==True:
                                 AutoFIXES()
                                 open(UpdateFile,'w').write('date="%s"'%(date))
@@ -190,7 +209,7 @@ def Notify():
             open(notified,'w').write('version="%s",'%mashup)
             dir = addon.get_path()
             chlg = os.path.join(dir, 'changelog.txt')
-            TextBoxes("[B][COLOR red]MashUp Changelog[/B][/COLOR]",chlg)
+            TextBoxes("[B][COLOR red]Mash Up Changelog[/B][/COLOR]",chlg)
             mashup=mashup-1
             notified=os.path.join(runonce,str(mashup))
             if  os.path.exists(notified):
@@ -269,8 +288,8 @@ def YEAR():
         main.VIEWSB()
 
 def GlobalFav():
-        main.addLink("[COLOR red]MashUp Fav's can also be favorited under XBMC favorites[/COLOR]",'','')
-        main.addDir("Downloaded Content",'MashUp',241,art+'/downloadlog.png')
+        main.addLink("[COLOR red]Mash Up Fav's can also be favorited under XBMC favorites[/COLOR]",'','')
+        main.addDir("Downloaded Content",'Mash Up',241,art+'/downloadlog.png')
         main.addDir("Movie25 Fav's",'http://www.movie25.com/',10,art+'/fav2.png')
         main.addDir("iWatchOnline Fav's",'http://www.movie25.com/',655,art+'/fav2+.png')
         main.addDir("Movie Fav's",'http://www.movie25.com/',641,art+'/fav.png')
@@ -357,7 +376,7 @@ def HD():
             
         main.addDir('Latest HD Movies (Newmyvideolinks) True HD[COLOR red] DC[/COLOR]','http://newmyvideolinks.com',34,art+'/hd2.png')
         main.addDir('Latest HD Movies (Dailyfix) True HD','HD',53,art+'/hd2.png')
-        main.addDir('Latest HD Movies (Starplay/[COLOR green]Noobroom7[/COLOR]) Direct MP4 True HD[COLOR red] DC[/COLOR]','http://noobroom7.com/latest.php',57,art+'/hd2.png')
+        main.addDir('Latest HD Movies (Starplay/[COLOR=FF67cc33]Noobroom7[/COLOR]) Direct MP4 True HD[COLOR red] DC[/COLOR]','http://noobroom7.com/latest.php',57,art+'/hd2.png')
         main.addDir('Latest HD Movies (Pencurimovie) Direct MP4 True HD','http://www.pencurimovie.com/feeds/posts/default?max-results=1000',215,art+'/hd2.png')
         main.addDir('Latest HD Movies (Oneclickmovies)[COLOR red](Debrid Only)[/COLOR] True HD[COLOR red] DC[/COLOR]','www.scnsrc.me',55,art+'/hd2.png')
         main.addDir('Latest HD Movies (Sceper)[COLOR red](Debrid Only)[/COLOR] True HD','http://sceper.ws/category/movies/movies-bluray-rip',541,art+'/hd2.png')
@@ -539,7 +558,7 @@ def AutoFIXES():
         match=re.compile('<item><name>([^<]+)</name.+?filename>([^<]+)</filename.+?location>([^<]+)</location.+?path>([^<]+)</path.+?thumbnail>([^<]+)</thumbnail></item>').findall(link)
         for name,filename,location,path,thumb in match:
                 FIXDOWN(name,filename,location,path)
-        dialog.ok("MashUp", "Please Restart MashUp", "If you are still experiencing problems", "Restart XBMC")
+        dialog.ok("Mash Up", "Please Restart Mash Up", "If you are still experiencing problems", "Restart XBMC")
 
 def FIXDOWN(name,filename,location,path):
     main.GA("Fixes",name+"-Fix")
@@ -550,7 +569,7 @@ def FIXDOWN(name,filename,location,path):
     DownloaderClass(url,lib)
     dialog = xbmcgui.Dialog()
     name  = name.split('[COLOR red]')[0]
-    dialog.ok("MashUp", "Thats It All Done", "[COLOR blue]Now "+name+" should be Fixed[/COLOR]")
+    dialog.ok("Mash Up", "Thats It All Done", "[COLOR blue]Now "+name+" should be Fixed[/COLOR]")
         
 ################################################################################ XBMCHUB Repo & Hub Maintenance Installer ##########################################################################################################
 
@@ -564,18 +583,18 @@ def DownloaderClass2(url,dest):
         except Exception, e:
             dialog = xbmcgui.Dialog()
             main.ErrorReport(e)
-            dialog.ok("MashUp", "Report the error below at xbmchub.com", str(e), "We will try our best to help you")
+            dialog.ok("Mash Up", "Report the error below at xbmchub.com", str(e), "We will try our best to help you")
 
 
 def DownloaderClass(url,dest):
         try:
             dp = xbmcgui.DialogProgress()
-            dp.create("MashUp","Downloading & Copying File",'')
+            dp.create("Mash Up","Downloading & Copying File",'')
             urllib.urlretrieve(url,dest,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
         except Exception, e:
             dialog = xbmcgui.Dialog()
             main.ErrorReport(e)
-            dialog.ok("MashUp", "Report the error below at xbmchub.com", str(e), "We will try our best to help you")
+            dialog.ok("Mash Up", "Report the error below at xbmchub.com", str(e), "We will try our best to help you")
  
 def _pbhook(numblocks, blocksize, filesize, url=None,dp=None):
         try:
@@ -735,7 +754,7 @@ def ListglobalFavIWO():
                                 main.addDirM(name,url,int(mode),thumb,plot,'','','','')
                 
         else:
-                xbmc.executebuiltin("XBMC.Notification([B][COLOR green]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
+                xbmc.executebuiltin("XBMC.Notification([B][COLOR=FF67cc33]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
         main.GA("None","IWO-Fav")
         xbmcplugin.setContent(int(sys.argv[1]), 'Movies')
         main.VIEWS()
@@ -753,7 +772,7 @@ def ListglobalFavT():
                                 main.addDirT(name,url,int(mode),thumb,plot,'','','','')
                 
         else:
-                xbmc.executebuiltin("XBMC.Notification([B][COLOR green]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
+                xbmc.executebuiltin("XBMC.Notification([B][COLOR=FF67cc33]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
         main.GA("None","TV-Fav")
         xbmcplugin.setContent(int(sys.argv[1]), 'Movies')
         
@@ -770,7 +789,7 @@ def ListglobalFavTE():
                                 main.addDirTE(name,url,int(mode),thumb,plot,'','','','')
                 
         else:
-                xbmc.executebuiltin("XBMC.Notification([B][COLOR green]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
+                xbmc.executebuiltin("XBMC.Notification([B][COLOR=FF67cc33]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
         main.GA("None","TVEPI-Fav")
         xbmcplugin.setContent(int(sys.argv[1]), 'Movies')
 
@@ -787,7 +806,7 @@ def ListglobalFavM():
                                 main.addDirM(name,url,int(mode),thumb,plot,'','','','')
                 
         else:
-                xbmc.executebuiltin("XBMC.Notification([B][COLOR green]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
+                xbmc.executebuiltin("XBMC.Notification([B][COLOR=FF67cc33]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
         main.GA("None","Movie-Fav")
         xbmcplugin.setContent(int(sys.argv[1]), 'Movies')
 
@@ -804,7 +823,7 @@ def ListglobalFavMs():
                                 main.addDirMs(name,url,int(mode),thumb,plot,'','','','')
                 
         else:
-                xbmc.executebuiltin("XBMC.Notification([B][COLOR green]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
+                xbmc.executebuiltin("XBMC.Notification([B][COLOR=FF67cc33]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
         main.GA("None","Misc-Fav")
         xbmcplugin.setContent(int(sys.argv[1]), 'Movies')
 
@@ -821,7 +840,7 @@ def ListglobalFavL():
                                 main.addDirL(name,url,int(mode),thumb,plot,'','','','')
                 
         else:
-                xbmc.executebuiltin("XBMC.Notification([B][COLOR green]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
+                xbmc.executebuiltin("XBMC.Notification([B][COLOR=FF67cc33]Mash Up[/COLOR][/B],[B]You Have No Saved Favourites[/B],5000,"")")
         main.GA("None","Live-Fav")
         xbmcplugin.setContent(int(sys.argv[1]), 'Movies')
     
@@ -840,10 +859,11 @@ def History():
                 item_isfolder = item['isfolder']
                 if item_image =='':
                     item_image= art+'/noimage.png'
+                item_title=item_title.replace('[COLOR green]','[COLOR=FF67cc33]')
                 main.addLink(item_title,item_url,item_image)
     else:
         dialog = xbmcgui.Dialog()
-        ok=dialog.ok('[B]MashUp History[/B]', 'Watch history is disabled' ,'To enable go to addon settings','and enable Watch History')
+        ok=dialog.ok('[B]Mash Up History[/B]', 'Watch history is disabled' ,'To enable go to addon settings','and enable Watch History')
         history_items = wh.get_my_watch_history()
         for item in history_items:
                 item_title = item['title']
@@ -852,6 +872,7 @@ def History():
                 item_fanart = item['fanart_url']
                 item_infolabels = item['infolabels']
                 item_isfolder = item['isfolder']
+                item_title=item_title.replace('[COLOR green]','[COLOR=FF67cc33]')
                 main.addLink(item_title,item_url,item_image)
     
         
