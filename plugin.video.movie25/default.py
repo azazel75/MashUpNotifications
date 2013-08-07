@@ -151,7 +151,7 @@ def Announcements():
                 else:
                     print 'Github Link Down'
         
-        match=re.compile('<item><new>(.+?)</new><video>(.+?)</video><old>(.+?)</old></item>').findall(link)
+        match=re.compile('<vid><new>(.+?)</new><video>(.+?)</video><old>(.+?)</old></vid>').findall(link)
         if len(match)>0:
                 from resources.libs import youtube
                 for new,video,old in match:
