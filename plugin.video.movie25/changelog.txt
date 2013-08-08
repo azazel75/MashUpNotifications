@@ -1,3 +1,30 @@
+[B]Version 1.3.7[/B]
+
+-Reduced memory footprint, speeds page navigation(coder JasonPc) 
+-Fixed jDownloader for all sections.
+-Added Download option for VIPlaylist.
+-Added Sort by name,date,rate,genre..etc for Movies ONLY.
+-Added code to handle errors better
+-Added code to inform user if they are missing a module(coder JasonPc).
+-Added SwithUp feature (backup for movie25).
+-Added Option to add custom XML files with livestreams.
+-Added a fixit section for fixing broken sections in MashUp.
+-Added autoupdate to fix important sections in MashUp.
+-Added TvRelease under Builtin Plugins(coder JasonPc, artwork Jokester).
+-Added TubePlus under Builtin Plugins(coder JasonPc, artwork Jokester).
+-Added K1m05 onDemand for ppv media.
+-Added shortcut to sports streams in Sports section.
+-Added ability to post multi links for VIPlaylist.
+-Fixed SeriesGate.
+-Fixed Movie1k.
+-Moved all MashUp artwork online to minimize plugin size.
+-Added builtin billionsupload, 180upload, veehd and vidto resolvers.
+-Added Download section to access Downloaded Content via MashUp.
+-Added TNPB 3D shortcut to 3D section.
+-Added login prompt for Noobroom.
+-Changed Movie25 DVD to HD releases.
+-Rewrote some code to improve MashUp
+
 [B]Version 1.3.6[/B]
 
 -v1.3.5 bug fixes

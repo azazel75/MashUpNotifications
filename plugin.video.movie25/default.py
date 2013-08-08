@@ -198,7 +198,7 @@ def CheckForUpdate():
                                 
                 return
 def Notify():
-        mashup=132
+        mashup=137
         runonce=os.path.join(main.datapath,'RunOnce')
         try:
             os.makedirs(runonce)
@@ -214,8 +214,8 @@ def Notify():
             notified=os.path.join(runonce,str(mashup))
             if  os.path.exists(notified):
                 os.remove(notified)
-        files = 132
-        while files > 127:
+        files = 135
+        while files > 122:
             delold=os.path.join(main.datapath,str(files))
             if  os.path.exists(delold):
                     os.remove(delold)
@@ -241,6 +241,9 @@ def Notify():
         if  os.path.exists(delold):
                     os.remove(delold)
         delold=os.path.join(main.datapath,'country1')
+        if  os.path.exists(delold):
+                    os.remove(delold)
+        delold=os.path.join(main.datapath,'500')
         if  os.path.exists(delold):
                     os.remove(delold)
         

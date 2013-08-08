@@ -248,7 +248,7 @@ def GENRES(url):
         r = re.findall('\<li title="Page (\d+)"\>.+?"\>(\d+)(?=\<\/a\>\<\/li\>\<li title="Next Page"\>\<a href="/(.+?)")',html)
         for current, total, npurl in r:
             name = '[COLOR=FF67cc33]Page '+current+' of '+total+', Next Page >>>[/COLOR]'
-            main.addDir(name, BASE_URL+url, '', art+'/nextpage.png')
+            main.addDir(name, BASE_URL+npurl, 1048, art+'/nextpage.png')
             url = url+':'+total
             name = '[COLOR=FF67cc33]Goto Page[/COLOR]'
             main.addDir(name, url, 1028, art+'/gotopagetr.png')
@@ -468,7 +468,7 @@ def INDEX2(url):
             url = url+':'+total
             name = '[COLOR=FF67cc33]Goto Page[/COLOR]'
             main.addDir(name, url, 1028, art+'/gotopagetr.png')
-        
+    main.VIEWS()    
     dialogWait.close()
 
 def INDEXtv(url):
