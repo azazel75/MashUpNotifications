@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>When u report dead live streams be specific.</message1>
-<message2>if you are experiencing errors please come to</message2>
-<message3>xbmchub.com and post a log please it is needed.</message3>
-<ANNOUNCEMENT>[B]Version 1.3.5[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<new>mess2</new>
+<message1>If MashUp is not updating for you do a force refresh.</message1>
+<message2>if you dont know what that is go to how to videos on</message2>
+<message3>homescreen of MU and watch video called force update.</message3>
+<ANNOUNCEMENT>[B]Version 1.3.7[/B]</ANNOUNCEMENT>
+<old>mess1</old>
 </item>
 
 video1 video2
