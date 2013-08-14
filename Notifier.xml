@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess2</new>
-<message1>If MashUp is not updating for you do a force refresh.</message1>
-<message2>if you dont know what that is go to how to videos on</message2>
-<message3>homescreen of MU and watch video called force update.</message3>
+<new>mess1</new>
+<message1>1. In resovler seetings set realdebrid priority to 105.</message1>
+<message2>2. Come to xbmchub & Invite a hub member to noobroom.</message2>
+<message3>3. Check fixit section to fix your script errors. :)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.7[/B]</ANNOUNCEMENT>
-<old>mess1</old>
+<old>mess2</old>
 </item>
 
 video1 video2
