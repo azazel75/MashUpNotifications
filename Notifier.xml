@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess2</new>
-<message1>Just a reminder that i sent out an auto fix 8/21/13.</message1>
-<message2>if you did not get it and you are having list index.</message2>
-<message3>error in noobroom, apply fix in fixit section :)</message3>
+<new>mess1</new>
+<message1>Just want to let everybody know i dont look at the </message1>
+<message2>emails i get from the paypal address thats only for </message2>
+<message3>donations to reach me, message me on xbmchub.com ;)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.7[/B]</ANNOUNCEMENT>
-<old>mess1</old>
+<old>mess2</old>
 </item>
 
 video1 video2
