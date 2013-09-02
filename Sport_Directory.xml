@@ -1,0 +1,13 @@
+directory mode 181
+non directory mode 182
+
+
+<name>K1m05 On-Demand</name>
+<linkhttps://github.com/mash2k3/MashUpK1m05/raw/master/OnDemandDir.xml</link>
+<thumbnail>k1m05OD</thumbnail>
+<mode>245</mode>
+
+<name>Sports4u Streams</name>
+<link>https://github.com/mash2k3/Sports4U_MashUp/raw/master/Sports4u-Directory.xml</link>
+<thumbnail>https://dl.dropboxusercontent.com/u/35068738/icons/sports4u.png</thumbnail>
+<mode>181</mode>
