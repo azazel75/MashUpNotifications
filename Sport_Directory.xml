@@ -7,7 +7,25 @@ non directory mode 182
 <thumbnail>k1m05OD</thumbnail>
 <mode>245</mode>
 
+<name>Hackermil's Main Event</name>
+<link>https://github.com/HackerMil/HackerMilsMovieStash/raw/master/Misc/MAIN%20EVENT.xml</link>
+<thumbnail>mainevent</thumbnail>
+<mode>236</mode>
+
 <name>Sports4u Streams</name>
 <link>https://github.com/mash2k3/Sports4U_MashUp/raw/master/Sports4u-Directory.xml</link>
-<thumbnail>https://dl.dropboxusercontent.com/u/35068738/icons/sports4u.png</thumbnail>
+<thumbnail>sports4u</thumbnail>
 <mode>181</mode>
+
+<name>K1m05 Sports</name>
+<link>https://github.com/mash2k3/MashUpK1m05/raw/master/k1m05's%20playlist/sportsk1.xml</link>
+<thumbnail>k1m05</thumbnail>
+<mode>182</mode>
+
+<name>Max Powers Sports</name>
+<link>https://github.com/mash2k3/MashUpMaxPower/raw/master/maxpowers%20playlist/sportsmax</link>
+<thumbnail>maxpower</thumbnail>
+<mode>182</mode>
+
+
+
