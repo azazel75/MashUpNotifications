@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>Movie25 is down at the moment. will fix</message1>
-<message2>For now activate switch up in context menu</message2>
-<message3>Also a new live sports streams coming soon :)</message3>
+<new>mess2</new>
+<message1>Movie25 is fixed if you didnt recieve auto update</message1>
+<message2>go to fixit section and install Movie25 script.</message2>
+<message3>Also Sports streams are back :)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.7[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2
