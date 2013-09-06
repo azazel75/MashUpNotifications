@@ -1,7 +1,7 @@
 mess1 mess2
 
 ANNOUNCEMENTWINDOW ="OFF"
-VIPLISTER ="1"
+VIPLISTER ="0"
 
 <item>
 <new>mess1</new>
