@@ -12,10 +12,10 @@ non directory mode 182
 <thumbnail>https://dl.dropboxusercontent.com/u/35068738/icons/mash.png</thumbnail>
 <mode>182</mode>
 
-<name>Porkie's Live Streams</name>
-<link>https://dl.dropboxusercontent.com/s/gt1qyxg0xf7y1wh/PorkiePorkies_Directory.xml?m</link>
-<thumbnail>Porkie</thumbnail>
-<mode>181</mode>
+name>Porkie's Live Streams</name>
+link>https://dl.dropboxusercontent.com/s/gt1qyxg0xf7y1wh/PorkiePorkies_Directory.xml?m</link>
+thumbnail>Porkie</thumbnail>
+mode>181</mode>
 
 <name>Max Powers Streams</name>
 <link>https://github.com/mash2k3/MashUpMaxPower/raw/master/maxpow_mashupDirectory.xml</link>
