@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>Noobroom website is down so the noobroom section</message1>
-<message2>wont work.</message2>
-<message3>Ilive fix posted on fixit :)</message3>
+<new>mess2</new>
+<message1>Alot of you are still are not aware of the fixit section</message1>
+<message2>please check it out on the home screen it will fix alot of</message2>
+<message3>your issues and errors. first 7 will do the trick :)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.7[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2
