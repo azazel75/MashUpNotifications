@@ -1,31 +1,19 @@
-directory mode 181
-non directory mode 182
+directory mode 235
+non directory mode 236
 
 
-<name>K1m05 On-Demand</name>
-<link>https://github.com/mash2k3/MashUpK1m05/raw/master/OnDemandDir.xml</link>
-<thumbnail>k1m05OD</thumbnail>
-<mode>245</mode>
 
-<name>Hackermil's Main Event</name>
-<link>https://raw.github.com/HackerMil/HackerMilsMovieStash/master/Fight%20Club/Directories/Main%20Event%20Replays%20HD.xml</link>
-<thumbnail>mainevent</thumbnail>
+<name>HackerMil Documentaries</name>
+<link>https://github.com/HackerMil/HackerMilsMovieStash/raw/master/Misc/7%20DOCUMENTARY.xml</link>
+<thumbnail>docsec1</thumbnail>
 <mode>236</mode>
 
-<name>Mash Sports</name>
-<link>https://github.com/mash2k3/MashSports/raw/master/Mashsprt.xml</link>
-<thumbnail>mashsports</thumbnail>
-<mode>182</mode>
+<name>MorePower Documentaries</name>
+<link>https://github.com/mash2k3/MashUpMorePower/raw/master/Documentries.xml</link>
+<thumbnail>docsec1</thumbnail>
+<mode>236</mode>
 
-<name>K1m05 Sports</name>
-<link>https://github.com/mash2k3/MashUpK1m05/raw/master/k1m05's%20playlist/sportsk1.xml</link>
-<thumbnail>k1m05</thumbnail>
-<mode>182</mode>
 
-<name>Max Powers Sports</name>
-<link>https://github.com/mash2k3/MashUpMaxPower/raw/master/maxpowers%20playlist/sportsmax</link>
-<thumbnail>maxpowers</thumbnail>
-<mode>182</mode>
 
 
 
