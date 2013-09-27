@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1> </message1>
-<message2> </message2>
-<message3> </message3>
+<new>mess2</new>
+<message1>Mashup support and repo has moved to xbmctalk.com</message1>
+<message2>if mashup repo and plugin is uninstalled go there</message2>
+<message3>to get it back, im no loger a part of xbmchub</message3>
 <ANNOUNCEMENT>[B]Version 1.3.7[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2
