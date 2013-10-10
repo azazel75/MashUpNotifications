@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess2</new>
-<message1>Mashup support and repo has moved to xbmctalk.com</message1>
-<message2>if mashup repo and plugin is uninstalled its because</message2>
-<message3>xbmchub repo is uninstalling it, remove hub repo</message3>
+<new>mess1</new>
+<message1>RECOMMENDED SETTINGS for resolver settings, realDebrid</message1>
+<message2>set priority to 105, All Debrid & Premiumize.me disable</message2>
+<message3>if not used, & set Putlocker quality to Maximum. ENJOY :)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.7[/B]</ANNOUNCEMENT>
-<old>mess1</old>
+<old>mess2</old>
 </item>
 
 video1 video2 </mu>
