@@ -3,7 +3,7 @@ non directory mode 182
 
 
 <name>K1m05 On-Demand</name>
-<link>https://raw.github.com/mash2k3/MashUpK1m05master/OnDemandDir.xml</link>
+<link>https://raw.github.com/mash2k3/MashUpK1m05/master/OnDemandDir.xml</link>
 <thumbnail>k1m05OD</thumbnail>
 <mode>245</mode>
 
@@ -13,17 +13,17 @@ non directory mode 182
 <mode>236</mode>
 
 <name>Mash Sports</name>
-<link>https://raw.github.com/mash2k3/MashSportsmaster/Mashsprt.xml</link>
+<link>https://raw.github.com/mash2k3/MashSports/master/Mashsprt.xml</link>
 <thumbnail>mashsports</thumbnail>
 <mode>182</mode>
 
 <name>K1m05 Sports</name>
-<link>https://raw.github.com/mash2k3/MashUpK1m05master/k1m05's%20playlist/sportsk1.xml</link>
+<link>https://raw.github.com/mash2k3/MashUpK1m05/master/k1m05's%20playlist/sportsk1.xml</link>
 <thumbnail>k1m05</thumbnail>
 <mode>182</mode>
 
 <name>Max Powers Sports</name>
-<link>https://raw.github.com/mash2k3/MashUpMaxPowermaster/maxpowers%20playlist/sportsmax</link>
+<link>https://raw.github.com/mash2k3/MashUpMaxPower/master/maxpowers%20playlist/sportsmax</link>
 <thumbnail>maxpowers</thumbnail>
 <mode>182</mode>
 

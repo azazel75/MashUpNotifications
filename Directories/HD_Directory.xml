@@ -2,21 +2,21 @@ directory mode 235
 non directory mode 236
 
 <name>HackerMil HD Movies</name>
-<link>https://raw.github.com/HackerMil/HackerMilsMovieStashmaster/Movies/5%20HD.xml</link>
+<link>https://raw.github.com/HackerMil/HackerMilsMovieStash/master/Movies/5%20HD.xml</link>
 <thumbnail>hd2</thumbnail>
 <mode>236</mode>
 
 <name>TNPB HD Movies</name>
-<link>https://raw.github.com/mash2k3/MashUpTNPBmaster/720p%20Movies.xml</link>
+<link>https://raw.github.com/mash2k3/MashUpTNPB/master/720p%20Movies.xml</link>
 <thumbnail>hd2</thumbnail>
 <mode>236</mode>
 
 <name>MorePower HD Movies</name>
-<link>https://raw.github.com/mash2k3/MashUpMorePowermaster/Full1080P.xml</link>
+<link>https://raw.github.com/mash2k3/MashUpMorePower/master/Full1080P.xml</link>
 <thumbnail>hd2</thumbnail>
 <mode>236</mode>
 
 <name>Staael1982 HD Movies</name>
-<link>https://raw.github.com/mash2k3/Staael1982master/veehdCollection.xml</link>
+<link>https://raw.github.com/mash2k3/Staael1982/master/veehdCollection.xml</link>
 <thumbnail>hd2</thumbnail>
 <mode>236</mode>
