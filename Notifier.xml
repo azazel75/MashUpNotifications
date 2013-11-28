@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess2</new>
-<message1>To All the MashUp users from the UK, i was notified</message1>
-<message2>today that UK courts have forced ISP's to block streaming</message2>
-<message3>sites, so just letting u know if u experience problems</message3>
+<new>mess1</new>
+<message1>Happy thanks giving to all my U.S Users</message1>
+<message2> </message2>
+<message3> </message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
-<old>mess1</old>
+<old>mess2</old>
 </item>
 
 video1 video2 </mu>
