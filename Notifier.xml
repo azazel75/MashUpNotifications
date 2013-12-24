@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>Hey Mashup users if you are getting </message1>
-<message2>script errors, telling me about it </message2>
-<message3>wont help, I NEED YOUR LOGS</message3>
+<new>mess2</new>
+<message1>Merry Christmas and a </message1>
+<message2>Happy new year to all</message2>
+<message3>you guys, mash2k3:)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2 </mu>
