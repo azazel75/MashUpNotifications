@@ -17,16 +17,6 @@ non directory mode 182
 <thumbnail>crusara</thumbnail>
 <mode>181</mode>
 
-<name>Max Powers Streams</name>
-<link>https://raw.github.com/mash2k3/MashUpMaxPower/master/maxpow_mashupDirectory.xml</link>
-<thumbnail>maxpowers</thumbnail>
-<mode>181</mode>
-
-<name>Rino's Indo/Pak Streams</name>
-<link>https://raw.github.com/mash2k3/RinosMashUpStreams/master/RinosDir.xml</link>
-<thumbnail>rinos</thumbnail>
-<mode>181</mode>
-
 <name>The New Pirate Bay by BigBallzBaby</name>
 <link>https://raw.github.com/mash2k3/MashUpTNPB/master/TNPBLive_Directory.xml</link>
 <thumbnail>http://s20.postimg.org/jvq2l8xel/TNPB.png</thumbnail>
@@ -37,8 +27,3 @@ non directory mode 182
 <thumbnail>https://dl.dropboxusercontent.com/u/35068738/icons/staael.png</thumbnail>
 <mode>182</mode>
 
-
-<name>Benfiquista Streams</name>
-<link>https://dl.dropboxusercontent.com/s/xg2ypkmh4djxvtg/Benfiquista_Directory.xml</link>
-<thumbnail>https://dl.dropboxusercontent.com/u/35068738/icons/benfiquista.png</thumbnail>
-<mode>181</mode>
