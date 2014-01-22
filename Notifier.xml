@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>MashUp New HTTP Installer</message1>
-<message2>http://install.mashupxbmc.com</message2>
-<message3> </message3>
+<new>mess2</new>
+<message1>Welcome our new poster One242415</message1>
+<message2>Can be found under VIPlaylist or</message2>
+<message3>LIve Streams section... Enjoy ;)</message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2 </mu>
