@@ -3,20 +3,20 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess2</new>
+<new>mess1</new>
 <message1>WE ARE LIVE! GUYS! Visit MashupXbmc.Com NOW!</message1>
 <message2>Register and Get The Biggest MashUp Update To Date!</message2>
 <message3>v1.4.0 Before Our Official Release!</message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
-<old>mess1</old>
+<old>mess2</old>
 </item>
 
 video1 video2 </mu>
 
 <vid>
-<new>video1</new>
+<new>video2</new>
 <video>http://www.mightyupload.com/mq2h0awwmyu2/FINAL.mp4.html</mu></video>
-<old>video2</old>
+<old>video1</old>
 </vid>
 
 
