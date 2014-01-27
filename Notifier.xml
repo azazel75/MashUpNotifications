@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
+<new>mess2</new>
 <message1>WE ARE LIVE! GUYS! Visit MashupXbmc.Com NOW!</message1>
 <message2>Register and Get The Biggest MashUp Update To Date!</message2>
 <message3>v1.4.0 Before Our Official Release!</message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2 </mu>
