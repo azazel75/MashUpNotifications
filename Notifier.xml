@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1>Okay Mash users it has been exactly 12 days since</message1>
-<message2>the release of v1.4.0 please give your feedback &</message2>
-<message3>suggestions @ http://forum.mashupxbmc.com Thanks ;)</message3>
+<new>mess2</new>
+<message1>Get TV Guide Dixie 2.0 pre- release on Forum</message1>
+<message2>http://forum.mashupxbmc.com/</message2>
+<message3> </message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2 </mu>
