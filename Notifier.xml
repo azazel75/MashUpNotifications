@@ -27,4 +27,4 @@ VIPLISTER ="1"
 AutoSource= github or bitbucket
 UpdateOption= original or gitupdate1 or gitupdate2
 
-<AutoSource>github</AutoSource><UpdateOption>gitupdate2</UpdateOption>
+<AutoSource>bitbucket</AutoSource><UpdateOption>gitupdate2</UpdateOption>
