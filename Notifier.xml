@@ -4,9 +4,9 @@ ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
 <new>mess1</new>
-<message1>FINAL PROMETHEUS SNEAK BEFORE LAUNCH</message1>
-<message2>CHECK VID HERE</message2>
-<message3>TinyUrl.com/PrometheusSneak</message3>
+<message1></message1>
+<message2></message2>
+<message3></message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
 <old>mess2</old>
 </item>
@@ -16,14 +16,15 @@ video1 video2 </mu>
 
 <vid>
 <new>video2</new>
-<video>IVDYV2Ivkdg</video>
+<video></video>
 <old>video1</old>
 </vid>
 
 
 VIPLISTER ="1"
 
-hacker 1
-bbb 2
-morepower 3
-staael 4
+#################AutoUpdater##Settings#############################
+AutoSource= githud or bitbucket
+UpdateOption= original or gitupdate1 or gitupdate2
+
+<AutoSource>github</AutoSource><UpdateOption>gitupdate1</UpdateOption>
