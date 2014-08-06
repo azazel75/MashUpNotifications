@@ -24,7 +24,7 @@ video1 video2 </mu>
 VIPLISTER ="1"
 
 #################AutoUpdater##Settings#############################
-AutoSource= githud or bitbucket
+AutoSource= github or bitbucket
 UpdateOption= original or gitupdate1 or gitupdate2
 
-<AutoSource>github</AutoSource><UpdateOption>gitupdate1</UpdateOption>
+<AutoSource>bitbucket</AutoSource><UpdateOption>gitupdate1</UpdateOption>
