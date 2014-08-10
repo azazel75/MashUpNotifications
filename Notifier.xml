@@ -3,12 +3,12 @@ mess1 mess2
 ANNOUNCEMENTWINDOW ="OFF"
 
 <item>
-<new>mess1</new>
-<message1></message1>
-<message2></message2>
-<message3></message3>
+<new>mess2</new>
+<message1>AutoUpdate Fix can be found under Fixes on Home</message1>
+<message2>Run part 1 first More info can be found on</message2>
+<message3>http://forum.mashupxbmc.com</message3>
 <ANNOUNCEMENT>[B]Version 1.3.9[/B]</ANNOUNCEMENT>
-<old>mess2</old>
+<old>mess1</old>
 </item>
 
 video1 video2 </mu>
