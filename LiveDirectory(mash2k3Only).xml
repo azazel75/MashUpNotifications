@@ -22,10 +22,10 @@ link>https://raw.github.com/mash2k3/Staael1982/master/LIVE%20TV/Live%20tv%20dire
 thumbnail>staael2014</thumbnail>
 mode>181</mode>
 
-name>One242415 Italian and International Streams</name>
-link>https://raw2.github.com/mash2k3/One242415/master/Foriegn/italianLiveTV.xml</link>
-thumbnail>one252515</thumbnail>
-mode>182</mode>
+<name>One242415 Italian and International Streams</name>
+<link>https://raw2.github.com/One242415/One242415/master/Foriegn/italianLiveTV.xml</link>
+<thumbnail>one252515</thumbnail>
+<mode>182</mode>
 
 <name>Benfiquista Streams</name>
 <link>https://dl.dropboxusercontent.com/s/xg2ypkmh4djxvtg/Benfiquista_Directory.xml</link>
