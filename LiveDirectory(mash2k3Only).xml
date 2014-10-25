@@ -7,10 +7,10 @@ non directory mode 182
 <thumbnail>k1m05</thumbnail>
 <mode>181</mode>
 
-name>Buzzy Sports</name>
-link>https://raw.github.com/mash2k3/MashSports/master/Mashsprt.xml</link>
-thumbnail>buzzysports</thumbnail>
-mode>181</mode>
+<name>Buzzy Sports</name>
+<link>https://raw.githubusercontent.com/woodypecker/Woody/master/Woody.xml</link>
+<thumbnail>buzzysports</thumbnail>
+<mode>182</mode>
 
 <name>Crusader Arabic Streams</name>
 <link>https://raw.github.com/crusader88/MashUpStreams/master/CrusadersDir.xml</link>
